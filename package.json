@@ -1,0 +1,29 @@
+{
+  "name": "starstuff",
+  "version": "1.0.0",
+  "description": ">“The nitrogen in our DNA, the calcium in our teeth, the iron in our blood, the carbon in our apple pies were made in the interiors of collapsing stars. We are made of starstuff.”",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuria-fl/starstuff.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nuria-fl/starstuff/issues"
+  },
+  "homepage": "https://github.com/nuria-fl/starstuff#readme",
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "bootstrap-sass": "^3.3.7",
+    "grunt": "~0.4.5",
+    "grunt-contrib-sass": "^0.8.1",
+    "grunt-contrib-uglify": "^0.7.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-postcss": "^0.8.0"
+  }
+}
