@@ -1,0 +1,20 @@
+{
+  "name": "starstuff",
+  "description": ">“The nitrogen in our DNA, the calcium in our teeth, the iron in our blood, the carbon in our apple pies were made in the interiors of collapsing stars. We are made of starstuff.”",
+  "main": "index.js",
+  "authors": [
+    "Nuria <soriano.nuria@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/nuria-fl/starstuff",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-scrollpoint": "^2.1.1"
+  }
+}

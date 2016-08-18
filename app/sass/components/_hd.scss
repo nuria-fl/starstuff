@@ -1,0 +1,32 @@
+.c-hd {
+	width: 100%;
+	padding: 1.5rem 0;
+	position: fixed;
+	margin: 0;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	background: rgba(0,0,0,.5);
+	transition: background .3s;
+	&--home:not(.ui-scrollpoint) {
+		position: absolute;
+		top: 10rem;
+		background: transparent;
+	}
+	&__logo {
+		width: 40rem;
+		margin: 0 auto;
+		text-align: center;	
+		transition: all .3s;
+		img {
+			max-width: 100%;
+		}
+	}
+	&.ui-scrollpoint {
+		background: rgba(0,0,0,.8);
+		.c-hd__logo {
+			width: 30rem;
+		}
+	}
+
+}

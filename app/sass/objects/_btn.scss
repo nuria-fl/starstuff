@@ -1,0 +1,22 @@
+.o-btn {
+	display: inline-block;
+	padding: .6rem 1.8rem;
+	border: none;
+	color: $text-c;
+	font-size: 1.8rem;
+	font-weight: 300;
+	&--primary {
+		background: $primary-c;
+		color: #fff;
+		&:hover {
+			color: #fff;
+		}
+	}
+	&--sm {
+		font-size: 1.6rem;
+	}
+	&:hover {
+		text-decoration: none;
+		opacity: .8;
+	}
+}

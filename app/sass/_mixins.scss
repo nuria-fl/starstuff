@@ -1,0 +1,37 @@
+@mixin gradient($fromColor, $toColor) {
+	background-color: $toColor; /* Fallback Color */
+	background: -moz-linear-gradient(top,  $fromColor 0%, $toColor 100%); /* FF3.6+ */
+	background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+	background: -webkit-linear-gradient(top,  $fromColor 0%,$toColor 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  $fromColor 0%,$toColor 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  $fromColor 0%,$toColor 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  $fromColor 0%,$toColor 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}
+@mixin ellipsis($width: 100%) {
+	display: inline-block;
+	max-width: $width;
+	overflow: hidden;
+	text-overflow: ellipsis;	
+	white-space: nowrap;
+	word-wrap: normal;
+}
+@mixin word-wrap($wrap: break-word) {
+	word-wrap: $wrap;
+	@if $wrap == break-word {
+		overflow-wrap: break-word;
+		word-break: break-all;
+	}
+}
+@mixin cf { 
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+@mixin bgcover($position: center) {
+	background-repeat: no-repeat;
+	background-position: $position;
+	background-size: cover;
+}
