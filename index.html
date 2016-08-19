@@ -1,27 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="starstuff">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>StarStuff</title>
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
-	<link rel="stylesheet" href="public/stylesheets/style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/stylesheets/style.css">
 </head>
 <body>
-	<div class="container">
-		<section class="c-intro">
-			<h1><img src="public/img/logo.png" alt="StarStuff">	</h1>
-
-			<p class="c-intro__quote">“The nitrogen in our DNA, the calcium in our teeth, the iron in our blood, 
-					the carbon in our apple pies were made in the interiors of collapsing stars. 
-					We are made of starstuff.” 
-			<strong>Carl Sagan</strong>
-			</p>
-
-
-			<p>StarStuff helps you keep up to date with all things space related. Keep track of the next meteor shower, moon eclipse or passing comet. Look at how others have seen the events and share your own photographs.  </p>
-		</section>
-	</div>
+	<header class="c-hd" ng-class="isHome ? 'c-hd--home' : ''" ui-scrollpoint="+1">
+		<h1 class="c-hd__logo">
+			<a href="/#/"><img src="assets/img/logo.png" alt="StarStuff"></a>
+		</h1>
+	</header>
 	
+	<main ng-view></main>	
+
+	<footer class="c-ft">
+		© StarStuff, 2016
+	</footer>
+
+	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script> -->
+	<script type="text/javascript" src="bower_components/angular-ui-scrollpoint/dist/scrollpoint.js"></script>
+
+	<script src="app/js/app.js"></script>
+	<script src="app/js/config.js"></script>
+	<script src="app/js/controllers.js"></script>
 	
+	<!-- <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+	<script src="assets/js/scripts.min.js"></script> -->
+
 </body>
 </html>

@@ -1,0 +1,32 @@
+.c-card {
+	margin: 1.5rem 0;
+	position: relative;
+	&__img {
+		display: block;
+	}
+	&__bd {
+		width: 100%;
+		padding: 1.5rem;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		visibility: hidden;
+		opacity: 0;
+		background: rgba(0,0,0,.8);
+		transition: all .3s;
+	}
+	&__title {
+		margin: 0 0 .5rem;
+		font-size: 2rem;
+	}
+	&__author {
+		font-style: italic;
+		opacity: .8;
+	}
+	&:hover {
+		.c-card__bd {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}

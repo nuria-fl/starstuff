@@ -1,5 +1,6 @@
 .c-event {
 	@include cf;
+	margin: 0 0 2rem;
 	&__time {
 		display: block;
 		float: left;
@@ -34,6 +35,9 @@
 		.c-event__add {
 			visibility: visible;
 			opacity: 1;
+			&:hover {
+				opacity: .8;
+			}
 		}
 	}
 }

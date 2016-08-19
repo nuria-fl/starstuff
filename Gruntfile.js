@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 					style: 'compressed',
 				},
 				files: { 
-					'public/stylesheets/style.css': 'app/sass/style.scss',
+					'assets/stylesheets/style.css': 'app/sass/style.scss',
 				}
 			}
 		},
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
                 ]
             },
             dist: {
-                src: 'public/stylesheets/*.css'
+                src: 'assets/stylesheets/*.css'
             }
         },
 		watch: {
@@ -32,14 +32,14 @@ module.exports = function(grunt) {
 				livereload: true
 			},
 			css: {
-				files: '**/*.scss',
+				files: 'app/**/*.scss',
 				tasks: ['sass', 'postcss:dist']
 			}
 		},
 		uglify: {
 			my_target: {
 				files: {
-					// 'js/master.min.js': ['js/base/base.min.js', 'js/master.js']
+					'assets/js/scripts.min.js': ['node_modules/bootstrap-sass/assets/javascripts/bootstrap.js']
 				}
 			}
 		}

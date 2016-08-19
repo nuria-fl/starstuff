@@ -1,15 +1,23 @@
 .o-btn {
 	display: inline-block;
 	padding: .6rem 1.8rem;
-	border: none;
+	border: .1rem solid;
 	color: $text-c;
 	font-size: 1.8rem;
 	font-weight: 300;
 	&--primary {
 		background: $primary-c;
+		border-color: $primary-c;
 		color: #fff;
 		&:hover {
 			color: #fff;
+		}
+	}
+	&--default {
+		background: transparent;
+		color: $primary-c;
+		&:hover {
+			color: $primary-c;
 		}
 	}
 	&--sm {
@@ -18,5 +26,11 @@
 	&:hover {
 		text-decoration: none;
 		opacity: .8;
+	}
+	.fa {
+		margin-right: .5rem;
+	}
+	+ .o-btn {
+		margin-left: 1rem;
 	}
 }
