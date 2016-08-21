@@ -9,7 +9,7 @@
 	<p>StarStuff helps you keep up to date with all things space related. Keep track of the next meteor shower, moon eclipse or passing comet. Look at how others have seen the events and share your own photographs.  </p>
 </section>
 
-<section>
+<section ng-controller="eventsController">
 	<div class="container">
 		<h2 class="o-title">Upcoming Events</h2>
 		<div ng-repeat="event in events">
@@ -28,12 +28,15 @@
 								<i class="fa fa-eye"></i> Visible {{event.visibility}} <br>
 								<i class="fa fa-eye"></i> Category: {{event.category}}
 							</p>
-							<a href="/#" class="o-btn o-btn--default o-btn--sm c-event__add">
+							<a href="/#/calendar/event/{{event.id}}" class="o-btn o-btn--default o-btn--sm c-event__add">
 								<i class="fa fa-plus-circle"></i> Read more
 							</a>
-							<button type="button" class="o-btn o-btn--primary o-btn--sm c-event__add">
+							<button type="button" class="o-btn o-btn--primary o-btn--sm c-event__add" ng-hide="added">
 								<i class="fa fa-calendar-plus-o"></i> Add to my calendar
 							</button>
+							<span class="o-btn o-btn--primary o-btn--sm c-event__add" ng-show="added">
+								<i class="fa fa-check"></i> Added
+							</span>
 							
 						</div>
 						
@@ -47,12 +50,12 @@
 	</div>
 </section>
 
-<section>
+<section ng-controller="galleryController">
 	<h2 class="o-title">Latest Pictures</h2>
 	<div class="c-gallery">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-4" ng-repeat="pic in [1,2,3,4,5,6,7,8,9]">
+				<div class="col-sm-4" ng-repeat="pic in gallery">
 					<section class="c-card">
 						<a href="/#">
 							<img src="http://placehold.it/400x250" alt="a">		
@@ -67,7 +70,7 @@
 				</div>
 			</div>
 			<footer class="c-gallery__ft">
-				<a href="/#/pictures" class="o-btn o-btn--primary">SEE MORE PICTURES</a>
+				<a href="/#/gallery" class="o-btn o-btn--primary">SEE MORE PICTURES</a>
 			</footer>
 		</div>
 	</div>
