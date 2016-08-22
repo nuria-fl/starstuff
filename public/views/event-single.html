@@ -7,14 +7,14 @@
 		</time>
 
 		<h3 class="c-event__title">{{event.name}}</h3>
-		<p>{{event.description}}</p>
+		
 		<div class="c-event__desc">
 			<p>
 				<i class="fa fa-eye"></i> Visible {{event.visibility}} <br>
 				<i class="fa fa-eye"></i> Category: <span ng-repeat="category in event.category">{{category}}{{$last ? '' : ', '}}
 				 </span>
 			</p>
-
+			<p class="u-txt--lb">{{event.description}}</p>
 			<!-- <button type="button" class="o-btn o-btn--primary o-btn--sm c-event__add" ng-hide="added">
 				<i class="fa fa-calendar-plus-o"></i> Add to my calendar
 			</button>

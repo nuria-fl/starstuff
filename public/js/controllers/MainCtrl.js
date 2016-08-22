@@ -6,6 +6,7 @@ angular.module('MainCtrl', [])
 			$rootScope.activePage = $location.path();
 		});
 	})
+	
 	.controller('homeController', function($scope) {
 		$scope.dateFrom = new Date();
 		$scope.dateTo = new Date('2100-01-01');
@@ -45,8 +46,9 @@ angular.module('MainCtrl', [])
 	        
 	    };
 	})
-	.controller( 'eventsController' , function ( $scope, Event ) {
+	.controller( 'eventsController' , function ( $scope, Event, $location ) {
 
+		$scope.activePage = $location.path();
 		var today = new Date();
 		var currYear = today.getFullYear();
 		var currMonth = today.getMonth() + 1;
@@ -63,18 +65,58 @@ angular.module('MainCtrl', [])
 		$scope.dateTo = new Date(dateTo);
 
 		$scope.categories = [
-			{ name: 'Moon',    			selected: false },
-			{ name: 'Sun',    			selected: false },
-			{ name: 'Stars and planets',selected: false },
-			{ name: 'Meteor showers',   selected: false },
-			{ name: 'Comets',     		selected: false },
-			{ name: 'Eclipses',    		selected: false },
-			{ name: 'Mission Updates',	selected: false }
+			{ 
+				name: 'Moon',    			
+				iconName: 'iconMoon',
+				selected: false 
+			},
+			{ 
+				name: 'Sun',
+				iconName: 'iconSun',
+				selected: false 
+			},
+			{ 
+				name: 'Stars and planets',
+				iconName: 'iconPlanets',
+				selected: false 
+			},
+			{ 
+				name: 'Meteor showers',   
+				iconName: 'iconMeteorShower',
+				selected: false 
+			},
+			{ 
+				name: 'Comets', 
+				iconName: 'iconComets',
+				selected: false 
+			},
+			{ 
+				name: 'Eclipses',
+				iconName: 'iconEclipse',
+				selected: false 
+			},
+			{ 
+				name: 'Mission Updates',
+				iconName: 'iconMissionUpdates',	
+				selected: false 
+			}
 		];
 		$scope.visibility = [
-			{ name: 'to the naked eye',	selected: false },
-			{ name: 'with binoculars',	selected: false },
-			{ name: 'with telescope',	selected: false }
+			{ 
+				name: 'to the naked eye',
+				iconName: 'iconEye',
+				selected: false 
+			},
+			{ 
+				name: 'with binoculars',	
+				iconName: 'iconBinoculars',
+				selected: false 
+			},
+			{ 
+				name: 'with telescope',	
+				iconName: 'iconTelescope',
+				selected: false 
+			}
 		];
 
 		// selected categories
@@ -103,79 +145,27 @@ angular.module('MainCtrl', [])
 			.then( function( dataEvents ) {
 				$scope.events = dataEvents.data;
 			})
-		// var events = [
-		// 	{
-		// 		name: 'Mercury at greatest elongation east',
-		// 		description: '',
-		// 		date: new Date('2016-08-16T15:19:00'),
-		// 		category: ['Stars and planets'],
-		// 		visibility: 'to the naked eye'
-		// 	},
-		// 	{
-		// 		name: 'Full Moon',
-		// 		description: '',
-		// 		date: new Date('2016-08-18T09:28'),
-		// 		category: ['Moon'],
-		// 		visibility: 'to the naked eye'
-		// 	},
-		// 	{
-		// 		name: 'α–Cygnid meteor shower',
-		// 		description: '',
-		// 		date: new Date('2016-08-21'),
-		// 		category: ['Meteor showers'],
-		// 		visibility: 'to the naked eye'
-		// 	},
-		// 	{
-		// 		name: 'Conjunction between the Moon and Uranus',
-		// 		description: '',
-		// 		date: new Date('2016-08-22T11:28'),
-		// 		category: ['Stars and planets'],
-		// 		visibility: 'with binoculars'
-		// 	},
-		// 	{
-		// 		name: 'Conjunction between Mars and Saturn',
-		// 		description: '',
-		// 		date: new Date('2016-08-24T15:37'),
-		// 		category: ['Stars and planets'],
-		// 		visibility: 'to the naked eye'
-		// 	},
-		// 	{
-		// 		name: 'Moon at Last Quarter',
-		// 		description: '',
-		// 		date: new Date('2016-08-25T03:42'),
-		// 		category: ['Moon'],
-		// 		visibility: 'to the naked eye'
-		// 	},
-		// 	{
-		// 		name: 'Neptune at opposition',
-		// 		description: '',
-		// 		date: new Date('2016-09-02T16:23'),
-		// 		category: ['Stars and planets'],
-		// 		visibility: 'with telescope'
-		// 	},
-		// 	{
-		// 		name: 'Conjunction between the Moon and Saturn',
-		// 		description: '',
-		// 		date: new Date('2016-09-09T16:23'),
-		// 		category: ['Stars and planets', 'Moon'],
-		// 		visibility: 'to the naked eye'
-		// 	},
-		// 	{
-		// 		name: 'Piscid meteor shower',
-		// 		description: '',
-		// 		date: new Date('2016-09-09'),
-		// 		category: ['Meteor showers'],
-		// 		visibility: 'to the naked eye'
-		// 	},
-		// 	{
-		// 		name: 'Moon at First Quarter',
-		// 		description: '',
-		// 		date: new Date('2016-09-09T11:50'),
-		// 		category: ['Moon'],
-		// 		visibility: 'to the naked eye'
-		// 	},
+		
+		$scope.showFilterCat = false;
+		$scope.showFilterVisibility = false;
 
-		// ];
+		$scope.toggleFilterCat = function(){
+			$scope.showFilterVisibility = false;
+			if($scope.showFilterCat === true){
+				$scope.showFilterCat = false;
+			} else {
+				$scope.showFilterCat = true;
+			}
+		}
+
+		$scope.toggleFilterVisibility = function(){
+			$scope.showFilterCat = false;
+			if($scope.showFilterVisibility === true){
+				$scope.showFilterVisibility = false;
+			} else {
+				$scope.showFilterVisibility = true;
+			}
+		}
 		
 	})
 	.controller( 'galleryController' , function ( $scope ) {

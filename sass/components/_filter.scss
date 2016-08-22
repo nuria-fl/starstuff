@@ -1,0 +1,32 @@
+.c-filter {
+	padding: 1.5rem 0;
+	background: rgba(0,0,0,.7);
+	text-align: center;
+	&__item {
+		display: inline-block;
+		width: 10rem;
+		vertical-align: top;
+		color: $primary-c;
+		font-size: 1.3rem;
+		font-weight: 300;
+		text-transform: uppercase;
+		span {
+			display: block;
+			margin: 0 auto;
+			opacity: .3;
+			transition: all .3s;
+		}
+		svg {
+			fill: $primary-c;
+		}
+		input{
+			visibility: hidden;
+			position: absolute;
+			&:checked + .o-icon,
+			&:checked + .o-icon + span {
+				opacity: 1;
+			}
+		}
+	}
+
+}
