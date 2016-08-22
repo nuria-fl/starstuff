@@ -9,6 +9,17 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
             controller: 'homeController'
         })
 
+        .when('/calendar', {
+            templateUrl: 'views/calendar.html',
+            controller: 'eventsController'
+        })
+
+        .when('/calendar/event/:ID', {
+            templateUrl: 'views/event-single.html',
+            controller: 'singleEventController'
+        })
+
+
         // // nerds page that will use the NerdController
         // .when('/nerds', {
         //     templateUrl: 'views/nerd.html',

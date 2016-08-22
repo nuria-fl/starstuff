@@ -1,7 +1,7 @@
 // app/routes.js
 
-// grab the nerd model we just created
-var Nerd = require('./models/nerd');
+// grab the event model we just created
+var Event = require('./models/event');
 
 	module.exports = function(app) {
 
@@ -10,16 +10,30 @@ var Nerd = require('./models/nerd');
 		// authentication routes
 
 		// sample api route
-		app.get('/api/nerds', function(req, res) {
-			// use mongoose to get all nerds in the database
-			Nerd.find(function(err, nerds) {
+		app.get('/api/events', function(req, res) {
+			// use mongoose to get all events in the database
+			Event.find(function(err, events) {
 
 				// if there is an error retrieving, send the error. 
 								// nothing after res.send(err) will execute
 				if (err)
 					res.send(err);
 
-				res.json(nerds); // return all nerds in JSON format
+				res.json(events); // return all events in JSON format
+			});
+		});
+
+		app.get('/api/event/:id', function(req, res) {
+			// use mongoose to get all events in the database
+			var eventId = req.params.id;
+			Event.findById(eventId, function(err, events) {
+
+				// if there is an error retrieving, send the error. 
+								// nothing after res.send(err) will execute
+				if (err)
+					res.send(err);
+
+				res.json(events); // return all events in JSON format
 			});
 		});
 
