@@ -34,6 +34,7 @@ What this app will do:
 - Search pictures by event/category of the event
 - User profile shows pictures
 - Past event page shows pictures users added
+- Show event date and time in user's timezone plus the "default" one.
 
 ###Stage 4 (very distant future)
 - Notifications

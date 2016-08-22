@@ -1,7 +1,7 @@
 
 <section class="c-intro">
 	<header class="c-intro__logo">
-		<a href="/#/"><img src="img/logo.png" alt="StarStuff"></a>
+		<img src="img/logo.png" alt="StarStuff">
 	</header>
 
 	<p class="c-intro__quote">“The nitrogen in our DNA, the calcium in our teeth, the iron in our blood, 
@@ -16,42 +16,42 @@
 <section ng-controller="eventsController">
 	<div class="container">
 		<h2 class="o-title">Upcoming Events</h2>
-		<div ng-repeat="event in events">
-			<div class="row" ng-if="$even">	
-				<div class="col-sm-6" ng-repeat="event in [events[$index],events[$index + 1]]">
-					<article class="c-event">
-						
-						<time class="c-event__time" datetime="{{event.date | date:'YYYY-MM-dd'}}">
-							{{ event.date | date:'MMM' }}
-							<strong class="c-event__day">{{ event.date | date:'dd' }}</strong>
-						</time>
+		
+		<div class="row o-grid--half">	
+			<div class="col-sm-6" ng-repeat="event in events | limitTo:10 | orderBy: date | dateFilter:dateFrom:dateTo">
+				<article class="c-event">
+					
+					<time class="c-event__time" datetime="{{event.date | date:'YYYY-MM-dd'}}">
+						{{ event.date | date:'MMM' }}
+						<strong class="c-event__day">{{ event.date | date:'dd' }}</strong>
+					</time>
 
-						<h3 class="c-event__title">{{event.name}}</h3>
-						<div class="c-event__desc">
-							<p>
-								<i class="fa fa-eye"></i> Visible {{event.visibility}} <br>
-								<i class="fa fa-eye"></i> Category:  
-								<span ng-repeat="category in event.category">
-									{{category}}
-									{{$last ? '' : ', '}}
-								</span>
-							</p>
-							<a href="/#/calendar/event/{{event._id}}" class="o-btn o-btn--default o-btn--sm c-event__add">
-								<i class="fa fa-plus-circle"></i> Read more
-							</a>
-							<!-- <button type="button" class="o-btn o-btn--primary o-btn--sm c-event__add" ng-hide="added">
-								<i class="fa fa-calendar-plus-o"></i> Add to my calendar
-							</button>
-							<span class="o-btn o-btn--primary o-btn--sm c-event__add" ng-show="added">
-								<i class="fa fa-check"></i> Added
-							</span> -->
-							
-						</div>
+					<h3 class="c-event__title">{{event.name}}</h3>
+					<div class="c-event__desc">
+						<p>
+							<i class="fa fa-eye"></i> Visible {{event.visibility}} <br>
+							<i class="fa fa-eye"></i> Category:  
+							<span ng-repeat="category in event.category">
+								{{category}}
+								{{$last ? '' : ', '}}
+							</span>
+						</p>
+						<a href="/#/calendar/event/{{event._id}}" class="o-btn o-btn--default o-btn--sm c-event__add">
+							<i class="fa fa-plus-circle"></i> Read more
+						</a>
+						<!-- <button type="button" class="o-btn o-btn--primary o-btn--sm c-event__add" ng-hide="added">
+							<i class="fa fa-calendar-plus-o"></i> Add to my calendar
+						</button>
+						<span class="o-btn o-btn--primary o-btn--sm c-event__add" ng-show="added">
+							<i class="fa fa-check"></i> Added
+						</span> -->
 						
-					</article>
-				</div>
+					</div>
+					
+				</article>
 			</div>
 		</div>
+		
 		<footer class="u-txt--center">
 			<a href="/#/calendar" class="o-btn o-btn--primary">SEE FULL CALENDAR</a>
 		</footer>	

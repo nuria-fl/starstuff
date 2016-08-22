@@ -1,0 +1,14 @@
+.c-monthnav {
+	text-align: center;
+	.fa {
+		color: #fff;
+		font-size: 3.3rem;
+		&:not(.fa-calendar) {
+			margin-top: 1.4rem;
+		}
+		&-calendar {
+			margin-right: 1rem;
+			font-size: 2.5rem;
+		}
+	}
+}

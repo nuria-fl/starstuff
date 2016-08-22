@@ -1,0 +1,7 @@
+.o-grid {
+	&--half {
+		.col-sm-6:nth-child(2n+1) {
+			clear: both;
+		}
+	}
+}

@@ -7,12 +7,11 @@ angular.module('EventService', []).factory('Event', ['$http', function($http) {
             return $http.get('/api/events');
         },
 
-
+        // get single event by ID
         getOne : function( id ) {
             console.log(id)
             return $http.get('/api/event/'+id);
         },
-
 
         // these will work when more API routes are defined on the Node side of things
         // call to POST and create a new event
