@@ -1,11 +1,16 @@
-angular.module( 'controllers', [] )
+// public/js/controllers/MainCtrl.js
+angular.module('MainCtrl', [])
 	.run(function($location, $rootScope){
 		$rootScope.$on("$routeChangeSuccess", function(currentRoute, previousRoute){
 			$rootScope.isHome = $location.path() === '/';
+			$rootScope.activePage = $location.path();
+			console.log($location.path())
 		});
 	})
-	.controller( 'homeController' , function ( $scope ) {
-		
+	.controller('homeController', function($scope) {
+
+	    
+
 	})
 	.controller( 'eventsController' , function ( $scope ) {
 		

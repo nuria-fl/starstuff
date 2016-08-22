@@ -1,0 +1,23 @@
+.c-nav {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-align: right;
+	&__item {
+		display: inline-block;
+		padding: 2.8rem 2.5rem;
+		font-size: 1.6rem;
+		font-weight: 300;
+		a {
+			color: $primary-c;
+			&:hover,
+			&:focus {
+				opacity: .8;
+				text-decoration: none;
+			}
+		}
+		&.is-active {
+			background: rgba(60,60,60,.5);
+		}
+	}
+}
