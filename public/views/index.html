@@ -19,7 +19,7 @@
 			</h1>
 			<nav class="c-hd__nav">
 				<ul class="c-nav">
-					<li class="c-nav__item" ng-class="activePage === '/calendar' ? 'is-active' : ''">
+					<li class="c-nav__item" ng-class="activePage.indexOf('/calendar') !== -1 ? 'is-active' : ''">
 						<a href="/calendar">CALENDAR</a>
 					</li>
 					<!-- <li class="c-nav__item" ng-class="activePage === '/gallery' ? 'is-active' : ''">

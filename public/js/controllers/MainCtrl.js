@@ -11,27 +11,55 @@ angular.module('MainCtrl', [])
 
 	})
 	.controller('homeController', function($scope) {
-		$scope.dateFrom = new Date();
-		$scope.dateTo = new Date('2100-01-01');
-	})
-	.controller( 'eventsController' , function ( $scope, $rootScope, Event, $location, Icons ) {
-
-		// $scope.activePage = $location.path();
-
 		var today = new Date();
 		var currYear = today.getFullYear();
 		var currMonth = today.getMonth() + 1;
-		var nextYear, nextMonth;
+
+		$scope.dateFrom = today;
+		$scope.dateTo = new Date('2100-01-01');
+		$scope.routeToCalendar = '/#/calendar/'+currYear+'/'+currMonth;
+
+	})
+	.controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, Event, $location, Icons ) {
+
+		// $scope.activePage = $location.path();
+		// var today = new Date();
+		// var currYear = today.getFullYear();
+		// var currMonth = today.getMonth() + 1;
+		var currYear = parseInt($routeParams.YEAR);
+		var currMonth = parseInt($routeParams.MONTH);
+
+		var nextYear, nextMonth, prevYear, prevMonth;
 		if(currMonth === 12){
 			nextYear = currYear + 1;
+			nextMonth = 1;
 		} else {
 			nextMonth = currMonth + 1;
 		}
+		if(currMonth === 1){
+			prevYear = currYear - 1;
+			prevMonth = 12;
+		} else {
+			prevMonth = currMonth - 1;
+		}
 		var dateFrom = currYear + '-' + currMonth + '-1';
+
 		var dateTo = (nextYear || currYear) + '-' + (nextMonth || currMonth) + '-1';
+		
 
 		$scope.dateFrom = new Date(dateFrom);
 		$scope.dateTo = new Date(dateTo);
+
+		function monthName(){
+			var month = new Date(dateFrom).getMonth();
+			var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+			return monthNames[month];
+		};
+
+		$scope.dateTitle = monthName() + ' ' + currYear;
+
+		$scope.routePrevMonth = '/#/calendar/'+ (prevYear || currYear) + '/' + (prevMonth || currMonth);
+		$scope.routeNextMonth = '/#/calendar/'+ (nextYear || currYear) + '/' + (nextMonth || currMonth);
 
 		$scope.categories = [
 			{ 

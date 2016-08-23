@@ -13,18 +13,18 @@
 	<p>StarStuff helps you keep up to date with all things space related. Keep track of the next meteor shower, moon eclipse or passing comet. Look at how others have seen the events and share your own photographs.  </p>
 </section>
 
-<section ng-controller="eventsController">
+<section>
 	<div class="container">
 		<h2 class="o-title">Upcoming Events</h2>
 		
-		<div class="row o-grid--half">	
-			<div class="col-sm-6" ng-repeat="event in events | limitTo:10 | orderBy: date | dateFilter:dateFrom:dateTo">
+		<div class="row o-grid--half" ng-controller="eventsController">	
+			<div class="col-sm-6" ng-repeat="event in events | limitTo:10 | orderBy: date | dateFilter:$parent.dateFrom:$parent.dateTo">
 				<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)"></event-preview>
 			</div>
 		</div>
 		
 		<footer class="u-txt--center">
-			<a href="/#/calendar" class="o-btn o-btn--primary">SEE FULL CALENDAR</a>
+			<a href="{{routeToCalendar}}" class="o-btn o-btn--primary">SEE FULL CALENDAR</a>
 		</footer>	
 	</div>
 </section>

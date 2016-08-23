@@ -10,11 +10,20 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         })
 
         .when('/calendar', {
+            redirectTo: function(){
+                var today = new Date();
+                var currYear = today.getFullYear();
+                var currMonth = today.getMonth() + 1;
+                return '/calendar/'+currYear+'/'+currMonth;
+            }
+        })
+
+        .when('/calendar/:YEAR/:MONTH', {
             templateUrl: 'views/calendar.html',
             controller: 'eventsController'
         })
 
-        .when('/calendar/event/:ID', {
+        .when('/event/:ID', {
             templateUrl: 'views/event-single.html',
             controller: 'singleEventController'
         })

@@ -9,9 +9,7 @@ angular.module('Filters', [])
                         result.push(elem);
                     }
                 })
-            }    
-    		
-    		           
+            }     		           
     		return result;
     	};
     })
