@@ -15,15 +15,15 @@
 			</div>
 		</header>
 		<div class="u-txt--right">
-			<button type="button" class="o-btn o-btn--default" ng-click="toggleFilterCat()">
+			<button type="button" class="o-btn" ng-class="showFilterCat ? 'o-btn--primary' : 'o-btn--default' " ng-click="toggleFilterCat()">
 				Categories <i class="fa fa-caret"></i>
 			</button>
-			<button type="button" class="o-btn o-btn--default" ng-click="toggleFilterVisibility()">
+			<button type="button" class="o-btn" ng-class="showFilterVisibility ? 'o-btn--primary' : 'o-btn--default' " ng-click="toggleFilterVisibility()">
 				Visibility <i class="fa fa-caret"></i>
 			</button>
 		</div>
 	</div>
-	<div id="filterCategories" class="c-filter" ng-show="showFilterCat">
+	<div class="c-filter" ng-show="showFilterCat">
 		<div class="container">
 			<label class="c-filter__item" ng-repeat="category in categories">
 				<input
@@ -42,7 +42,7 @@
 		</div>
 	</div>
 				
-	<div id="filterVisibility" class="c-filter" ng-show="showFilterVisibility">
+	<div class="c-filter" ng-show="showFilterVisibility">
 		<div class="container">
 			<label class="c-filter__item" ng-repeat="visibility in visibility">
 				<input
@@ -56,15 +56,28 @@
 					    <use xlink:href="" ng-attr-xlink:href="{{ activePage + '#' + visibility.iconName}}" />
 					</svg>
 				</span>
-				<span>Visible {{visibility.name}}</span>
+				<span>{{visibility.name}}</span>
 			</label>
 		</div>
 	</div>
 
 	<div class="container">
+		<p ng-if="selection.length > 0 || selectionVisibility.length > 0" class="u-txt--center">
+			Filtering by:
+			<span ng-repeat="item in selection">
+				{{item}}
+				{{$last ? '' : ', '}}
+			</span>
+			{{selection.length > 0 && selectionVisibility.length > 0 ? ',' : ''}}
+			<span ng-repeat="item in selectionVisibility">
+				{{item}}
+				{{$last ? '' : ', '}}
+			</span>
+		</p>
+		
 		<div class="row o-grid--half">	
 			<div class="col-sm-6" ng-repeat="event in filteredEvents = (events | selectedFilters:selection | dateFilter:dateFrom:dateTo | orderBy: date)">
-				<event-preview info="event"></event-preview>
+				<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)" active-page="activePage"></event-preview>
 			</div>
 		</div>
 		<p ng-if="filteredEvents.length === 0" class="u-txt--center">

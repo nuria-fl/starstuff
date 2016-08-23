@@ -19,7 +19,7 @@
 		
 		<div class="row o-grid--half">	
 			<div class="col-sm-6" ng-repeat="event in events | limitTo:10 | orderBy: date | dateFilter:dateFrom:dateTo">
-				<event-preview info="event"></event-preview>
+				<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)"></event-preview>
 			</div>
 		</div>
 		

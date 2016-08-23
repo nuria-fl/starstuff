@@ -14,7 +14,7 @@ angular.module('MainCtrl', [])
 		$scope.dateFrom = new Date();
 		$scope.dateTo = new Date('2100-01-01');
 	})
-	.controller( 'eventsController' , function ( $scope, Event, $location ) {
+	.controller( 'eventsController' , function ( $scope, $rootScope, Event, $location, Icons ) {
 
 		// $scope.activePage = $location.path();
 
@@ -72,24 +72,30 @@ angular.module('MainCtrl', [])
 		];
 		$scope.visibility = [
 			{ 
-				name: 'to the naked eye',
+				name: 'Visible to the naked eye',
 				iconName: 'iconEye',
 				selected: false 
 			},
 			{ 
-				name: 'with binoculars',	
+				name: 'Visible with binoculars',	
 				iconName: 'iconBinoculars',
 				selected: false 
 			},
 			{ 
-				name: 'with telescope',	
+				name: 'Visible with telescope',	
 				iconName: 'iconTelescope',
+				selected: false 
+			},
+			{ 
+				name: 'Not visible',	
+				iconName: 'iconEyeSlash',
 				selected: false 
 			}
 		];
 
 		// selected categories
 		$scope.selection = [];
+		$scope.selectionVisibility = [];
 
 		// helper method to get selected categories
 		$scope.selectedCategories = function selectedCategories() {
@@ -103,7 +109,7 @@ angular.module('MainCtrl', [])
 			});
 		}, true);
 		$scope.$watch('visibility|filter:{selected:true}', function (nv) {
-			$scope.selection = nv.map(function (visibility) {
+			$scope.selectionVisibility = nv.map(function (visibility) {
 			  return visibility.name;
 			});
 		}, true);
@@ -131,6 +137,29 @@ angular.module('MainCtrl', [])
 			}
 		}
 
+		$scope.iconVisibilityName = function (event) {
+			var activePage = $rootScope.activePage;
+			var iconName = activePage+'#icon'
+			if(event.visibility === 'Visible to the naked eye') {
+				iconName+='Eye';
+			} else if(event.visibility === 'Visible with binoculars') {
+				iconName+='Binoculars';
+			} else if(event.visibility === 'Visible with telescope') {
+				iconName+='Telescope';
+			} else {
+				iconName+='EyeSlash';
+			}
+			return iconName;
+		};
+		$scope.iconVisibilityName = function(event){
+			return Icons.getIconVisibility(event);
+		};
+
+		$scope.iconCategoryName = function(event){
+			return Icons.getIconCat(event);
+		};
+		
+
 		Event.get()
 			.then( function( dataEvents ) {
 				$scope.events = dataEvents.data;
@@ -141,8 +170,16 @@ angular.module('MainCtrl', [])
 		var gallery = [1,2,3,4,5,6,7,8,9];
 		$scope.gallery = gallery;
 	})
-	.controller( 'singleEventController' , function ( $scope, $routeParams, Event ) {
+	.controller( 'singleEventController' , function ( $scope, $routeParams, Event, Icons ) {
 		
+		$scope.iconVisibilityName = function(event){
+			return Icons.getIconVisibility(event);
+		};
+
+		$scope.iconCategoryName = function(event){
+			return Icons.getIconCat(event);
+		};
+
 		var eventId = $routeParams.ID;
 		Event.getOne( eventId )
 			.then(function(dataEvent){

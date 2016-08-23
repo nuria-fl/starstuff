@@ -8,9 +8,17 @@
 	<h3 class="c-event__title">{{event.name}}</h3>
 	<div class="c-event__desc">
 		<p>
-			<i class="fa fa-eye"></i> 
-			Visible {{event.visibility}} <br>
-			<i class="fa fa-eye"></i> 
+			<span class="o-icon">
+				<svg>
+				    <use xlink:href="" ng-attr-xlink:href="{{ activePage + iconvisibility({event: event}) }}" />
+				</svg>
+			</span>
+			{{event.visibility}}<br>
+			<span class="o-icon">
+				<svg>
+				    <use xlink:href="" ng-attr-xlink:href="{{ activePage + iconcategory({event: event}) }}" />
+				</svg>
+			</span>
 			Category: <span ng-repeat="category in event.category">
 				{{category}}
 				{{$last ? '' : ', '}}

@@ -10,9 +10,21 @@
 		
 		<div class="c-event__desc">
 			<p>
-				<i class="fa fa-eye"></i> Visible {{event.visibility}} <br>
-				<i class="fa fa-eye"></i> Category: <span ng-repeat="category in event.category">{{category}}{{$last ? '' : ', '}}
-				 </span>
+				<span class="o-icon">
+					<svg>
+					    <use xlink:href="" ng-attr-xlink:href="{{ activePage + iconVisibilityName(event) }}" />
+					</svg>
+				</span>
+				{{event.visibility}}<br>
+				<span class="o-icon">
+					<svg>
+					    <use xlink:href="" ng-attr-xlink:href="{{ activePage + iconCategoryName(event) }}" />
+					</svg>
+				</span>
+				Category: <span ng-repeat="category in event.category">
+					{{category}}
+					{{$last ? '' : ', '}}
+				</span>
 			</p>
 			<p class="u-txt--lb">{{event.description}}</p>
 			<!-- <button type="button" class="o-btn o-btn--primary o-btn--sm c-event__add" ng-hide="added">

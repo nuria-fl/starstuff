@@ -3,7 +3,10 @@ angular.module('eventDirective', [])
 	  return {
 	    restrict: 'E',
 	    scope: {
-	      event: '=info'
+	    	activePage: '=',
+			event: '=info',
+			iconvisibility: '&',
+			iconcategory: '&'
 	    },
 	    templateUrl: 'views/event-preview.html'
 	  };
