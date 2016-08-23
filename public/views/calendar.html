@@ -34,7 +34,7 @@
 				>
 				<span class="o-icon o-icon--lg">
 					<svg>
-					    <use xlink:href="" ng-attr-xlink:href="{{ 'calendar#' + category.iconName}}" />
+					    <use xlink:href="" ng-attr-xlink:href="{{ activePage + '#' + category.iconName}}" />
 					</svg>
 				</span>
 				<span>{{category.name}}</span>
@@ -53,7 +53,7 @@
 				> 
 				<span class="o-icon o-icon--lg">
 					<svg>
-					    <use xlink:href="" ng-attr-xlink:href="{{ 'calendar#' + visibility.iconName}}" />
+					    <use xlink:href="" ng-attr-xlink:href="{{ activePage + '#' + visibility.iconName}}" />
 					</svg>
 				</span>
 				<span>Visible {{visibility.name}}</span>
@@ -64,30 +64,7 @@
 	<div class="container">
 		<div class="row o-grid--half">	
 			<div class="col-sm-6" ng-repeat="event in filteredEvents = (events | selectedFilters:selection | dateFilter:dateFrom:dateTo | orderBy: date)">
-				<article class="c-event">
-					
-					<time class="c-event__time" datetime="{{event.date | date:'YYYY-MM-dd'}}">
-						{{ event.date | date:'MMM' }}
-						<strong class="c-event__day">{{ event.date | date:'dd' }}</strong>
-					</time>
-
-					<h3 class="c-event__title">{{event.name}}</h3>
-					<div class="c-event__desc">
-						<p>
-							<i class="fa fa-eye"></i> Visible {{event.visibility}} <br>
-							<i class="fa fa-eye"></i> Category: <span ng-repeat="category in event.category">
-								{{category}}
-								{{$last ? '' : ', '}}
-							</span>
-						</p>
-						<a href="/#/calendar/event/{{event._id}}" class="o-btn o-btn--default o-btn--sm c-event__add">
-							<i class="fa fa-plus-circle"></i> Read more
-						</a>
-						<!-- <button type="button" class="o-btn o-btn--primary o-btn--sm c-event__add">
-							<i class="fa fa-calendar-plus-o"></i> Add to my calendar
-						</button> -->
-					</div>
-				</article>
+				<event-preview info="event"></event-preview>
 			</div>
 		</div>
 		<p ng-if="filteredEvents.length === 0" class="u-txt--center">

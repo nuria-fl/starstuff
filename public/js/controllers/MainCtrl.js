@@ -5,50 +5,19 @@ angular.module('MainCtrl', [])
 			$rootScope.isHome = $location.path() === '/';
 			$rootScope.activePage = $location.path();
 		});
+		var easter_egg = new Konami(function() { 
+			console.log('Konami code!')
+		});
+
 	})
-	
 	.controller('homeController', function($scope) {
 		$scope.dateFrom = new Date();
 		$scope.dateTo = new Date('2100-01-01');
 	})
-	.filter("dateFilter", function() {
-		return function(events, from, to) {
-			var result = [];       
-			events.forEach(function(elem, i){
-				var eventDate = new Date(elem.date);
-				if (eventDate > from && eventDate < to)  {
-				    result.push(elem);
-				}
-			})
-			           
-			return result;
-		};
-	})
-	.filter('selectedFilters', function() {
-
-	    return function(events, selection) {
-	    	if(selection.length){
-	    		return events.filter(function(event) {
-
-	    		    for (var i in event.category) {
-
-	    		        if (selection.indexOf(event.category[i]) != -1 || selection.indexOf(event.visibility) != -1) {
-	    		        	console.log(event)
-	    		            return true;
-	    		        }
-	    		    }
-	    		    return false;
-
-	    		});
-	    	} else {
-	    		return events;
-	    	}
-	        
-	    };
-	})
 	.controller( 'eventsController' , function ( $scope, Event, $location ) {
 
-		$scope.activePage = $location.path();
+		// $scope.activePage = $location.path();
+
 		var today = new Date();
 		var currYear = today.getFullYear();
 		var currMonth = today.getMonth() + 1;
@@ -132,19 +101,14 @@ angular.module('MainCtrl', [])
 			$scope.selection = nv.map(function (category) {
 			  return category.name;
 			});
-			console.log($scope.selection)
 		}, true);
 		$scope.$watch('visibility|filter:{selected:true}', function (nv) {
 			$scope.selection = nv.map(function (visibility) {
 			  return visibility.name;
 			});
-			console.log($scope.selection)
 		}, true);
 
-		Event.get()
-			.then( function( dataEvents ) {
-				$scope.events = dataEvents.data;
-			})
+		
 		
 		$scope.showFilterCat = false;
 		$scope.showFilterVisibility = false;
@@ -166,6 +130,11 @@ angular.module('MainCtrl', [])
 				$scope.showFilterVisibility = true;
 			}
 		}
+
+		Event.get()
+			.then( function( dataEvents ) {
+				$scope.events = dataEvents.data;
+			})
 		
 	})
 	.controller( 'galleryController' , function ( $scope ) {
