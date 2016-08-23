@@ -15,8 +15,11 @@ angular.module('MainCtrl', [])
 		var currYear = today.getFullYear();
 		var currMonth = today.getMonth() + 1;
 
-		$scope.dateFrom = today;
-		$scope.dateTo = new Date('2100-01-01');
+		$scope.range = {
+			dateFrom: today,
+			dateTo: new Date('2100-01-01')
+		};
+
 		$scope.routeToCalendar = '/#/calendar/'+currYear+'/'+currMonth;
 
 	})
@@ -46,9 +49,10 @@ angular.module('MainCtrl', [])
 
 		var dateTo = (nextYear || currYear) + '-' + (nextMonth || currMonth) + '-1';
 		
-
-		$scope.dateFrom = new Date(dateFrom);
-		$scope.dateTo = new Date(dateTo);
+		$scope.range = {
+			dateFrom: new Date(dateFrom),
+			dateTo: new Date(dateTo)
+		}
 
 		function monthName(){
 			var month = new Date(dateFrom).getMonth();
@@ -58,9 +62,29 @@ angular.module('MainCtrl', [])
 
 		$scope.dateTitle = monthName() + ' ' + currYear;
 
-		$scope.routePrevMonth = '/#/calendar/'+ (prevYear || currYear) + '/' + (prevMonth || currMonth);
-		$scope.routeNextMonth = '/#/calendar/'+ (nextYear || currYear) + '/' + (nextMonth || currMonth);
+		$scope.navRoutes = {
+			routePrevMonth: '/#/calendar/'+ (prevYear || currYear) + '/' + (prevMonth || currMonth),
+			routeNextMonth: '/#/calendar/'+ (nextYear || currYear) + '/' + (nextMonth || currMonth)
+		};
 
+		$scope.searchByDate = function(){
+			var maxDate = $scope.dates.maxDate._d;
+			var minDate = $scope.dates.minDate._d;
+
+			var minYear = minDate.getFullYear();
+			var minMonth = minDate.getMonth()+1;
+			var minDay = minDate.getDate();
+
+			var maxYear = maxDate.getFullYear();
+			var maxMonth = maxDate.getMonth()+1;
+			var maxDay = maxDate.getDate();
+
+			var niceMinDate = minYear+'-' +minMonth +'-' + minDay;
+			var niceMaxDate = maxYear+'-' +maxMonth +'-' + maxDay;
+
+			$location.path('/calendar/range/'+niceMinDate+'/'+niceMaxDate)
+			
+		}
 		$scope.categories = [
 			{ 
 				name: 'Moon',    			

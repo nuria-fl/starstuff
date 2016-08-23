@@ -14,6 +14,11 @@ body {
 a, button, input {
 	transition: all .3s;
 }
+a,
+a:hover,
+a:focus {
+	color: $primary-c;
+}
 img {
 	max-width: 100%;
 }

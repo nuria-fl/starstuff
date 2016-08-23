@@ -1,2 +1,2 @@
 // public/js/app.js
-angular.module('starstuff', ['ngRoute', 'appRoutes', 'ui.scrollpoint', 'MainCtrl', 'EventService', 'Filters', 'eventDirective', 'IconsService']);
+angular.module('starstuff', ['ngRoute', 'appRoutes', 'ui.scrollpoint', 'datePicker', 'MainCtrl', 'EventService', 'Filters', 'eventDirective', 'IconsService']);

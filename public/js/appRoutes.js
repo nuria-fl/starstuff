@@ -23,6 +23,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
             controller: 'eventsController'
         })
 
+        .when('/calendar/range/:FROM/:TO',{
+            templateUrl: 'views/calendar.html',
+            controller: 'eventsController'
+        })
+        
         .when('/event/:ID', {
             templateUrl: 'views/event-single.html',
             controller: 'singleEventController'
