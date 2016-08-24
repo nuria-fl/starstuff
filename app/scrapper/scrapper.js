@@ -74,8 +74,8 @@ app.get('/stars', function( req, res ) {
 
 					var $ = cheerio.load(html);
 					
-					var $firstP = $(".newsbody p:first-of-type");
-					var $otherP = $(".newsbody p:first-of-type").nextUntil('div, h2', 'p');
+					var $firstP = $(".newsbody > p:first-of-type");
+					var $otherP = $(".newsbody > p:first-of-type").nextUntil('div, h2', 'p');
 
 					var aDesc = [];
 					
@@ -85,7 +85,7 @@ app.get('/stars', function( req, res ) {
 					}
 					$otherP.each(function(i, p){
 						var content = $(p).text();
-						var notLocation = content.indexOf('Washington') === -1;
+						var notLocation = content.indexOf('Washington') === -1 && content.indexOf('United States') === -1;
 						var notListTitle = content.indexOf('as follows:') === -1 && content.indexOf('will be:') === -1;
 						if(notLocation && notListTitle){
 							aDesc.push( content )
@@ -147,7 +147,7 @@ app.get('/stars', function( req, res ) {
 					}
 
 					additionalData.push ( {
-						description: aDesc.join('\n'),
+						description: aDesc,
 						date: new Date (date + ' ' + time),
 						category: category,
 						visibility: visibility,
