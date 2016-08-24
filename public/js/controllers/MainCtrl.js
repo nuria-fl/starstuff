@@ -17,8 +17,10 @@ angular.module('MainCtrl', [])
 
 		$scope.range = {
 			dateFrom: today,
-			dateTo: new Date('2100-01-01')
+			dateTo: new Date('2016-12-31')
 		};
+		console.log($scope.range.dateFrom)
+		console.log($scope.range.dateTo)
 
 		$scope.routeToCalendar = '/#/calendar/'+currYear+'/'+currMonth;
 
@@ -104,7 +106,11 @@ angular.module('MainCtrl', [])
 			
 		}
 
-		
+		$scope.orderByDate = function(item) {
+		    var date = new Date(item.date);
+		    var timestamp = date.getTime();
+		    return timestamp;
+		};
 
 		$scope.iconVisibilityName = function(event){
 			return Icons.getIconVisibility(event);

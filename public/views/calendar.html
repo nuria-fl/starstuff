@@ -85,7 +85,7 @@
 	
 	<section class="container">
 		<div class="row o-grid--half">	
-			<div class="col-sm-6" ng-repeat="event in filteredEvents = (events | selectedFilters:selection:selectionVisibility | dateFilter:range.dateFrom:range.dateTo | orderBy: date)">
+			<div class="col-sm-6" ng-repeat="event in filteredEvents = (events | selectedFilters:selection:selectionVisibility | dateFilter:range.dateFrom:range.dateTo | orderBy: orderByDate)">
 				<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)" active-page="activePage"></event-preview>
 			</div>
 		</div>

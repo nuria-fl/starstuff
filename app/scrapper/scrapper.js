@@ -6,7 +6,6 @@ var rp = require('request-promise');
 var Promise = require('promise');
 var url = require('url');
 var _ = require('underscore');
-// var moment = require('moment');
 var start, finish;
 
 var app = express();
@@ -75,8 +74,8 @@ app.get('/stars', function( req, res ) {
 
 					var $ = cheerio.load(html);
 					
-					var $firstP = $(".newsbody p:first-child");
-					var $otherP = $(".newsbody p:first-child").nextUntil('div, h2', 'p');
+					var $firstP = $(".newsbody p:first-of-type");
+					var $otherP = $(".newsbody p:first-of-type").nextUntil('div, h2', 'p');
 
 					var aDesc = [];
 					
@@ -128,7 +127,7 @@ app.get('/stars', function( req, res ) {
 
 					var category = [];
 
-					if(feed === 'deepsky' || feed === 'conjunctions' || feed === 'innerplanets' || feed === 'dwarfplanets'){
+					if(feed === 'deepsky' || feed === 'conjunctions' || feed === 'innerplanets' || feed === 'dwarfplanets' || feed === 'outerplanets'){
 						category.push('Stars and planets')
 					} else if (feed === 'moon'){
 						category.push('Moon')
@@ -136,8 +135,8 @@ app.get('/stars', function( req, res ) {
 						category.push('Meteor showers')
 					} else if (feed === 'eclipses'){
 						category.push('Eclipses')
-					} else if (feed === 'comets'){
-						category.push('Comets')
+					} else if (feed === 'comets' || feed === 'asteroids'){
+						category.push('Comets and asteroids')
 					} else if (feed === 'earth'){
 						category.push('Earth')
 					}
@@ -148,7 +147,6 @@ app.get('/stars', function( req, res ) {
 					}
 
 					additionalData.push ( {
-						repeatName: additionalData.name,
 						description: aDesc.join('\n'),
 						date: new Date (date + ' ' + time),
 						category: category,

@@ -2,6 +2,8 @@ angular.module('Filters', [])
     .filter("dateFilter", function() {
     	return function(events, from, to) {
     		var result = [];   
+            console.log(from)
+            console.log(to)
             if(events){
                 events.forEach(function(elem, i){
                     var eventDate = new Date(elem.date);

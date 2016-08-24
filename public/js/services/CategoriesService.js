@@ -24,7 +24,7 @@ angular.module('CategoriesService', []).factory('Categories', [function() {
 						selected: false 
 					},
 					{ 
-						name: 'Comets', 
+						name: 'Comets and asteroids', 
 						iconName: 'iconComets',
 						selected: false 
 					},
