@@ -46,19 +46,13 @@ angular.module('MainCtrl', [])
 			dateFrom = today;
 			dateTo = new Date('2016-12-31');
 			limit = 10;
-			$scope.range = {
-				dateFrom: today,
-				dateTo: new Date('2016-12-31')
-			};
 
 		} else if($routeParams.TO){
 			// if we have a date range defined
+			dateFrom = $routeParams.FROM;
+			dateTo = $routeParams.TO;
 			$scope.showMonthNav = false;
-			$scope.range = {
-				dateFrom: new Date($routeParams.FROM),
-				dateTo: new Date($routeParams.TO)
-			};
-			$scope.dateTitle = 'Events from ' + $routeParams.FROM + ' to ' + $routeParams.TO;
+			$scope.dateTitle = 'Events from ' + dateFrom + ' to ' + dateTo;
 		} else {
 			// else we get the current month
 			var currYear = parseInt($routeParams.YEAR);
@@ -81,11 +75,6 @@ angular.module('MainCtrl', [])
 
 			dateTo = (nextYear || currYear) + '-' + (nextMonth || currMonth) + '-1';
 			
-			$scope.range = {
-				dateFrom: new Date(dateFrom),
-				dateTo: new Date(dateTo)
-			}
-
 			function monthName(){
 				var month = new Date(dateFrom).getMonth();
 				var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
