@@ -18,7 +18,7 @@
 		</header>
 		
 	</div>
-	<section ng-show="showDateFilter" class="c-filter">
+	<section ng-show="showDateFilter" ng-controller="searchByDateController" class="c-filter">
 		<div class="container">
 			<div date-range start="dates.minDate" end="dates.maxDate" view="date" min-view="date"></div>
 			<button class="o-btn o-btn--primary" ng-click="searchByDate()">Search events by date</button>

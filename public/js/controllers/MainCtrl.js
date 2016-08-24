@@ -88,7 +88,22 @@ angular.module('MainCtrl', [])
 				routeNextMonth: '/#/calendar/'+ (nextYear || currYear) + '/' + (nextMonth || currMonth)
 			};
 		}		
+	
+		$scope.iconVisibilityName = function(event){
+			return Icons.getIconVisibility(event);
+		};
 
+		$scope.iconCategoryName = function(event){
+			return Icons.getIconCat(event);
+		};
+
+		Event.getRange(dateFrom, dateTo, limit)
+			.then( function( dataEvents ) {
+				$scope.events = dataEvents.data;
+			})
+		
+	})
+	.controller('searchByDateController', function($scope, $location){
 		$scope.searchByDate = function(){
 			var maxDate = $scope.dates.maxDate._d;
 			var minDate = $scope.dates.minDate._d;
@@ -107,20 +122,6 @@ angular.module('MainCtrl', [])
 			$location.path('/calendar/range/'+niceMinDate+'/'+niceMaxDate)
 			
 		}
-	
-		$scope.iconVisibilityName = function(event){
-			return Icons.getIconVisibility(event);
-		};
-
-		$scope.iconCategoryName = function(event){
-			return Icons.getIconCat(event);
-		};
-
-		Event.getRange(dateFrom, dateTo, limit)
-			.then( function( dataEvents ) {
-				$scope.events = dataEvents.data;
-			})
-		
 	})
 	.controller('filterController', function($scope, Categories, Visibility){
 		$scope.categories = Categories.getCategories();
