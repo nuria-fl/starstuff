@@ -28,7 +28,17 @@
 .date-picker-date-time {
   position: absolute;
 }
+.date-range {
+  margin: 0 auto;
+  @media screen and (max-width: 565px){
+    > tbody >tr > td {
+      display: block;
+      width: 100%;
+    }
+  }
+}
 .date-range .date-picker-date-time {
+  margin: 0 10px 10px;
   position: inherit;
 }
 [date-picker-wrapper] {

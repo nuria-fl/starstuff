@@ -7,17 +7,23 @@
 					<a ng-if="showMonthNav" href="{{navRoutes.routePrevMonth}}"><i class="fa fa-angle-left"></i></a>
 				</div>
 				<div class="col-xs-10">
-					<h3><i class="fa fa-calendar"></i> {{dateTitle}}</h3>
-
+					<h3>
+						<button type="button" class="o-invbtn" ng-click="toggleDateFilter()"><i class="fa fa-calendar"></i> {{dateTitle}}</button>
+					</h3>
 				</div>
 				<div class="col-xs-1">
 					<a ng-if="showMonthNav" href="{{navRoutes.routeNextMonth}}"><i class="fa fa-angle-right"></i></a>		
 				</div>
 			</div>
 		</header>
-		<div date-range start="dates.minDate" end="dates.maxDate" view="date" min-view="date"></div>
-		<button class="o-btn o-btn--primary" ng-click="searchByDate()">Search events by date</button>
+		
 	</div>
+	<section ng-show="showDateFilter" class="c-filter">
+		<div class="container">
+			<div date-range start="dates.minDate" end="dates.maxDate" view="date" min-view="date"></div>
+			<button class="o-btn o-btn--primary" ng-click="searchByDate()">Search events by date</button>
+		</div>
+	</section>
 	<section ng-controller="filterController">
 		<div class="container u-txt--right">
 			<button type="button" class="o-btn" ng-class="showFilterCat ? 'o-btn--primary' : 'o-btn--default' " ng-click="toggleFilterCat()">
@@ -77,8 +83,7 @@
 		</p>
 	</section>		
 	
-
-	<div class="container">
+	<section class="container">
 		<div class="row o-grid--half">	
 			<div class="col-sm-6" ng-repeat="event in filteredEvents = (events | selectedFilters:selection:selectionVisibility | dateFilter:range.dateFrom:range.dateTo | orderBy: date)">
 				<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)" active-page="activePage"></event-preview>
@@ -88,5 +93,5 @@
 			Sorry, we didn't find any event matching your criteria for this month.
 		</p>
 		
-	</div>
+	</section>
 </section>

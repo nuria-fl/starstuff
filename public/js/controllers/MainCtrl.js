@@ -26,6 +26,15 @@ angular.module('MainCtrl', [])
 	.controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, Event, $location, Icons, Categories, Visibility ) {
 
 		$scope.showMonthNav = true;
+		$scope.showDateFilter = false;
+
+		$scope.toggleDateFilter = function(){
+			if($scope.showDateFilter === true){
+				$scope.showDateFilter = false;
+			} else {
+				$scope.showDateFilter = true;
+			}
+		}
 
 		if($routeParams.TO){
 			// if we have a date range defined
