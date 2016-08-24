@@ -41,7 +41,7 @@ app.get('/stars', function( req, res ) {
 
 		})
 
-		// eventsStars = eventsStars.slice(0,20);
+		// eventsStars = eventsStars.slice(150);
 
 		return eventsStars;
 	}
@@ -101,10 +101,12 @@ app.get('/stars', function( req, res ) {
 						time = fullDate.split(' at');
 						time = time.pop().split('(').shift();	
 					}					
+					date = new Date (date + ' ' + time);
+					var timestamp = date.getTime();
 
 					var visibilityImg = $('.widetitle').next('.hidden-xs-down').find('img').attr('src');
 
-					var visibility = '';
+					var visibility = 'Not visible';
 
 					if(visibilityImg){
 						var visibilityImgSrc = visibilityImg.split('/').pop();
@@ -148,7 +150,7 @@ app.get('/stars', function( req, res ) {
 
 					additionalData.push ( {
 						description: aDesc,
-						date: new Date (date + ' ' + time),
+						date: timestamp,
 						category: category,
 						visibility: visibility,
 						

@@ -11,21 +11,17 @@ angular.module('MainCtrl', [])
 
 	})
 	.controller('homeController', function($scope) {
+		
 		var today = new Date();
 		var currYear = today.getFullYear();
 		var currMonth = today.getMonth() + 1;
-
-		$scope.range = {
-			dateFrom: today,
-			dateTo: new Date('2016-12-31')
-		};
-		console.log($scope.range.dateFrom)
-		console.log($scope.range.dateTo)
 
 		$scope.routeToCalendar = '/#/calendar/'+currYear+'/'+currMonth;
 
 	})
 	.controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, Event, $location, Icons, Categories, Visibility ) {
+
+		var dateFrom, dateTo, limit;
 
 		$scope.showMonthNav = true;
 		$scope.showDateFilter = false;
@@ -38,7 +34,19 @@ angular.module('MainCtrl', [])
 			}
 		}
 
-		if($routeParams.TO){
+		if($location.path() === '/'){
+			// if is home we show 10 elements starting from today
+			var today = new Date();
+
+			dateFrom = today;
+			dateTo = new Date('2016-12-31');
+			limit = 10;
+			$scope.range = {
+				dateFrom: today,
+				dateTo: new Date('2016-12-31')
+			};
+
+		} else if($routeParams.TO){
 			// if we have a date range defined
 			$scope.showMonthNav = false;
 			$scope.range = {
@@ -64,9 +72,9 @@ angular.module('MainCtrl', [])
 			} else {
 				prevMonth = currMonth - 1;
 			}
-			var dateFrom = currYear + '-' + currMonth + '-1';
+			dateFrom = currYear + '-' + currMonth + '-1';
 
-			var dateTo = (nextYear || currYear) + '-' + (nextMonth || currMonth) + '-1';
+			dateTo = (nextYear || currYear) + '-' + (nextMonth || currMonth) + '-1';
 			
 			$scope.range = {
 				dateFrom: new Date(dateFrom),
@@ -120,14 +128,13 @@ angular.module('MainCtrl', [])
 			return Icons.getIconCat(event);
 		};
 
-		Event.get()
+		Event.getRange(dateFrom, dateTo, limit)
 			.then( function( dataEvents ) {
 				$scope.events = dataEvents.data;
 			})
 		
 	})
 	.controller('filterController', function($scope, Categories, Visibility){
-		console.log($scope.$parent);
 		$scope.categories = Categories.getCategories();
 		$scope.visibility = Visibility.getVisibility();
 

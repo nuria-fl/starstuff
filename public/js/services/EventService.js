@@ -7,9 +7,16 @@ angular.module('EventService', []).factory('Event', ['$http', function($http) {
             return $http.get('/api/events');
         },
 
+        getRange : function(from, to, limit) {
+            var url = '/api/events/range/'+from+'/'+to;
+            if (limit){
+                url+='?limit='+limit;
+            }
+            return $http.get(url);
+        },
+
         // get single event by ID
         getOne : function( id ) {
-            console.log(id)
             return $http.get('/api/event/'+id);
         },
 
