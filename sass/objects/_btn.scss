@@ -20,8 +20,22 @@
 			color: $primary-c;
 		}
 	}
+	&--danger {
+		background: transparent;
+		color: $danger-c;
+		&:hover {
+			background: $danger-c;
+			border-color: $danger-c;
+			color: #fff;
+		}
+
+	}
 	&--sm {
 		font-size: 1.6rem;
+	}
+	&--block {
+		display: block;
+		width: 100%;
 	}
 	&:hover {
 		text-decoration: none;

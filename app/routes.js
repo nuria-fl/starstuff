@@ -4,7 +4,6 @@
 var Event = require('./models/event');
 var User = require('./models/user');
 
-
 	module.exports = function(app) {
 
 		// server routes ===========================================================
@@ -57,14 +56,12 @@ var User = require('./models/user');
 					res.cookie('userCookie', user[0].username);
 					res.redirect('/user/'+user[0].username)
 				} else {
-					res.send('no user found')
+					res.redirect('/login/error')
 				}
 				// if there is an error retrieving, send the error. 
 								// nothing after res.send(err) will execute
 				if (err)
-					res.send(err);
-
-				
+					res.send(err);	
 			});
 		});
 		

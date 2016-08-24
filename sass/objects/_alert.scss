@@ -1,0 +1,7 @@
+.o-alert {
+	&--danger {
+		padding: 1.5rem;
+		background: $danger-c;
+		color: #fff;
+	}
+}

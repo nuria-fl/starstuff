@@ -1,7 +1,6 @@
 // public/js/controllers/MainCtrl.js
 angular.module('MainCtrl', [])
 	.run(function($location, $rootScope, $cookies){
-		
 		$rootScope.$on("$routeChangeSuccess", function(currentRoute, previousRoute){
 			$rootScope.isHome = $location.path() === '/';
 			$rootScope.activePage = $location.path();
@@ -207,11 +206,15 @@ angular.module('MainCtrl', [])
 			})
 		
 	})
-	.controller( 'loginController' , function ( $scope, $cookies, $location ) {
+	.controller( 'loginController' , function ( $scope, $cookies, $location, $routeParams ) {
 		if($cookies.get('userCookie')){
 			$location.path('/user/'+$cookies.get('userCookie'))
+		}
+
+		if($routeParams.ERROR){
+			$scope.showError = true;
 		} else {
-			
+			$scope.showError = false;
 		}
 	})
 	.controller( 'profileController' , function ( $scope, $cookies, $location ) {

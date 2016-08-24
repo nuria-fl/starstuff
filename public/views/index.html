@@ -25,7 +25,7 @@
 					<!-- <li class="c-nav__item" ng-class="activePage === '/gallery' ? 'is-active' : ''">
 						<a href="/gallery">GALLERY</a>
 					</li> -->
-					<li class="c-nav__item" ng-class="activePage.indexOf('/user') !== -1 ? 'is-active' : ''">
+					<li class="c-nav__item" ng-class="activePage.indexOf('/user') !== -1 || activePage === '/login' ? 'is-active' : ''">
 						<a href="/login" ng-hide="user">LOGIN</a>
 						<a href="/user/{{user}}" ng-show="user">MY PROFILE</a>
 					</li>
