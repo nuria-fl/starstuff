@@ -32,12 +32,12 @@ angular.module('CategoriesService', []).factory('Categories', [function() {
 						name: 'Eclipses',
 						iconName: 'iconEclipse',
 						selected: false 
-					},
+					}/*,
 					{ 
 						name: 'Mission Updates',
 						iconName: 'iconMissionUpdates',	
 						selected: false 
-					}
+					}*/
 				];
 
 				return categories;
