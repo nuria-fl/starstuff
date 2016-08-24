@@ -22,6 +22,7 @@
     "angular-route": "latest",
     "angular-ui-scrollpoint": "latest",
     "konami-js": "^1.4.6",
-    "angular-datepicker": "^2.0.3"
+    "angular-datepicker": "^2.0.3",
+    "angular-cookies": "^1.5.8"
   }
 }

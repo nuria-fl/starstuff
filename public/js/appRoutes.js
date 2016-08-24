@@ -33,12 +33,17 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
             controller: 'singleEventController'
         })
 
+        .when('/login', {
+            templateUrl: 'views/login.html',
+            controller: 'loginController'
+        })
 
-        // // nerds page that will use the NerdController
-        // .when('/nerds', {
-        //     templateUrl: 'views/nerd.html',
-        //     controller: 'NerdController'
-        // });
+        .when('/user/:USER', {
+            templateUrl: 'views/profile.html',
+            controller: 'profileController'
+        })
+
+
 
     $locationProvider.html5Mode(true);
 

@@ -1,9 +1,15 @@
 // public/js/controllers/MainCtrl.js
 angular.module('MainCtrl', [])
-	.run(function($location, $rootScope){
+	.run(function($location, $rootScope, $cookies){
+		
 		$rootScope.$on("$routeChangeSuccess", function(currentRoute, previousRoute){
 			$rootScope.isHome = $location.path() === '/';
 			$rootScope.activePage = $location.path();
+			if($cookies.get('userCookie')){
+				$rootScope.user = $cookies.get('userCookie');
+			} else {
+				$rootScope.user = false;
+			}
 		});
 		var easter_egg = new Konami(function() { 
 			console.log('Konami code!')
@@ -200,4 +206,22 @@ angular.module('MainCtrl', [])
 				$scope.event = dataEvent.data;
 			})
 		
+	})
+	.controller( 'loginController' , function ( $scope, $cookies, $location ) {
+		if($cookies.get('userCookie')){
+			$location.path('/user/'+$cookies.get('userCookie'))
+		} else {
+			
+		}
+	})
+	.controller( 'profileController' , function ( $scope, $cookies, $location ) {
+		if($cookies.get('userCookie')){
+			$scope.user = $cookies.get('userCookie');
+			$scope.logout = function(){
+				$cookies.remove('userCookie')
+				$location.path('/')
+			}
+		} else {
+			$location.path('/login')
+		}
 	})

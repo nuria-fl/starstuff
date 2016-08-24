@@ -24,10 +24,11 @@
 					</li>
 					<!-- <li class="c-nav__item" ng-class="activePage === '/gallery' ? 'is-active' : ''">
 						<a href="/gallery">GALLERY</a>
-					</li>
-					<li class="c-nav__item">
-						<a href="/login">LOGIN</a>
 					</li> -->
+					<li class="c-nav__item" ng-class="activePage.indexOf('/user') !== -1 ? 'is-active' : ''">
+						<a href="/login" ng-hide="user">LOGIN</a>
+						<a href="/user/{{user}}" ng-show="user">MY PROFILE</a>
+					</li>
 				</ul>
 			</nav>	
 		</div>
@@ -46,6 +47,7 @@
 	<script src="libs/angular-route/angular-route.min.js"></script>
 	<script src="libs/angular-ui-scrollpoint/dist/scrollpoint.js"></script>
 	<script src="libs/angular-datepicker/dist/angular-datepicker.min.js"></script>
+	<script src="libs/angular-cookies/angular-cookies.min.js"></script>
 	
 	<!-- OTHER LIBS -->
 	<script src="libs/konami-js/konami.js"></script>
