@@ -15,15 +15,25 @@ angular.module('Filters', [])
     })
     .filter('selectedFilters', function() {
 
-        return function(events, selection) {
-        	if(selection.length){
+        return function(events, selection, selectionVisibility) {
+
+        	if(selection.length || selectionVisibility.length ){
         		return events.filter(function(event) {
 
         		    for (var i in event.category) {
 
-        		        if (selection.indexOf(event.category[i]) != -1 || selection.indexOf(event.visibility) != -1) {
-        		            return true;
-        		        }
+                        if(selection.length && selectionVisibility.length){
+                            // if we have both filters enabled we filter elements that match both conditions
+                            if (selection.indexOf(event.category[i]) != -1 && selectionVisibility.indexOf(event.visibility) != -1) {
+                                return true;
+                            }
+                        } else {
+                            // else we just match for the enabled filter
+                            if (selection.indexOf(event.category[i]) != -1 || selectionVisibility.indexOf(event.visibility) != -1) {
+                                return true;
+                            }    
+                        }
+        		        
         		    }
         		    return false;
 

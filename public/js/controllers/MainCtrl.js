@@ -23,7 +23,7 @@ angular.module('MainCtrl', [])
 		$scope.routeToCalendar = '/#/calendar/'+currYear+'/'+currMonth;
 
 	})
-	.controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, Event, $location, Icons, Categories ) {
+	.controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, Event, $location, Icons, Categories, Visibility ) {
 
 		$scope.showMonthNav = true;
 
@@ -95,33 +95,30 @@ angular.module('MainCtrl', [])
 			
 		}
 
+		
+
+		$scope.iconVisibilityName = function(event){
+			return Icons.getIconVisibility(event);
+		};
+
+		$scope.iconCategoryName = function(event){
+			return Icons.getIconCat(event);
+		};
+
+		Event.get()
+			.then( function( dataEvents ) {
+				$scope.events = dataEvents.data;
+			})
+		
+	})
+	.controller('filterController', function($scope, Categories, Visibility){
+		console.log($scope.$parent);
 		$scope.categories = Categories.getCategories();
-		$scope.visibility = [
-			{ 
-				name: 'Visible to the naked eye',
-				iconName: 'iconEye',
-				selected: false 
-			},
-			{ 
-				name: 'Visible with binoculars',	
-				iconName: 'iconBinoculars',
-				selected: false 
-			},
-			{ 
-				name: 'Visible with telescope',	
-				iconName: 'iconTelescope',
-				selected: false 
-			},
-			{ 
-				name: 'Not visible',	
-				iconName: 'iconEyeSlash',
-				selected: false 
-			}
-		];
+		$scope.visibility = Visibility.getVisibility();
 
 		// selected categories
-		$scope.selection = [];
-		$scope.selectionVisibility = [];
+		$scope.$parent.selection = [];
+		$scope.$parent.selectionVisibility = [];
 
 		// helper method to get selected categories
 		$scope.selectedCategories = function selectedCategories() {
@@ -130,12 +127,12 @@ angular.module('MainCtrl', [])
 
 		// watch categories for changes
 		$scope.$watch('categories|filter:{selected:true}', function (nv) {
-			$scope.selection = nv.map(function (category) {
+			$scope.$parent.selection = nv.map(function (category) {
 			  return category.name;
 			});
 		}, true);
 		$scope.$watch('visibility|filter:{selected:true}', function (nv) {
-			$scope.selectionVisibility = nv.map(function (visibility) {
+			$scope.$parent.selectionVisibility = nv.map(function (visibility) {
 			  return visibility.name;
 			});
 		}, true);
@@ -160,35 +157,6 @@ angular.module('MainCtrl', [])
 				$scope.showFilterVisibility = true;
 			}
 		}
-
-		$scope.iconVisibilityName = function (event) {
-			var activePage = $rootScope.activePage;
-			var iconName = activePage+'#icon'
-			if(event.visibility === 'Visible to the naked eye') {
-				iconName+='Eye';
-			} else if(event.visibility === 'Visible with binoculars') {
-				iconName+='Binoculars';
-			} else if(event.visibility === 'Visible with telescope') {
-				iconName+='Telescope';
-			} else {
-				iconName+='EyeSlash';
-			}
-			return iconName;
-		};
-		$scope.iconVisibilityName = function(event){
-			return Icons.getIconVisibility(event);
-		};
-
-		$scope.iconCategoryName = function(event){
-			return Icons.getIconCat(event);
-		};
-		
-
-		Event.get()
-			.then( function( dataEvents ) {
-				$scope.events = dataEvents.data;
-			})
-		
 	})
 	.controller( 'galleryController' , function ( $scope ) {
 		var gallery = [1,2,3,4,5,6,7,8,9];

@@ -42,6 +42,5 @@ angular.module('CategoriesService', []).factory('Categories', [function() {
 
 				return categories;
 			}
-	    }       
-
+	    };
 	}]);
