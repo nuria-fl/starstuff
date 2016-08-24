@@ -21,13 +21,13 @@ angular.module('IconsService', []).factory('Icons', ['$http', function($http, $l
 				for (i=0; i<categories.length; i++){
 					if ('Moon'.indexOf(categories[i]) != -1) {
 					    return iconName+'Moon';
-					} else if ('Sun'.indexOf(categories[i]) != -1){
-						return iconName+'Sun';
+					} else if ('Earth'.indexOf(categories[i]) != -1){
+						return iconName+'Earth';
 					} else if ('Stars and planets'.indexOf(categories[i]) != -1){
 						return iconName+'Planets';
 					} else if ('Meteor showers'.indexOf(categories[i]) != -1){
 						return iconName+'MeteorShower';
-					} else if ('Comets'.indexOf(categories[i]) != -1){
+					} else if ('Comets and asteroids'.indexOf(categories[i]) != -1){
 						return iconName+'Comets';
 					} else if ('Eclipses'.indexOf(categories[i]) != -1){
 						return iconName+'Eclipse';
