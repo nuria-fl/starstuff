@@ -23,49 +23,58 @@ angular.module('MainCtrl', [])
 		$scope.routeToCalendar = '/#/calendar/'+currYear+'/'+currMonth;
 
 	})
-	.controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, Event, $location, Icons ) {
+	.controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, Event, $location, Icons, Categories ) {
 
-		// $scope.activePage = $location.path();
-		// var today = new Date();
-		// var currYear = today.getFullYear();
-		// var currMonth = today.getMonth() + 1;
-		var currYear = parseInt($routeParams.YEAR);
-		var currMonth = parseInt($routeParams.MONTH);
+		$scope.showMonthNav = true;
 
-		var nextYear, nextMonth, prevYear, prevMonth;
-		if(currMonth === 12){
-			nextYear = currYear + 1;
-			nextMonth = 1;
+		if($routeParams.TO){
+			// if we have a date range defined
+			$scope.showMonthNav = false;
+			$scope.range = {
+				dateFrom: new Date($routeParams.FROM),
+				dateTo: new Date($routeParams.TO)
+			};
+			$scope.dateTitle = 'Events from ' + $routeParams.FROM + ' to ' + $routeParams.TO;
 		} else {
-			nextMonth = currMonth + 1;
-		}
-		if(currMonth === 1){
-			prevYear = currYear - 1;
-			prevMonth = 12;
-		} else {
-			prevMonth = currMonth - 1;
-		}
-		var dateFrom = currYear + '-' + currMonth + '-1';
+			// else we get the current month
+			var currYear = parseInt($routeParams.YEAR);
+			var currMonth = parseInt($routeParams.MONTH);
 
-		var dateTo = (nextYear || currYear) + '-' + (nextMonth || currMonth) + '-1';
-		
-		$scope.range = {
-			dateFrom: new Date(dateFrom),
-			dateTo: new Date(dateTo)
-		}
+			var nextYear, nextMonth, prevYear, prevMonth;
+			if(currMonth === 12){
+				nextYear = currYear + 1;
+				nextMonth = 1;
+			} else {
+				nextMonth = currMonth + 1;
+			}
+			if(currMonth === 1){
+				prevYear = currYear - 1;
+				prevMonth = 12;
+			} else {
+				prevMonth = currMonth - 1;
+			}
+			var dateFrom = currYear + '-' + currMonth + '-1';
 
-		function monthName(){
-			var month = new Date(dateFrom).getMonth();
-			var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-			return monthNames[month];
-		};
+			var dateTo = (nextYear || currYear) + '-' + (nextMonth || currMonth) + '-1';
+			
+			$scope.range = {
+				dateFrom: new Date(dateFrom),
+				dateTo: new Date(dateTo)
+			}
 
-		$scope.dateTitle = monthName() + ' ' + currYear;
+			function monthName(){
+				var month = new Date(dateFrom).getMonth();
+				var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+				return monthNames[month];
+			};
 
-		$scope.navRoutes = {
-			routePrevMonth: '/#/calendar/'+ (prevYear || currYear) + '/' + (prevMonth || currMonth),
-			routeNextMonth: '/#/calendar/'+ (nextYear || currYear) + '/' + (nextMonth || currMonth)
-		};
+			$scope.dateTitle = monthName() + ' ' + currYear;
+
+			$scope.navRoutes = {
+				routePrevMonth: '/#/calendar/'+ (prevYear || currYear) + '/' + (prevMonth || currMonth),
+				routeNextMonth: '/#/calendar/'+ (nextYear || currYear) + '/' + (nextMonth || currMonth)
+			};
+		}		
 
 		$scope.searchByDate = function(){
 			var maxDate = $scope.dates.maxDate._d;
@@ -85,43 +94,8 @@ angular.module('MainCtrl', [])
 			$location.path('/calendar/range/'+niceMinDate+'/'+niceMaxDate)
 			
 		}
-		$scope.categories = [
-			{ 
-				name: 'Moon',    			
-				iconName: 'iconMoon',
-				selected: false 
-			},
-			{ 
-				name: 'Sun',
-				iconName: 'iconSun',
-				selected: false 
-			},
-			{ 
-				name: 'Stars and planets',
-				iconName: 'iconPlanets',
-				selected: false 
-			},
-			{ 
-				name: 'Meteor showers',   
-				iconName: 'iconMeteorShower',
-				selected: false 
-			},
-			{ 
-				name: 'Comets', 
-				iconName: 'iconComets',
-				selected: false 
-			},
-			{ 
-				name: 'Eclipses',
-				iconName: 'iconEclipse',
-				selected: false 
-			},
-			{ 
-				name: 'Mission Updates',
-				iconName: 'iconMissionUpdates',	
-				selected: false 
-			}
-		];
+
+		$scope.categories = Categories.getCategories();
 		$scope.visibility = [
 			{ 
 				name: 'Visible to the naked eye',
@@ -165,8 +139,6 @@ angular.module('MainCtrl', [])
 			  return visibility.name;
 			});
 		}, true);
-
-		
 		
 		$scope.showFilterCat = false;
 		$scope.showFilterVisibility = false;

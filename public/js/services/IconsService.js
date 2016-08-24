@@ -1,7 +1,6 @@
 angular.module('IconsService', []).factory('Icons', ['$http', function($http, $location) {
 
 	    return {
-	        // call to get all events
 	        getIconVisibility : function (event) {
 				var iconName = '#icon';
 				if(event.visibility === 'Visible to the naked eye') {
