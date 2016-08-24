@@ -18,7 +18,7 @@
 		<h2 class="o-title">Upcoming Events</h2>
 		<section ng-controller="eventsController">
 			<div class="row o-grid--half">	
-				<div class="col-sm-6" ng-repeat="event in filteredEvents = (events | orderBy: orderByDate)">
+				<div class="col-sm-6" ng-repeat="event in filteredEvents = (events | orderBy: 'date')">
 					<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)"></event-preview>
 				</div>
 			</div>

@@ -118,13 +118,7 @@ angular.module('MainCtrl', [])
 			$location.path('/calendar/range/'+niceMinDate+'/'+niceMaxDate)
 			
 		}
-
-		$scope.orderByDate = function(item) {
-		    var date = new Date(item.date);
-		    var timestamp = date.getTime();
-		    return timestamp;
-		};
-
+	
 		$scope.iconVisibilityName = function(event){
 			return Icons.getIconVisibility(event);
 		};
