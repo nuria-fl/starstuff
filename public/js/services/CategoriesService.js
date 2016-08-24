@@ -9,8 +9,8 @@ angular.module('CategoriesService', []).factory('Categories', [function() {
 						selected: false 
 					},
 					{ 
-						name: 'Sun',
-						iconName: 'iconSun',
+						name: 'Earth',
+						iconName: 'iconEarth',
 						selected: false 
 					},
 					{ 
