@@ -10,6 +10,7 @@ angular.module('singleEventController', [])
 
 		// force render html from description to display links
 		$scope.renderHtml = function(item){
+			//force links to open in a new window
 			var itemWithLinks = item.replace(new RegExp('<a href', 'g'), '<a target="_blank" href');
 			return $sce.trustAsHtml(itemWithLinks);
 		};
