@@ -6,7 +6,8 @@ angular.module('eventDirective', [])
 				activePage: '=',
 				event: '=info',
 				iconvisibility: '&',
-				iconcategory: '&'
+				iconcategory: '&',
+				addcal: "&"
 			},
 			templateUrl: 'views/event-preview.html'
 		};

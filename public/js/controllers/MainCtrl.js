@@ -88,7 +88,12 @@ angular.module('MainCtrl', [])
 				routeNextMonth: '/#/calendar/'+ (nextYear || currYear) + '/' + (nextMonth || currMonth)
 			};
 		}		
-	
+
+		Event.getRange(dateFrom, dateTo, limit)
+			.then( function( dataEvents ) {
+				$scope.events = dataEvents.data;
+			});
+
 		$scope.iconVisibilityName = function(event){
 			return Icons.getIconVisibility(event);
 		};
@@ -97,10 +102,9 @@ angular.module('MainCtrl', [])
 			return Icons.getIconCat(event);
 		};
 
-		Event.getRange(dateFrom, dateTo, limit)
-			.then( function( dataEvents ) {
-				$scope.events = dataEvents.data;
-			})
+		$scope.addToCalendar = function(user){
+			alert('added to cal '+user)
+		}
 		
 	})
 	.controller('searchByDateController', function($scope, $location){
@@ -121,7 +125,7 @@ angular.module('MainCtrl', [])
 
 			$location.path('/calendar/range/'+niceMinDate+'/'+niceMaxDate)
 			
-		}
+		};
 	})
 	.controller('filterController', function($scope, Categories, Visibility){
 		$scope.categories = Categories.getCategories();
@@ -182,6 +186,10 @@ angular.module('MainCtrl', [])
 		$scope.iconCategoryName = function(event){
 			return Icons.getIconCat(event);
 		};
+
+		$scope.addToCalendar = function(user){
+			alert('added to calendar '+user)
+		}
 
 		var eventId = $routeParams.ID;
 		Event.getOne( eventId )
