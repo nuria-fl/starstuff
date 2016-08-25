@@ -19,7 +19,9 @@
 		<section ng-controller="eventsController">
 			<div class="row o-grid--half">	
 				<div class="col-sm-6" ng-repeat="event in filteredEvents = (events | orderBy: 'date')">
-					<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)"></event-preview>
+					<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)" addcal="addToCalendar(user, event._id)"></event-preview>
+
+					<!-- <event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)" active-page="activePage" ></event-preview> -->
 				</div>
 			</div>
 			<p ng-if="filteredEvents.length === 0" class="u-txt--center">

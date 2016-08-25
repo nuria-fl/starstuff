@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
 	username: String,
-	password: String
+	password: String,
+	events: [{ type: Schema.Types.ObjectId, ref: 'Event' }]
 });
 
 var User = mongoose.model('User', userSchema);

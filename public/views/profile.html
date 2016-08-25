@@ -3,5 +3,9 @@
 	<div class="u-txt--right">
 		<button type="button" class="o-btn o-btn--sm o-btn--danger" ng-click="logout()"><i class="fa fa-power-off"></i> Logout</button>	
 	</div>
-	<p>Hello, {{user}}	</p>	
+	<p>Hello, {{user.username}}</p>	
+	<h3>Events</h3>
+	<div ng-repeat="event in events | orderBy: 'date'">
+		<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)" active-page="activePage"></event-preview>
+	</div>	
 </section>

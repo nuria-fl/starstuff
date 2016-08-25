@@ -81,17 +81,16 @@
 				{{$last ? '' : ', '}}
 			</span>
 		</p>
-	</section>		
+	</section>
 	
 	<section class="container">
 		<div class="row o-grid--half">	
 			<div class="col-sm-6" ng-repeat="event in filteredEvents = (events | selectedFilters:selection:selectionVisibility | orderBy: 'date')">
-				<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)" active-page="activePage" addcal="addToCalendar(user)"></event-preview>
+				<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)" active-page="activePage" addcal="addToCalendar(user, event._id)"></event-preview>
 			</div>
 		</div>
 		<p ng-if="filteredEvents.length === 0" class="u-txt--center">
 			Sorry, we didn't find any event matching your criteria for this month.
 		</p>
-		
 	</section>
 </section>

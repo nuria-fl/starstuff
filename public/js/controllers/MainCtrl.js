@@ -24,7 +24,7 @@ angular.module('MainCtrl', [])
 		$scope.routeToCalendar = '/#/calendar/'+currYear+'/'+currMonth;
 
 	})
-	.controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, Event, $location, Icons, Categories, Visibility ) {
+	.controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, Event, User, $location, Icons, Categories, Visibility ) {
 
 		var dateFrom, dateTo, limit;
 
@@ -102,8 +102,11 @@ angular.module('MainCtrl', [])
 			return Icons.getIconCat(event);
 		};
 
-		$scope.addToCalendar = function(user){
-			alert('added to cal '+user)
+		$scope.addToCalendar = function(user, eventId){
+			User.addEvent(user, eventId)
+				.then(function(){
+					$location.path('user/'+user)
+				});
 		}
 		
 	})
@@ -209,13 +212,33 @@ angular.module('MainCtrl', [])
 			$scope.showError = false;
 		}
 	})
-	.controller( 'profileController' , function ( $scope, $cookies, $location ) {
+	.controller( 'profileController' , function ( $scope, $cookies, $location, User, Event, Icons ) {
 		if($cookies.get('userCookie')){
-			$scope.user = $cookies.get('userCookie');
+			var user = $cookies.get('userCookie');
+			User.get(user)
+				.then(function(dataUser){
+					var user = dataUser.data[0]
+					var events = [];
+					user.events.forEach(function(elem){
+						Event.getOne( elem )
+							.then(function(dataEvent){
+								events.push(dataEvent.data)
+							});
+					});
+					$scope.user = user;
+					$scope.events = events;
+					
+				})
 			$scope.logout = function(){
 				$cookies.remove('userCookie')
 				$location.path('/')
 			}
+			$scope.iconVisibilityName = function(event){
+				return Icons.getIconVisibility(event);
+			};
+			$scope.iconCategoryName = function(event){
+				return Icons.getIconCat(event);
+			};
 		} else {
 			$location.path('/login')
 		}

@@ -64,6 +64,32 @@ var User = require('./models/user');
 					res.send(err);	
 			});
 		});
+
+		app.get('/api/user/:username', function(req, res) {
+			var username = req.params.username;
+			User.find({username: username}, function(err, user) {
+				if (err)
+					res.send(err);
+
+				res.json(user);
+			});
+		});
+
+		app.post('/api/user/:username/add-event/:eventId', function(req, res) {
+			var username = req.params.username;
+			var eventId = req.params.eventId;
+			User.update(
+				{
+					username: username
+				}, {
+					$addToSet: {events: eventId}
+				}).exec(function(err, user) {
+				if (err)
+					res.send(err);
+
+				res.redirect('/user/'+username);
+			});
+		});
 		
 		// frontend routes =========================================================
 		// route to handle all angular requests
