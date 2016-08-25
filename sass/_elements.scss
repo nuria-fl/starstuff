@@ -22,3 +22,6 @@ a:focus {
 img {
 	max-width: 100%;
 }
+::selection {
+	background: $primary-c;
+}

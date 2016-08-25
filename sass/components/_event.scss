@@ -29,6 +29,7 @@
 	}
 	&__summary {
 		.c-event__add {
+			transition: all .3s;
 			visibility: hidden;
 			opacity: 0;
 		}
