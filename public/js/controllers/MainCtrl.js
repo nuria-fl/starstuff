@@ -254,6 +254,11 @@ angular.module('MainCtrl', [])
 					$scope.events = events;
 					
 				})
+			var normalRange = {
+				dateFrom: new Date(),
+				dateTo: new Date('2016-12-31')
+			};
+			$scope.range = normalRange;
 			$scope.logout = function(){
 				$cookies.remove('userCookie')
 				$location.path('/')
@@ -264,6 +269,18 @@ angular.module('MainCtrl', [])
 			$scope.iconCategoryName = function(event){
 				return Icons.getIconCat(event);
 			};
+			$scope.reverse = false;
+			$scope.viewPast = function(){
+				$scope.reverse = true;
+				$scope.range = {
+					dateFrom: new Date('2010-12-31'),
+					dateTo: new Date()
+				};
+			}
+			$scope.viewUpcoming = function(){
+				$scope.reverse = false;
+				$scope.range = normalRange;
+			}
 		} else {
 			$location.path('/login')
 		}

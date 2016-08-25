@@ -2,12 +2,12 @@ angular.module('Filters', [])
     .filter("dateFilter", function() {
     	return function(events, from, to) {
     		var result = [];   
-            console.log(from)
-            console.log(to)
+            var fromTimestamp = from.getTime();
+            var toTimestamp = to.getTime();
             if(events){
                 events.forEach(function(elem, i){
-                    var eventDate = new Date(elem.date);
-                    if (eventDate > from && eventDate < to)  {
+                    var eventDate = elem.date;
+                    if (eventDate > fromTimestamp && eventDate < toTimestamp)  {
                         result.push(elem);
                     }
                 })
