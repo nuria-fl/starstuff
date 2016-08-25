@@ -1,12 +1,11 @@
 // app/routes.js
 
-// grab the event model we just created
 var Event = require('./models/event');
 var User = require('./models/user');
 
 	module.exports = function(app) {
 
-		// server routes ===========================================================
+		// api calls	===========================================================
 
 		app.get('/api/events/range/:from/:to', function(req, res) {
 			
@@ -42,29 +41,6 @@ var User = require('./models/user');
 			});
 		});
 
-		app.post('/login', function(req, res) {
-			
-			var username = req.body.username;
-			var password = req.body.password;
-			
-			User.find({
-				username: username,
-				password: password
-			}, function(err, user) {
-				console.log(user);
-				if(user.length > 0){
-					res.cookie('userCookie', user[0].username);
-					res.redirect('/user/'+user[0].username)
-				} else {
-					res.redirect('/login/error')
-				}
-				// if there is an error retrieving, send the error. 
-								// nothing after res.send(err) will execute
-				if (err)
-					res.send(err);	
-			});
-		});
-
 		app.get('/api/user/:username', function(req, res) {
 			var username = req.params.username;
 			User.find({username: username}, function(err, user) {
@@ -88,6 +64,30 @@ var User = require('./models/user');
 					res.send(err);
 
 				res.end();
+			});
+		});
+
+		// Log users		=========================================================
+		app.post('/login', function(req, res) {
+			
+			var username = req.body.username;
+			var password = req.body.password;
+			
+			User.find({
+				username: username,
+				password: password
+			}, function(err, user) {
+				console.log(user);
+				if(user.length > 0){
+					res.cookie('userCookie', user[0].username);
+					res.redirect('/user/'+user[0].username)
+				} else {
+					res.redirect('/login/error')
+				}
+				// if there is an error retrieving, send the error. 
+								// nothing after res.send(err) will execute
+				if (err)
+					res.send(err);	
 			});
 		});
 		
