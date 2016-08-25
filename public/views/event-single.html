@@ -1,40 +1,56 @@
 <div class="container">
 	<article class="c-event">
-							
-		<time class="c-event__time" datetime="{{event.date | date:'YYYY-MM-dd'}}">
-			{{ event.date | date:'MMM' }}
-			<strong class="c-event__day">{{ event.date | date:'dd' }}</strong>
-		</time>
+		<div class="c-event__summary">
+			<time class="c-event__time" datetime="{{event.date | date:'YYYY-MM-dd'}}">
+				{{ event.date | date:'MMM' }}
+				<strong class="c-event__day">{{ event.date | date:'dd' }}</strong>
+			</time>
 
-		<h3 class="c-event__title">{{event.name}}</h3>
-		
-		<div class="c-event__desc">
-			<p>
-				<span class="o-icon">
-					<svg>
-					    <use xlink:href="" ng-attr-xlink:href="{{ activePage + iconVisibilityName(event) }}" />
-					</svg>
-				</span>
-				{{event.visibility}}<br>
-				<span class="o-icon">
-					<svg>
-					    <use xlink:href="" ng-attr-xlink:href="{{ activePage + iconCategoryName(event) }}" />
-					</svg>
-				</span>
-				Category: <span ng-repeat="category in event.category">
-					{{category}}
-					{{$last ? '' : ', '}}
-				</span>
-			</p>
-			<p>{{event.description}}</p>
-			<p><small>Credit: Dominic Ford (<a href="{{event.link}}" target="_blank"> source</a>)</small> </p>
-			<!-- <button type="button" class="o-btn o-btn--primary o-btn--sm c-event__add" ng-hide="added">
-				<i class="fa fa-calendar-plus-o"></i> Add to my calendar
-			</button>
-			<span class="o-btn o-btn--primary o-btn--sm c-event__add" ng-show="added">
-				<i class="fa fa-check"></i> Added
-			</span> -->
+			<h3 class="c-event__title">{{event.name}}</h3>
 			
+			<div class="c-event__desc">
+				<p>
+					<span class="o-icon">
+						<svg>
+						    <use xlink:href="" ng-attr-xlink:href="{{ activePage + iconVisibilityName(event) }}" />
+						</svg>
+					</span>
+					{{event.visibility}}<br>
+					<span class="o-icon">
+						<svg>
+						    <use xlink:href="" ng-attr-xlink:href="{{ activePage + iconCategoryName(event) }}" />
+						</svg>
+					</span>
+					Category: <span ng-repeat="category in event.category">
+						{{category}}
+						{{$last ? '' : ', '}}
+					</span>
+				</p>			
+			</div>
+		</div>		
+		<div class="c-event__bd">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-1">
+					<p ng-repeat="p in event.description">
+						{{p}}
+					</p>
+					<p><small>Credit: Dominic Ford (<a href="{{event.link}}" target="_blank"> source</a>)</small> </p>
+					<!-- <span ng-hide="user">
+						<button type="button" class="o-btn o-btn--primary o-btn--sm c-event__add" disabled>
+							<i class="fa fa-calendar-plus-o"></i> Add to my calendar
+						</button>
+					</span> -->
+					<div ng-show="user">
+						<button type="button" class="o-btn o-btn--primary o-btn--sm c-event__add" ng-hide="added" ng-click="addToCalendar()">
+							<i class="fa fa-calendar-plus-o"></i> Add to my calendar
+						</button>
+						<span class="o-btn o-btn--primary o-btn--sm c-event__add" ng-show="added">
+							<i class="fa fa-check"></i> Added
+						</span>	
+					</div>
+					
+				</div>
+			</div>
 		</div>
 		
 	</article>	

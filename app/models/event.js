@@ -7,7 +7,7 @@ var eventSchema = new Schema({
 	originId: String,
 	name: String,
 	link: String,
-	description: String,
+	description: [String],
 	date: Number,
 	category: [String],
 	visibility: String,

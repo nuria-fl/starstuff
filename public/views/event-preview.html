@@ -1,4 +1,4 @@
-<article class="c-event">
+<article class="c-event c-event__summary">
 	
 	<time class="c-event__time" datetime="{{event.date | date:'YYYY-MM-dd'}}">
 		{{ event.date | date:'MMM' }}
@@ -28,6 +28,9 @@
 		<a href="/#/event/{{event._id}}" class="o-btn o-btn--default o-btn--sm c-event__add">
 			<i class="fa fa-plus-circle"></i> Read more
 		</a>
+		<button type="button" class="o-btn o-btn--primary o-btn--sm c-event__add" ng-hide="added" ng-click="addToCal">
+			<i class="fa fa-calendar-plus-o"></i> Add to my calendar
+		</button>
 	</div>
 
 </article>

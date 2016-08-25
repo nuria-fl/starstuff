@@ -48,6 +48,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
             controller: 'profileController'
         })
 
+        .when('/credits', {
+            templateUrl: 'views/credits.html'
+        })
+
     $locationProvider.html5Mode(true);
 
 }]);

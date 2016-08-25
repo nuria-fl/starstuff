@@ -27,18 +27,23 @@
 	&__desc {
 		color: rgba(255,255,255,.8);
 	}
-	&__add {
-		visibility: hidden;
-		opacity: 0;
-	}
-	&:hover {
+	&__summary {
 		.c-event__add {
-			visibility: visible;
-			opacity: 1;
-			&:hover {
-				opacity: .8;
+			visibility: hidden;
+			opacity: 0;
+		}
+		&:hover {
+			.c-event__add {
+				visibility: visible;
+				opacity: 1;
+				&:hover {
+					opacity: .8;
+				}
 			}
 		}
+	}
+	&__bd {
+
 	}
 	.o-icon {
 		margin-right: .5rem;
