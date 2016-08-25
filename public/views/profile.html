@@ -4,8 +4,8 @@
 		<button type="button" class="o-btn o-btn--sm o-btn--danger" ng-click="logout()"><i class="fa fa-power-off"></i> Logout</button>	
 	</div>
 	<p>Hello, {{user.username}}</p>	
-	<h3>Events</h3>
+	<h3>My saved events</h3>
 	<div ng-repeat="event in events | orderBy: 'date'">
-		<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)" active-page="activePage"></event-preview>
+		<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)" active-page="activePage" added="added"></event-preview>
 	</div>	
 </section>

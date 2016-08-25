@@ -87,7 +87,7 @@ var User = require('./models/user');
 				if (err)
 					res.send(err);
 
-				res.redirect('/user/'+username);
+				res.end();
 			});
 		});
 		

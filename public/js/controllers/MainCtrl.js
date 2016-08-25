@@ -102,10 +102,35 @@ angular.module('MainCtrl', [])
 			return Icons.getIconCat(event);
 		};
 
+		
+		
+		var user = $rootScope.user;
+		$scope.user = user;
+		console.log(user)
+
+		var addedItems = [];
+		if(user){
+			User.get(user)
+				.then(function(dataUser){
+					var dataUser = dataUser.data[0];
+					addedItems = dataUser.events
+				});
+		}
+		
+
+		$scope.added = function(user, eventId){
+			if(addedItems.indexOf(eventId) !== -1){
+				return true;
+			} else {
+				return false;
+			}
+			
+		}
+
 		$scope.addToCalendar = function(user, eventId){
 			User.addEvent(user, eventId)
 				.then(function(){
-					$location.path('user/'+user)
+					addedItems.push(eventId);
 				});
 		}
 		
@@ -226,6 +251,7 @@ angular.module('MainCtrl', [])
 							});
 					});
 					$scope.user = user;
+					$scope.added = true;
 					$scope.events = events;
 					
 				})
