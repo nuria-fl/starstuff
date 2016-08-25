@@ -9,15 +9,20 @@
 		<div class="col-xs-6">
 			<h4>My saved events</h4>
 		</div>
-		<div class="col-xs-6 u-txt--right">
+		<div class="col-xs-6 u-txt--right" ng-if="events.length">
 			<button type="button" class="o-btn o-btn--default o-btn--sm" ng-click="viewPast()" ng-hide="reverse">View past events</button>
 			<button type="button" class="o-btn o-btn--default o-btn--sm" ng-click="viewUpcoming()" ng-show="reverse">View upcoming events</button>	
 		</div>
 	</header>	
 	<div class="row o-grid--half">	
 		<div class="col-sm-6" ng-repeat="event in events | orderBy: 'date' : reverse | dateFilter:range.dateFrom:range.dateTo">
+		
 			<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)" active-page="activePage" added="added"></event-preview>
 		</div>	
 	</div>
+	<p ng-if="events.length === 0">
+		You haven't added any event to your calendar yet. 
+		<a href="/calendar">Go and add some!</a>
+	</p>
 
 </section>
