@@ -1,9 +1,11 @@
 angular.module('filterController', [])
 	.controller('filterController', function($scope, Categories, Visibility){
+
+		//get array of categories and visibility types from service
 		$scope.categories = Categories.getCategories();
 		$scope.visibility = Visibility.getVisibility();
 
-		// selected categories
+		// prepare an array to store the selection
 		$scope.$parent.selection = [];
 		$scope.$parent.selectionVisibility = [];
 
@@ -24,6 +26,7 @@ angular.module('filterController', [])
 			});
 		}, true);
 		
+		// handle the show/hide of the category and visibility filter
 		$scope.showFilterCat = false;
 		$scope.showFilterVisibility = false;
 

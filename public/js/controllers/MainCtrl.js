@@ -10,14 +10,17 @@ angular.module('MainCtrl',
 	])
 	.run(function($location, $rootScope, $cookies){
 		$rootScope.$on("$routeChangeSuccess", function(currentRoute, previousRoute){
+			// set some parameters to show active class in menu
 			$rootScope.isHome = $location.path() === '/';
 			$rootScope.activePage = $location.path();
+			// check if we have user globally
 			if($cookies.get('userCookie')){
 				$rootScope.user = $cookies.get('userCookie');
 			} else {
 				$rootScope.user = false;
 			}
 		});
+		// this will be an easter egg
 		var easter_egg = new Konami(function() { 
 			console.log('Konami code!');
 		});

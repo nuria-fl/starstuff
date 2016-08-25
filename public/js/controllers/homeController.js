@@ -4,7 +4,7 @@ angular.module('homeController', [])
 		var today = new Date();
 		var currYear = today.getFullYear();
 		var currMonth = today.getMonth() + 1;
-
-		$scope.routeToCalendar = '/#/calendar/'+currYear+'/'+currMonth;
+		//set the route of the SEE FULL CALENDAR button to the current month
+		$scope.routeToCalendar = '/calendar/'+currYear+'/'+currMonth;
 
 	})

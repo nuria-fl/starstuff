@@ -15,7 +15,7 @@ angular.module('searchByDateController', [])
 			var niceMinDate = minYear+'-' +minMonth +'-' + minDay;
 			var niceMaxDate = maxYear+'-' +maxMonth +'-' + maxDay;
 
-			$location.path('/calendar/range/'+niceMinDate+'/'+niceMaxDate)
+			$location.path('/calendar/range/'+niceMinDate+'/'+niceMaxDate);
 			
 		};
-	})
+	});
