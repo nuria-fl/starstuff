@@ -106,7 +106,6 @@ angular.module('MainCtrl', [])
 		
 		var user = $rootScope.user;
 		$scope.user = user;
-		console.log(user)
 
 		var addedItems = [];
 		if(user){
