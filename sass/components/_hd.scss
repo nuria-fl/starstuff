@@ -8,6 +8,9 @@
 	z-index: 999;
 	background: rgba(0,0,0,.8);
 	transition: opacity .3s;
+	@media screen and (max-width: 767px){
+		text-align: center;
+	}
 	&--home {
 		&:not(.ui-scrollpoint) {
 			position: absolute;
@@ -23,18 +26,22 @@
 	}
 	&__logo {
 		width: 30rem;
+		max-width: 100%;
 		margin: 0;
 		padding: 1.5rem 0;
-		float: left;
-		text-align: left;	
 		transition: all .3s;
+		@media screen and (max-width: 767px){
+			margin: 0 auto;
+		}
 		img {
 			max-width: 100%;
 		}
 	}
 	&__nav {
-		width: 60%;
-		float: right;
+		@media screen and (min-width: 768px){
+			float: right;	
+		}
+		
 	}
 
 }

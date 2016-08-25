@@ -14,23 +14,31 @@
 	<div ng-include="'views/svg.html'"></div>
 	<header class="c-hd" ng-class="isHome ? 'c-hd--home' : ''" ui-scrollpoint="+100">
 		<div class="container">
-			<h1 class="c-hd__logo">
-				<a href="/"><img src="img/logo.png" alt="StarStuff"></a>
-			</h1>
-			<nav class="c-hd__nav">
-				<ul class="c-nav">
-					<li class="c-nav__item" ng-class="activePage.indexOf('/calendar') !== -1 ? 'is-active' : ''">
-						<a href="/calendar">CALENDAR</a>
-					</li>
-					<!-- <li class="c-nav__item" ng-class="activePage === '/gallery' ? 'is-active' : ''">
-						<a href="/gallery">GALLERY</a>
-					</li> -->
-					<li class="c-nav__item" ng-class="activePage.indexOf('/user') !== -1 || activePage === '/login' ? 'is-active' : ''">
-						<a href="/login" ng-hide="user">LOGIN</a>
-						<a href="/user/{{user}}" ng-show="user">MY PROFILE</a>
-					</li>
-				</ul>
-			</nav>	
+			<div class="row">
+				<div class="col-sm-6">
+					<h1 class="c-hd__logo">
+						<a href="/"><img src="img/logo.png" alt="StarStuff"></a>
+					</h1>
+				</div>
+				<div class="col-sm-6">
+					<nav class="c-hd__nav">
+						<ul class="c-nav">
+							<li class="c-nav__item" ng-class="activePage.indexOf('/calendar') !== -1 ? 'is-active' : ''">
+								<a href="/calendar">CALENDAR</a>
+							</li>
+							<!-- <li class="c-nav__item" ng-class="activePage === '/gallery' ? 'is-active' : ''">
+								<a href="/gallery">GALLERY</a>
+							</li> -->
+							<li class="c-nav__item" ng-class="activePage.indexOf('/user') !== -1 || activePage === '/login' ? 'is-active' : ''">
+								<a href="/login" ng-hide="user">LOGIN</a>
+								<a href="/user/{{user}}" ng-show="user">MY PROFILE</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			
+				
 		</div>
 		
 	</header>
