@@ -14,7 +14,7 @@ angular.module('eventsController', [])
 		} else {
 			$scope.showDateFilter = true;
 		}
-	}
+	};
 
 	if($location.path() === '/'){
 		// if is home we show 10 elements starting from today

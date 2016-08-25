@@ -49,6 +49,14 @@
 		<p>© StarStuff, 2016 · <a href="/credits">Credits</a> · <a href="https://github.com/nuria-fl/starstuff" target="_blank">View on Github</a></p>
 		<small>Visibility is calculated from Washington DC. From your location time and visibility of the events may vary.</small>
 	</footer>
+	<div ng-show="showEasterEgg" class="c-easteregg" ng-click="hideEasterEgg()">
+		<h2 class="u-txt--center">We ❤️ Carl Sagan</h2>
+		<div class="c-easteregg__bd o-embed">
+			<video autoplay loop muted>
+				<source src="img/sagan.mp4" type="video/mp4">
+			</video>	
+		</div>
+	</div>
 	
 	<!-- ANGULAR -->
 	<script src="libs/angular/angular.min.js"></script>

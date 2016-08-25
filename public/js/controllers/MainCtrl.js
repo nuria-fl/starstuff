@@ -23,6 +23,8 @@ angular.module('MainCtrl',
 			} else {
 				$rootScope.user = false;
 			}
+			// make sure easter egg is hidden
+			$rootScope.showEasterEgg = false;
 		});
 		// back function to go to previous page
 		$rootScope.back = function () {
@@ -31,8 +33,13 @@ angular.module('MainCtrl',
 	    };
 		// this will be an easter egg
 		var easter_egg = new Konami(function() { 
-			console.log('Konami code!');
+			$rootScope.$apply(function () {
+				$rootScope.showEasterEgg = true;
+			});
 		});
+		$rootScope.hideEasterEgg = function(){
+			$rootScope.showEasterEgg = false;
+		}
 
 	})
 	// .controller( 'galleryController' , function ( $scope ) {
