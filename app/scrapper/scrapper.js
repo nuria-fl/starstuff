@@ -41,7 +41,7 @@ app.get('/stars', function( req, res ) {
 
 		})
 
-		// eventsStars = eventsStars.slice(150);
+		eventsStars = eventsStars.slice(150);
 
 		return eventsStars;
 	}
@@ -79,16 +79,16 @@ app.get('/stars', function( req, res ) {
 
 					var aDesc = [];
 					
-					var firstP = $($firstP).text();
-					if(firstP.indexOf('Washington') === -1 && firstP.indexOf('as follows:') === -1 && firstP.indexOf('will be:') === -1 && content.indexOf('Click here') === -1 ){
+					var firstP = $($firstP).html();
+					if(firstP.indexOf('Washington') === -1 && firstP.indexOf('as follows:') === -1 && firstP.indexOf('will be:') === -1){
 						aDesc.push( firstP );
 					}
 					$otherP.each(function(i, p){
-						var content = $(p).text();
+						var content = $(p).html();
 						var notClick = content.indexOf('Click here') === -1;
 						var notLocation = content.indexOf('Washington') === -1 && content.indexOf('United States') === -1;
 						var notListTitle = content.indexOf('as follows:') === -1 && content.indexOf('will be:') === -1;
-						if(notLocation && notListTitle && notClick){
+						if(notLocation && notListTitle){
 							aDesc.push( content );
 						}						
 					});

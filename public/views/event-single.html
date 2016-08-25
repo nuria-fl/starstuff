@@ -35,8 +35,7 @@
 		<div class="c-event__bd">
 			<div class="row">
 				<div class="col-sm-10 col-md-8 col-sm-offset-1">
-					<p ng-repeat="p in event.description">
-						{{p}}
+					<p ng-repeat="p in event.description" ng-bind-html="renderHtml(p)">
 					</p>
 					<p><small>Credit: Dominic Ford (<a href="{{event.link}}" target="_blank"> source</a>)</small> </p>
 					

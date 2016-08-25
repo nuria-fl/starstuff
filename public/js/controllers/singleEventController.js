@@ -1,12 +1,18 @@
 angular.module('singleEventController', [])
-	.controller( 'singleEventController' , function ( $scope, $rootScope, $routeParams, Event, User, Icons ) {
+	.controller( 'singleEventController' , function ( $scope, $rootScope, $routeParams, Event, User, Icons, $sce ) {
 		
 		//get event by the url parameter
 		var eventId = $routeParams.ID;
 		Event.getOne( eventId )
 			.then(function(dataEvent){
 				$scope.event = dataEvent.data;
-			})
+			});
+
+		// force render html from description to display links
+		$scope.renderHtml = function(item){
+			var itemWithLinks = item.replace(new RegExp('<a href', 'g'), '<a target="_blank" href');
+			return $sce.trustAsHtml(itemWithLinks);
+		};
 
 		// get icons to display
 		$scope.iconVisibilityName = function(event){
@@ -52,4 +58,6 @@ angular.module('singleEventController', [])
 				});
 		}
 		
+		
+
 	});
