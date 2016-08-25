@@ -80,15 +80,16 @@ app.get('/stars', function( req, res ) {
 					var aDesc = [];
 					
 					var firstP = $($firstP).text();
-					if(firstP.indexOf('Washington') === -1 && firstP.indexOf('as follows:') === -1 && firstP.indexOf('will be:') === -1 ){
-						aDesc.push( firstP )
+					if(firstP.indexOf('Washington') === -1 && firstP.indexOf('as follows:') === -1 && firstP.indexOf('will be:') === -1 && content.indexOf('Click here') === -1 ){
+						aDesc.push( firstP );
 					}
 					$otherP.each(function(i, p){
 						var content = $(p).text();
+						var notClick = content.indexOf('Click here') === -1;
 						var notLocation = content.indexOf('Washington') === -1 && content.indexOf('United States') === -1;
 						var notListTitle = content.indexOf('as follows:') === -1 && content.indexOf('will be:') === -1;
-						if(notLocation && notListTitle){
-							aDesc.push( content )
+						if(notLocation && notListTitle && notClick){
+							aDesc.push( content );
 						}						
 					});
 

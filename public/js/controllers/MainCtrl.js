@@ -11,7 +11,7 @@ angular.module('MainCtrl', [])
 			}
 		});
 		var easter_egg = new Konami(function() { 
-			console.log('Konami code!')
+			console.log('Konami code!');
 		});
 
 	})
