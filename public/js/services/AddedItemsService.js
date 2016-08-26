@@ -13,8 +13,6 @@ angular.module('AddedItemsService', [])
 								addedItems = dataUser.events;					
 								resolve(addedItems);
 							});
-					} else {
-						reject('no user found');
 					}
 	        	});
 	        }

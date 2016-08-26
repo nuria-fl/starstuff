@@ -88,6 +88,7 @@ angular.module('eventsController', [])
 						addedItemsResult.push(eventId); // and store it in the saved events array
 					});
 			};
+			$scope.$apply();
 		})
 		.catch(function(){});
 });
