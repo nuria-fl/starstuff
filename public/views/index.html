@@ -10,9 +10,9 @@
 	<link rel="stylesheet" href="css/style.css"> <!-- custom styles -->
 	<link rel="icon" href="img/favicon.ico" />
 </head>
-<body>
+<body scroll>
 	<div ng-include="'views/svg.html'"></div>
-	<header class="c-hd" ng-class="isHome ? 'c-hd--home' : ''" ui-scrollpoint="+100">
+	<header class="c-hd" ng-class="{'c-hd--home':isHome, 'c-hd--home--show':boolChangeClass}">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6">
@@ -61,7 +61,6 @@
 	<!-- ANGULAR -->
 	<script src="libs/angular/angular.min.js"></script>
 	<script src="libs/angular-route/angular-route.min.js"></script>
-	<script src="libs/angular-ui-scrollpoint/dist/scrollpoint.js"></script>
 	<script src="libs/angular-datepicker/dist/angular-datepicker.min.js"></script>
 	<script src="libs/angular-cookies/angular-cookies.min.js"></script>
 	
@@ -80,6 +79,7 @@
 	<script src="js/services/VisibilityService.js"></script>
 	<script src="js/filters/filters.js"></script>
 	<script src="js/directives/eventDirective.js"></script>
+	<script src="js/directives/scrollDirective.js"></script>
 	<script src="js/appRoutes.js"></script>
 	<script src="js/app.js"></script>
 

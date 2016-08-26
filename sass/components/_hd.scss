@@ -7,22 +7,27 @@
 	left: 0;
 	z-index: 999;
 	background: rgba(0,0,0,.8);
-	transition: opacity .3s;
+	transition: background .3s;
 	@media screen and (max-width: 767px){
 		text-align: center;
 	}
 	&--home {
-		&:not(.ui-scrollpoint) {
-			position: absolute;
-			top: 10rem;
+		.c-hd__logo {
 			visibility: hidden;
-			opacity: 0;	
+			opacity: 0;
+			transition: all .3s;
+			
 		}
-		&.ui-scrollpoint {
-			visibility: visible;
-			opacity: 1;
+		&--show {
+			.c-hd__logo {
+				visibility: visible;
+				opacity: 1;
+			}
 		}
-		
+		&:not(.c-hd--home--show){
+			background: rgba(0,0,0,0);
+		}
+
 	}
 	&__logo {
 		width: 30rem;

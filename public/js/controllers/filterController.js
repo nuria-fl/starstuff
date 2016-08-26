@@ -1,4 +1,4 @@
-angular.module('filterController', [])
+angular.module('filterController', ['CategoriesService', 'VisibilityService'])
 	.controller('filterController', function($scope, Categories, Visibility){
 
 		//get array of categories and visibility types from service

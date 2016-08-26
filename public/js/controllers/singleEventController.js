@@ -1,4 +1,4 @@
-angular.module('singleEventController', [])
+angular.module('singleEventController', ['AddedItemsService'])
 	.controller( 'singleEventController' , function ( $scope, $rootScope, $routeParams, $sce, Event, User, Icons, AddedItems ) {
 		
 		//get event by the url parameter

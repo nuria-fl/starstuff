@@ -1,10 +1,10 @@
-angular.module('eventsController', [])
+angular.module('eventsController', ['AddedItemsService', 'DatesService'])
 .controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, $location, Event, User, Dates, Icons, AddedItems ) {
 
 	var dateFrom, dateTo, limit;
 
-	//display the nav arrows by default
-	$scope.showMonthNav = true;
+	//hide the nav arrows by default
+	$scope.showMonthNav = false;
 	//hide the date-range filter
 	$scope.showDateFilter = false;
 	//toggle the date-range filter
@@ -29,7 +29,7 @@ angular.module('eventsController', [])
 		dateFrom = $routeParams.FROM;
 		dateTo = $routeParams.TO;
 		//disable arrow navigation
-		$scope.showMonthNav = false; 
+		
 		//title of the page displays the selected range
 		$scope.dateTitle = 'Events from ' + dateFrom + ' to ' + dateTo; 
 	} else {
@@ -45,6 +45,7 @@ angular.module('eventsController', [])
 		$scope.dateTitle = monthName + ' ' + currYear;
 
 		//set arrow navigation routes
+		$scope.showMonthNav = true; 
 		$scope.navRoutes = {
 			routePrevMonth: '/#/calendar/'+ dates.prevMonth,
 			routeNextMonth: '/#/calendar/'+ dates.nextMonth
