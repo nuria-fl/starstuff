@@ -17,7 +17,7 @@
 	<div class="row o-grid--half">	
 		<div class="col-sm-6" ng-repeat="event in events | orderBy: 'date' : reverse | dateFilter:range.dateFrom:range.dateTo">
 		
-			<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)" active-page="activePage" added="added"></event-preview>
+			<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)" active-page="activePage" added="added" removecal="removeFromCalendar(event._id)"></event-preview>
 		</div>	
 	</div>
 	<p ng-if="events.length === 0">

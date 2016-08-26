@@ -33,8 +33,10 @@
 		</button>
 		<span class="o-btn o-btn--primary o-btn--sm c-event__add" ng-if="user" ng-show="added()">
 			<i class="fa fa-check"></i> Added
-		</span>	
-		
+		</span>
+		<button type="button" class="o-btn o-btn--danger o-btn--sm  c-event__add" ng-if="activePage.length && activePage.indexOf('user') !== -1" ng-click="removecal()">
+			<i class="fa fa-trash"></i> Remove from calendar
+		</button>
 	</div>
 
 </article>

@@ -1,5 +1,5 @@
 angular.module('profileController', [])
-	.controller( 'profileController' , function ( $scope, $cookies, $location, User, Event, Icons ) {
+	.controller( 'profileController' , function ( $scope, $cookies, $location, $route, User, Event, Icons ) {
 
 		if($cookies.get('userCookie')){
 			// if the user is logged in
@@ -55,6 +55,15 @@ angular.module('profileController', [])
 			$scope.logout = function(){
 				$cookies.remove('userCookie')
 				$location.path('/')
+			};
+
+			//remove event
+			$scope.removeFromCalendar = function(eventId){
+				User.removeEvent(user, eventId)
+					.then(function(){
+						// force reload page for now
+						$route.reload();
+					});
 			};
 		} else {
 			// if we don't have the user logged redirect to login

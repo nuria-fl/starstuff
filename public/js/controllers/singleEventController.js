@@ -53,5 +53,4 @@ angular.module('singleEventController', ['AddedItemsService'])
 				$scope.$apply();
 			})
 			.catch(function(){});
-
 	});

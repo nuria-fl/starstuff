@@ -8,6 +8,7 @@ angular.module('eventDirective', [])
 				iconvisibility: '&',
 				iconcategory: '&',
 				addcal: '&',
+				removecal: '&',
 				added: '&',
 				user: '='
 			},
