@@ -1,5 +1,5 @@
 angular.module('eventsController', [])
-.controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, $location, Event, User, Dates, Icons, Categories, Visibility ) {
+.controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, $location, Event, User, Dates, Icons ) {
 
 	var dateFrom, dateTo, limit;
 
