@@ -43,7 +43,7 @@ angular.module('singleEventController', ['AddedItemsService'])
 					}
 					
 				};
-				$scope.addToCalendar = function(user, eventId){
+				$scope.addToCalendar = function(){
 					// add the event to the database
 					User.addEvent(user, eventId)
 						.then(function(){
