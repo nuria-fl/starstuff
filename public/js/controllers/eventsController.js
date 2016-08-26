@@ -1,5 +1,5 @@
 angular.module('eventsController', [])
-.controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, Event, User, $location, Icons, Categories, Visibility ) {
+.controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, $location, Event, User, Dates, Icons, Categories, Visibility ) {
 
 	var dateFrom, dateTo, limit;
 
@@ -34,39 +34,20 @@ angular.module('eventsController', [])
 		$scope.dateTitle = 'Events from ' + dateFrom + ' to ' + dateTo; 
 	} else {
 		// else we get the events from the current month
-		var currYear = parseInt($routeParams.YEAR);
-		var currMonth = parseInt($routeParams.MONTH);
+		var dates = Dates.getMonth($routeParams.YEAR, $routeParams.MONTH);
+	
+		dateFrom = dates.dateFrom;
+		dateTo = dates.dateTo;
 
-		var nextYear, nextMonth, prevYear, prevMonth;
-		if(currMonth === 12){
-			nextYear = currYear + 1;
-			nextMonth = 1;
-		} else {
-			nextMonth = currMonth + 1;
-		}
-		if(currMonth === 1){
-			prevYear = currYear - 1;
-			prevMonth = 12;
-		} else {
-			prevMonth = currMonth - 1;
-		}
-		dateFrom = currYear + '-' + currMonth + '-1';
+		var currYear = dateFrom.split('-').shift();
 
-		dateTo = (nextYear || currYear) + '-' + (nextMonth || currMonth) + '-1';
-		
-		// display selected month on the page title
-		function monthName(){
-			var month = new Date(dateFrom).getMonth();
-			var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-			return monthNames[month];
-		};
-
-		$scope.dateTitle = monthName() + ' ' + currYear;
+		var monthName = Dates.getMonthName(dateFrom);
+		$scope.dateTitle = monthName + ' ' + currYear;
 
 		//set arrow navigation routes
 		$scope.navRoutes = {
-			routePrevMonth: '/#/calendar/'+ (prevYear || currYear) + '/' + (prevMonth || currMonth),
-			routeNextMonth: '/#/calendar/'+ (nextYear || currYear) + '/' + (nextMonth || currMonth)
+			routePrevMonth: '/#/calendar/'+ dates.prevMonth,
+			routeNextMonth: '/#/calendar/'+ dates.nextMonth
 		};
 	}		
 
@@ -84,7 +65,6 @@ angular.module('eventsController', [])
 	$scope.iconCategoryName = function(event){
 		return Icons.getIconCat(event);
 	};
-
 	
 	// check if the user is logged in and prepare an array with the events they have already saved
 	var user = $rootScope.user;
