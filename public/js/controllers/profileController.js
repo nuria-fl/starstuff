@@ -57,12 +57,16 @@ angular.module('profileController', [])
 				$location.path('/')
 			};
 
-			//remove event
+			//remove event from db
 			$scope.removeFromCalendar = function(eventId){
 				User.removeEvent(user, eventId)
 					.then(function(){
-						// force reload page for now
-						$route.reload();
+						// remove item from array
+						$scope.events.forEach(function(elem, i){
+							if(elem._id === eventId){
+								$scope.events.splice(i, 1);
+							}
+						})
 					});
 			};
 		} else {
