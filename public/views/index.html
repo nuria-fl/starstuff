@@ -15,12 +15,12 @@
 	<header class="c-hd" ng-class="{'c-hd--home':isHome, 'c-hd--home--show':boolChangeClass}">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-5 col-md-6">
 					<h1 class="c-hd__logo">
 						<a href="/"><img src="img/logo.png" alt="StarStuff"></a>
 					</h1>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-7 col-md-6">
 					<nav class="c-hd__nav">
 						<ul class="c-nav">
 							<li class="c-nav__item" ng-class="activePage.indexOf('/calendar') !== -1 ? 'is-active' : ''">
@@ -31,7 +31,16 @@
 							</li> -->
 							<li class="c-nav__item" ng-class="activePage.indexOf('/user') !== -1 || activePage === '/login' ? 'is-active' : ''">
 								<a href="/login" ng-hide="user">LOGIN</a>
-								<a href="/user/{{user}}" ng-show="user">MY PROFILE</a>
+								<span ng-show="user">
+									<a href="/user/{{user}}">MY PROFILE</a> 
+									<span class="c-nav__logout">
+									| 
+									<a href="#" ng-click="logout()">
+										<i class="fa fa-power-off"></i> Logout
+									</a> 
+									</span>	
+								</span>
+								
 							</li>
 						</ul>
 					</nav>

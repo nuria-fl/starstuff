@@ -8,7 +8,7 @@ angular.module('MainCtrl',
 		'loginController',
 		'profileController'
 	])
-	.run(function($location, $rootScope, $cookies){
+	.run(function($location, $rootScope, $cookies, $route){
 		// initialize array to store the user's history
 		var history = [];
 		// change page event
@@ -31,6 +31,17 @@ angular.module('MainCtrl',
 	        var prevUrl = history.length > 1 ? history.splice(-2)[0] : "/calendar";
 	        $location.path(prevUrl);
 	    };
+	    // logout user
+	    $rootScope.logout = function(){
+			$cookies.remove('userCookie')
+			if($location.path('/')){
+				$route.reload();
+			} else {
+				$location.path('/')
+			}
+			// $location.path('/')
+
+		};
 		// this will be an easter egg
 		var easter_egg = new Konami(function() { 
 			$rootScope.$apply(function () {

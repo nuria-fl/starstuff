@@ -8,6 +8,7 @@
 	&__item {
 		display: inline-block;
 		padding: 2.8rem 2.5rem;
+		position: relative;
 		font-size: 1.6rem;
 		font-weight: 300;
 		@media screen and (max-width: 767px){
@@ -33,6 +34,47 @@
 					background: $primary-c;
 				}
 			}
+		}
+		&:hover {
+			> .c-nav__submenu {
+				visibility: visible;
+				opacity: 1;
+			}
+		}
+	}
+	&__logout {
+		display: inline-block;
+		margin-left: 1rem;
+		color: #999;
+		font-size: 80%;
+		white-space: nowrap;
+		a {
+			display: inline-block;
+			margin-left: .5rem;
+			color: #999;
+			&:hover {
+				color: #fff;
+			}
+		}
+		.fa-power-off {
+			font-size: 80%;
+		}
+	}
+	&__submenu {
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		visibility: hidden;
+		opacity: 0;
+		background: rgba(0,0,0,.8);
+		list-style: none;
+		text-align: left;
+		a {
+			padding: .5rem 1rem;
+			text-transform: uppercase;
 		}
 	}
 }

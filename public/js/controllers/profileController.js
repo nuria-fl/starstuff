@@ -51,12 +51,6 @@ angular.module('profileController', [])
 				return Icons.getIconCat(event);
 			};
 
-			//logout button
-			$scope.logout = function(){
-				$cookies.remove('userCookie')
-				$location.path('/')
-			};
-
 			//remove event from db
 			$scope.removeFromCalendar = function(eventId){
 				User.removeEvent(user, eventId)

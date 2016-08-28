@@ -9,6 +9,7 @@
 		margin: 0 1rem;
 		vertical-align: top;
 		color: $primary-c;
+		cursor: pointer;
 		font-size: 1.3rem;
 		font-weight: 300;
 		text-transform: uppercase;
@@ -28,6 +29,9 @@
 			&:checked + .o-icon + span {
 				opacity: 1;
 			}
+		}
+		&:hover span {
+			opacity: 1;
 		}
 	}
 }
