@@ -1,5 +1,5 @@
-angular.module('eventsController', ['AddedItemsService', 'DatesService'])
-.controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, $location, Event, User, Dates, Icons, AddedItems ) {
+angular.module('eventsController', ['DatesService'])
+.controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, $location, Event, User, Dates, Icons ) {
 
 	var dateFrom, dateTo, limit;
 
@@ -71,25 +71,30 @@ angular.module('eventsController', ['AddedItemsService', 'DatesService'])
 	var user = $rootScope.user;
 	$scope.user = user;
 
-	AddedItems.getAddedItems(user)
-		.then(function(addedItemsResult){
-			// check if the event has been saved by the user to show or hide the Add to calendar button
-			$scope.added = function(user, eventId){
-				if(addedItemsResult.indexOf(eventId) !== -1){
-					return true; //hide
-				} else {
-					return false; //show
-				}
-				
-			};
-			$scope.addToCalendar = function(user, eventId){
-				// add the event to the database
-				User.addEvent(user, eventId)
-					.then(function(){
-						addedItemsResult.push(eventId); // and store it in the saved events array
-					});
-			};
-			$scope.$apply();
-		})
-		.catch(function(){});
+	//initialize array to store added items
+	var addedItems = [];
+	// if we have a user logged in we retrieve their events and store them into the array
+	if(user){
+		User.get(user)
+			.then(function(dataUser){
+				var dataUser = dataUser.data[0];
+				addedItems = dataUser.events;
+			});
+	}
+	// check if the event has been saved by the user to show or hide the Add to calendar button
+	$scope.added = function(user, eventId){
+		if(addedItems.indexOf(eventId) !== -1){
+			return true; //hide
+		} else {
+			return false; //show
+		}
+		
+	};
+	$scope.addToCalendar = function(user, eventId){
+		// add the event to the database
+		User.addEvent(user, eventId)
+			.then(function(){
+				addedItems.push(eventId); // and store it in the saved events array
+			});
+	};
 });
