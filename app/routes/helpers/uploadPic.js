@@ -2,26 +2,39 @@ var fs = require('fs');
 var Image = require('../../models/image');
 var bodyParser = require('body-parser');
 
-UserController = function() {};
+ImageController = function() {};
 
-UserController.prototype.uploadFile = function(req, res) {
-    // We are able to access req.files.file thanks to 
-    // the multiparty middleware
+var bl = require('bl');
+
+ImageController.prototype.uploadFile = function(req, res) {
+    // We are able to access req.files.file thanks to the multiparty middleware    
     var file = req.files.file;
-    
-    console.log(req.body);
-    console.log(file.type);
-
+    console.log(file)
+    var timestamp = (new Date()).getTime();
     var img = new Image;
-
+    img.route = timestamp+file.originalFilename;
     img.user = req.body.username;
-    img.eventId = req.body.event;
-    img.img.data = fs.readFileSync(file.path);
-    img.img.contentType = 'image/png';
+    img.event = req.body.event;
+    img.contentType = file.type;
+    
+    //upload file to our folder
+    fs.createReadStream(file.path).pipe(bl(function (err, data) {
+        
+        var filepath = './public/img/uploaded/'+img.route;
+        
+        fs.appendFile(filepath, data, (err) => {
+          if (err) throw err;
+          console.log('The "data to append" was appended to file!');
+        });
+        
+    }));
+
+    
     img.save(function (err, img) {
       if (err) throw err;
       console.log('saved img to mongo');
+      res.redirect(req.get('referer'));
     });
 }
 
-module.exports = new UserController();
+module.exports = new ImageController();

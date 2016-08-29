@@ -3,7 +3,8 @@ var Schema = mongoose.Schema;
 
 var imageSchema = new Schema({
 	title: String,
-	img: { data: Buffer, contentType: String },
+	route: String,
+	contentType: String,
 	user: String, // reference to user
 	event: [{
 			id: { type: Schema.Types.ObjectId, ref: 'Event' }, // reference to event

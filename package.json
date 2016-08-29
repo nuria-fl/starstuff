@@ -24,6 +24,7 @@
     "angular-cookies": "^1.5.8",
     "angular-datepicker": "^1.0.5",
     "angular-route": "^1.5.8",
+    "bl": "^1.1.2",
     "body-parser": "~1.4.2",
     "cheerio": "latest",
     "connect-multiparty": "^2.0.0",

@@ -6,7 +6,8 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         // home page
         .when('/', {
             templateUrl: 'views/home.html',
-            controller: 'homeController'
+            controller: 'homeController',
+            controllerAs: 'home'
         })
 
         .when('/calendar', {
