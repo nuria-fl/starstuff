@@ -6,7 +6,8 @@ angular.module('MainCtrl',
 		'filterController', 
 		'singleEventController',
 		'loginController',
-		'profileController'
+		'profileController',
+		'uploadController'
 	])
 	.run(function($location, $rootScope, $cookies, $route){
 		// initialize array to store the user's history

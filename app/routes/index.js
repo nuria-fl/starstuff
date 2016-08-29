@@ -8,6 +8,16 @@ var addEvent = require('./helpers/addEvent');
 var removeEvent = require('./helpers/removeEvent');
 var loginUser = require('./helpers/loginUser');
 var loadAngular = require('./helpers/loadAngular');
+var getImages = require('./helpers/getImages');
+var getImageById = require('./helpers/getImageById');
+
+// Requires multiparty 
+multiparty = require('connect-multiparty'),
+multipartyMiddleware = multiparty(),
+
+// Requires controller
+UserController = require('./helpers/uploadPic');
+
 
 module.exports = function(app) {
 
@@ -17,6 +27,9 @@ module.exports = function(app) {
 	app.get('/api/user/:username', getUser);
 	app.post('/api/user/:username/add-event/:eventId', addEvent);
 	app.post('/api/user/:username/remove-event/:eventId', removeEvent);
+	app.post('/api/user/uploads', multipartyMiddleware, UserController.uploadFile);
+	app.get('/api/images', getImages);
+	app.get('/api/image/:id', getImageById);
 
 	// Log users
 	app.post('/login', loginUser);
