@@ -5,7 +5,11 @@ function singleEventHelper ( $scope, $rootScope, $routeParams, $sce, Event, User
 	Event.getOne( eventId )
 		.then(function(dataEvent){
 			$scope.event = dataEvent.data;
+			var today = (new Date()).getTime();
+			$scope.passed = today > $scope.event.date;
 		});
+
+
 
 	// force render html from description to display links
 	$scope.renderHtml = function(item){
