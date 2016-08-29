@@ -1,4 +1,6 @@
-angular.module('eventsController', ['DatesService'])
+var DatesService = require('../services/DatesService');
+
+angular.module('eventsController', [DatesService])
 .controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, $location, Event, User, Dates, Icons ) {
 
 	var dateFrom, dateTo, limit;

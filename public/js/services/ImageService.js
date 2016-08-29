@@ -11,3 +11,4 @@ angular.module('ImageService', []).factory('Image', ['$http', function($http) {
     }       
 
 }]);
+module.exports = 'ImageService';

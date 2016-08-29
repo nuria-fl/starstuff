@@ -36918,12 +36918,17 @@ var angularCookies = require('angular-cookies');
 var ngFileUpload = require('ng-file-upload');
 
 var routes = require('./appRoutes');
-var controllers = require('./controllers/MainCtrl');
+var controllers = require('./controllers/');
+
+var EventService = require('./services/EventService');
+var UserService = require('./services/UserService');
+var IconsService = require('./services/IconsService');
+
 
 
 // public/js/app.js
-angular.module('starstuff', ['ngRoute', 'ngCookies', 'datePicker', routes, controllers, 'EventService', 'UserService', 'Filters', 'eventDirective', 'scrollDirective', 'IconsService']);
-},{"./appRoutes":11,"./controllers/MainCtrl":12,"angular":7,"angular-cookies":2,"angular-datepicker":3,"angular-route":5,"ng-file-upload":9}],11:[function(require,module,exports){
+angular.module('starstuff', ['ngRoute', 'ngCookies', 'datePicker', routes, controllers, EventService, UserService, IconsService, 'Filters', 'eventDirective', 'scrollDirective' ]);
+},{"./appRoutes":11,"./controllers/":15,"./services/EventService":23,"./services/IconsService":24,"./services/UserService":26,"angular":7,"angular-cookies":2,"angular-datepicker":3,"angular-route":5,"ng-file-upload":9}],11:[function(require,module,exports){
 // public/js/appRoutes.js
 angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
@@ -36984,78 +36989,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
 module.exports = 'appRoutes';
 },{}],12:[function(require,module,exports){
-var homeCtrl = require('./homeController'); 
-var eventsCtrl = require('./eventsController'); 
-var searchByDateCtrl = require('./searchByDateController'); 
-var filterCtrl = require('./filterController'); 
-var singleEventCtrl = require('./singleEventController'); 
-var loginCtrl = require('./loginController'); 
-var profileCtrl = require('./profileController'); 
-var uploadCtrl = require('./uploadController'); 
+var DatesService = require('../services/DatesService');
 
-angular.module('MainCtrl', 
-	[
-		homeCtrl, 
-		eventsCtrl,
-		searchByDateCtrl,
-		filterCtrl,
-		singleEventCtrl,
-		loginCtrl,
-		profileCtrl,
-		uploadCtrl
-	])
-	.run(function($location, $rootScope, $cookies, $route){
-		// initialize array to store the user's history
-		var history = [];
-		// change page event
-		$rootScope.$on("$routeChangeSuccess", function(currentRoute, previousRoute){
-			// set some parameters to show active class in menu
-			history.push($location.$$path);
-			$rootScope.isHome = $location.path() === '/';
-			$rootScope.activePage = $location.path();
-			// check if we have user globally
-			if($cookies.get('userCookie')){
-				$rootScope.user = $cookies.get('userCookie');
-			} else {
-				$rootScope.user = false;
-			}
-			// make sure easter egg is hidden
-			$rootScope.showEasterEgg = false;
-		});
-		// back function to go to previous page
-		$rootScope.back = function () {
-	        var prevUrl = history.length > 1 ? history.splice(-2)[0] : "/calendar";
-	        $location.path(prevUrl);
-	    };
-	    // logout user
-	    $rootScope.logout = function(){
-			$cookies.remove('userCookie')
-			if($location.path('/')){
-				$route.reload();
-			} else {
-				$location.path('/')
-			}
-			// $location.path('/')
-
-		};
-		// this will be an easter egg
-		var easter_egg = new Konami(function() { 
-			$rootScope.$apply(function () {
-				$rootScope.showEasterEgg = true;
-			});
-		});
-		$rootScope.hideEasterEgg = function(){
-			$rootScope.showEasterEgg = false;
-		}
-
-	})
-	// .controller( 'galleryController' , function ( $scope ) {
-	// 	var gallery = [1,2,3,4,5,6,7,8,9];
-	// 	$scope.gallery = gallery;
-	// })
-module.exports = 'MainCtrl';
-},{"./eventsController":13,"./filterController":14,"./homeController":15,"./loginController":16,"./profileController":17,"./searchByDateController":18,"./singleEventController":19,"./uploadController":20}],13:[function(require,module,exports){
-angular.module('eventsController', ['DatesService'])
+angular.module('eventsController', [DatesService])
 .controller( 'eventsController' , function ( $scope, $rootScope, $routeParams, $location, Event, User, Dates, Icons ) {
 
 	var dateFrom, dateTo, limit;
@@ -37157,8 +37093,11 @@ angular.module('eventsController', ['DatesService'])
 });
 
 module.exports = 'eventsController';
-},{}],14:[function(require,module,exports){
-angular.module('filterController', ['CategoriesService', 'VisibilityService'])
+},{"../services/DatesService":22}],13:[function(require,module,exports){
+var CategoriesService = require('../services/CategoriesService');
+var VisibilityService = require('../services/VisibilityService');
+
+angular.module('filterController', [CategoriesService, VisibilityService])
 	.controller('filterController', function($scope, Categories, Visibility){
 
 		//get array of categories and visibility types from service
@@ -37210,8 +37149,10 @@ angular.module('filterController', ['CategoriesService', 'VisibilityService'])
 	})
 
 module.exports = 'filterController';
-},{}],15:[function(require,module,exports){
-angular.module('homeController', ['ImageService'])
+},{"../services/CategoriesService":21,"../services/VisibilityService":27}],14:[function(require,module,exports){
+var ImageService = require('../services/ImageService');
+
+angular.module('homeController', [ImageService])
 	.controller('homeController', function($scope, Image) {
 			
 		var today = new Date();
@@ -37228,7 +37169,78 @@ angular.module('homeController', ['ImageService'])
 	});
 
 module.exports = 'homeController';
-},{}],16:[function(require,module,exports){
+},{"../services/ImageService":25}],15:[function(require,module,exports){
+var homeCtrl = require('./homeController'); 
+var eventsCtrl = require('./eventsController'); 
+var searchByDateCtrl = require('./searchByDateController'); 
+var filterCtrl = require('./filterController'); 
+var singleEventCtrl = require('./singleEventController'); 
+var loginCtrl = require('./loginController'); 
+var profileCtrl = require('./profileController'); 
+var uploadCtrl = require('./uploadController'); 
+
+angular.module('MainCtrl', 
+	[
+		homeCtrl, 
+		eventsCtrl,
+		searchByDateCtrl,
+		filterCtrl,
+		singleEventCtrl,
+		loginCtrl,
+		profileCtrl,
+		uploadCtrl
+	])
+	.run(function($location, $rootScope, $cookies, $route){
+		// initialize array to store the user's history
+		var history = [];
+		// change page event
+		$rootScope.$on("$routeChangeSuccess", function(currentRoute, previousRoute){
+			// set some parameters to show active class in menu
+			history.push($location.$$path);
+			$rootScope.isHome = $location.path() === '/';
+			$rootScope.activePage = $location.path();
+			// check if we have user globally
+			if($cookies.get('userCookie')){
+				$rootScope.user = $cookies.get('userCookie');
+			} else {
+				$rootScope.user = false;
+			}
+			// make sure easter egg is hidden
+			$rootScope.showEasterEgg = false;
+		});
+		// back function to go to previous page
+		$rootScope.back = function () {
+	        var prevUrl = history.length > 1 ? history.splice(-2)[0] : "/calendar";
+	        $location.path(prevUrl);
+	    };
+	    // logout user
+	    $rootScope.logout = function(){
+			$cookies.remove('userCookie')
+			if($location.path('/')){
+				$route.reload();
+			} else {
+				$location.path('/')
+			}
+			// $location.path('/')
+
+		};
+		// this will be an easter egg
+		var easter_egg = new Konami(function() { 
+			$rootScope.$apply(function () {
+				$rootScope.showEasterEgg = true;
+			});
+		});
+		$rootScope.hideEasterEgg = function(){
+			$rootScope.showEasterEgg = false;
+		}
+
+	})
+	// .controller( 'galleryController' , function ( $scope ) {
+	// 	var gallery = [1,2,3,4,5,6,7,8,9];
+	// 	$scope.gallery = gallery;
+	// })
+module.exports = 'MainCtrl';
+},{"./eventsController":12,"./filterController":13,"./homeController":14,"./loginController":16,"./profileController":17,"./searchByDateController":18,"./singleEventController":19,"./uploadController":20}],16:[function(require,module,exports){
 angular.module('loginController', [])
 	.controller( 'loginController' , function ( $scope, $cookies, $location, $routeParams ) {
 
@@ -37341,8 +37353,8 @@ angular.module('searchByDateController', [])
 	});
 module.exports = 'searchByDateController';
 },{}],19:[function(require,module,exports){
-angular.module('singleEventController', ['AddedItemsService'])
-	.controller( 'singleEventController' , function ( $scope, $rootScope, $routeParams, $sce, Event, User, Icons, AddedItems ) {
+angular.module('singleEventController', [])
+	.controller( 'singleEventController' , function ( $scope, $rootScope, $routeParams, $sce, Event, User, Icons ) {
 		
 		//get event by the url parameter
 		var eventId = $routeParams.ID;
@@ -37437,4 +37449,240 @@ angular.module('uploadController', ['ngFileUpload'])
 		}
 	}]);
 module.exports = 'uploadController';
+},{}],21:[function(require,module,exports){
+angular.module('CategoriesService', []).factory('Categories', [function() {
+
+	    return {
+	        getCategories : function () {
+				var categories = [
+					{ 
+						name: 'Moon',    			
+						iconName: 'iconMoon',
+						selected: false 
+					},
+					{ 
+						name: 'Earth',
+						iconName: 'iconEarth',
+						selected: false 
+					},
+					{ 
+						name: 'Stars and planets',
+						iconName: 'iconPlanets',
+						selected: false 
+					},
+					{ 
+						name: 'Meteor showers',   
+						iconName: 'iconMeteorShower',
+						selected: false 
+					},
+					{ 
+						name: 'Comets and asteroids', 
+						iconName: 'iconComets',
+						selected: false 
+					},
+					{ 
+						name: 'Eclipses',
+						iconName: 'iconEclipse',
+						selected: false 
+					}/*,
+					{ 
+						name: 'Mission Updates',
+						iconName: 'iconMissionUpdates',	
+						selected: false 
+					}*/
+				];
+
+				return categories;
+			}
+	    };
+	}]);
+module.exports = 'CategoriesService';
+},{}],22:[function(require,module,exports){
+angular.module('DatesService', [])
+	.factory('Dates', [function() {
+		return {
+		    getMonth : function (year, month) {
+				var dates = {}
+
+				var currYear = parseInt(year);
+				var currMonth = parseInt(month);
+
+				var nextYear, nextMonth, prevYear, prevMonth;
+
+				if(currMonth === 12){
+					nextYear = currYear + 1;
+					nextMonth = 1;
+				} else {
+					nextMonth = currMonth + 1;
+				}
+				if(currMonth === 1){
+					prevYear = currYear - 1;
+					prevMonth = 12;
+				} else {
+					prevMonth = currMonth - 1;
+				}
+
+				dates.dateFrom = currYear + '-' + currMonth + '-1';
+				dates.dateTo = (nextYear || currYear) + '-' + (nextMonth || currMonth) + '-1';
+				dates.prevMonth = (prevYear || currYear) + '/' + (prevMonth || currMonth);
+				dates.nextMonth = (nextYear || currYear) + '/' + (nextMonth || currMonth);
+
+				return dates;
+			},
+			getMonthName : function(date){
+				var month = new Date(date).getMonth();
+				var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+				return monthNames[month];
+			}
+		};
+	}]);
+module.exports = 'DatesService';
+},{}],23:[function(require,module,exports){
+// public/js/services/EventService.js
+angular.module('EventService', []).factory('Event', ['$http', function($http) {
+
+    return {
+        // call to get all events
+        get : function() {
+            return $http.get('/api/events');
+        },
+
+        getRange : function(from, to, limit) {
+            var url = '/api/events/range/'+from+'/'+to;
+            if (limit){
+                url+='?limit='+limit;
+            }
+            return $http.get(url);
+        },
+
+        // get single event by ID
+        getOne : function( id ) {
+            return $http.get('/api/event/'+id);
+        },
+
+        // these will work when more API routes are defined on the Node side of things
+        // call to POST and create a new event
+        // create : function(eventData) {
+        //     return $http.post('/api/events', eventData);
+        // },
+
+        // call to DELETE a event
+        // delete : function(id) {
+        //     return $http.delete('/api/events/' + id);
+        // }
+    }       
+
+}]);
+module.exports = 'EventService';
+},{}],24:[function(require,module,exports){
+angular.module('IconsService', []).factory('Icons', ['$http', function($http, $location) {
+
+	    return {
+	        getIconVisibility : function (event) {
+				var iconName = '#icon';
+				if(event.visibility === 'Visible to the naked eye') {
+					iconName+='Eye';
+				} else if(event.visibility === 'Visible with binoculars') {
+					iconName+='Binoculars';
+				} else if(event.visibility === 'Visible with telescope') {
+					iconName+='Telescope';
+				} else {
+					iconName+='EyeSlash';
+				}
+				return iconName;
+			},
+			getIconCat : function (event) {
+				var iconName = '#icon';
+				var categories = event.category;
+
+				for (i=0; i<categories.length; i++){
+					if ('Moon'.indexOf(categories[i]) != -1) {
+					    return iconName+'Moon';
+					} else if ('Earth'.indexOf(categories[i]) != -1){
+						return iconName+'Earth';
+					} else if ('Stars and planets'.indexOf(categories[i]) != -1){
+						return iconName+'Planets';
+					} else if ('Meteor showers'.indexOf(categories[i]) != -1){
+						return iconName+'MeteorShower';
+					} else if ('Comets and asteroids'.indexOf(categories[i]) != -1){
+						return iconName+'Comets';
+					} else if ('Eclipses'.indexOf(categories[i]) != -1){
+						return iconName+'Eclipse';
+					} else if ('Mission Updates'.indexOf(categories[i]) != -1){
+						return iconName+'MissionUpdates';
+					} else {
+						return iconName+'Planets';
+					}
+				}
+			}
+	    }       
+
+	}]);
+module.exports = 'IconsService';
+},{}],25:[function(require,module,exports){
+// public/js/services/ImageService.js
+angular.module('ImageService', []).factory('Image', ['$http', function($http) {
+
+    return {
+        get : function() {
+            return $http.get('/api/images/');
+        },
+        getById : function(imageId) {
+            return $http.get('/api/image/' + imageId);
+        },
+    }       
+
+}]);
+module.exports = 'ImageService';
+},{}],26:[function(require,module,exports){
+// public/js/services/UserService.js
+angular.module('UserService', []).factory('User', ['$http', function($http) {
+
+    return {
+        get : function(username) {
+            return $http.get('/api/user/'+username);
+        },
+        addEvent : function(username,eventId) {
+            return $http.post('/api/user/' + username +'/add-event/'+eventId);
+        },
+        removeEvent : function(username,eventId) {
+            return $http.post('/api/user/' + username +'/remove-event/'+eventId);
+        }
+    }       
+
+}]);
+module.exports = 'UserService';
+},{}],27:[function(require,module,exports){
+angular.module('VisibilityService', []).factory('Visibility', [function() {
+
+	    return {
+	        getVisibility : function () {
+				var visibility = [
+					{ 
+						name: 'Visible to the naked eye',
+						iconName: 'iconEye',
+						selected: false 
+					},
+					{ 
+						name: 'Visible with binoculars',	
+						iconName: 'iconBinoculars',
+						selected: false 
+					},
+					{ 
+						name: 'Visible with telescope',	
+						iconName: 'iconTelescope',
+						selected: false 
+					},
+					{ 
+						name: 'Not visible',	
+						iconName: 'iconEyeSlash',
+						selected: false 
+					}
+				];
+
+				return visibility;
+			}
+	    };
+	}]);
+module.exports = 'VisibilityService';
 },{}]},{},[10]);

@@ -41,3 +41,4 @@ angular.module('IconsService', []).factory('Icons', ['$http', function($http, $l
 	    }       
 
 	}]);
+module.exports = 'IconsService';

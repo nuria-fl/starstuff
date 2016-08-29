@@ -44,3 +44,4 @@ angular.module('CategoriesService', []).factory('Categories', [function() {
 			}
 	    };
 	}]);
+module.exports = 'CategoriesService';

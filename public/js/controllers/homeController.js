@@ -1,4 +1,6 @@
-angular.module('homeController', ['ImageService'])
+var ImageService = require('../services/ImageService');
+
+angular.module('homeController', [ImageService])
 	.controller('homeController', function($scope, Image) {
 			
 		var today = new Date();

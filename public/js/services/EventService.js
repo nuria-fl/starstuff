@@ -33,3 +33,4 @@ angular.module('EventService', []).factory('Event', ['$http', function($http) {
     }       
 
 }]);
+module.exports = 'EventService';

@@ -1,5 +1,5 @@
-angular.module('singleEventController', ['AddedItemsService'])
-	.controller( 'singleEventController' , function ( $scope, $rootScope, $routeParams, $sce, Event, User, Icons, AddedItems ) {
+angular.module('singleEventController', [])
+	.controller( 'singleEventController' , function ( $scope, $rootScope, $routeParams, $sce, Event, User, Icons ) {
 		
 		//get event by the url parameter
 		var eventId = $routeParams.ID;

@@ -29,3 +29,4 @@ angular.module('VisibilityService', []).factory('Visibility', [function() {
 			}
 	    };
 	}]);
+module.exports = 'VisibilityService';
