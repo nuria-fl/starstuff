@@ -7,12 +7,7 @@ function uploadHelper ($scope, $rootScope, Upload, $timeout) {
 				title: title,
 				file: file,
 				username: $rootScope.user, 
-				event: [{
-					id: $scope.$parent.event._id,	
-					name: $scope.$parent.event.name,
-					category: $scope.$parent.event.category,
-					date: $scope.$parent.event.date
-				}]					
+				eventId: $scope.$parent.event._id					
 			}
 		});
 
