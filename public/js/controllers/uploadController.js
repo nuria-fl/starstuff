@@ -1,15 +1,20 @@
 angular.module('uploadController', ['ngFileUpload'])
 	.controller('uploadController', ['$scope', '$rootScope', 'Upload', '$timeout', function ($scope, $rootScope, Upload, $timeout) {
 
-		console.log($rootScope)
-		$scope.uploadPic = function(file) {
+		$scope.uploadPic = function(file, title) {
 			file.upload = Upload.upload({
 				url: 'api/user/uploads',
 				method: 'POST',
 				data: {
+					title: title,
+					file: file,
 					username: $rootScope.user, 
-					event: $scope.$parent.event._id,
-					file: file
+					event: [{
+						id: $scope.$parent.event._id,	
+						name: $scope.$parent.event.name,
+						category: $scope.$parent.event.category,
+						date: $scope.$parent.event.date
+					}]					
 				}
 			});
 
@@ -26,3 +31,4 @@ angular.module('uploadController', ['ngFileUpload'])
 		});
 		}
 	}]);
+module.exports = 'uploadController';

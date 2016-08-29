@@ -13,3 +13,4 @@ angular.module('loginController', [])
 			$scope.showError = false;
 		}
 	})
+module.exports = 'loginController';

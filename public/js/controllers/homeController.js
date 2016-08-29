@@ -13,3 +13,5 @@ angular.module('homeController', ['ImageService'])
 				$scope.images = data.data
 			})
 	});
+
+module.exports = 'homeController';

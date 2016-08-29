@@ -48,3 +48,5 @@ angular.module('filterController', ['CategoriesService', 'VisibilityService'])
 			}
 		}
 	})
+
+module.exports = 'filterController';

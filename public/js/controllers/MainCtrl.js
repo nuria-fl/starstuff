@@ -1,13 +1,22 @@
+var homeCtrl = require('./homeController'); 
+var eventsCtrl = require('./eventsController'); 
+var searchByDateCtrl = require('./searchByDateController'); 
+var filterCtrl = require('./filterController'); 
+var singleEventCtrl = require('./singleEventController'); 
+var loginCtrl = require('./loginController'); 
+var profileCtrl = require('./profileController'); 
+var uploadCtrl = require('./uploadController'); 
+
 angular.module('MainCtrl', 
 	[
-		'homeController', 
-		'eventsController', 
-		'searchByDateController', 
-		'filterController', 
-		'singleEventController',
-		'loginController',
-		'profileController',
-		'uploadController'
+		homeCtrl, 
+		eventsCtrl,
+		searchByDateCtrl,
+		filterCtrl,
+		singleEventCtrl,
+		loginCtrl,
+		profileCtrl,
+		uploadCtrl
 	])
 	.run(function($location, $rootScope, $cookies, $route){
 		// initialize array to store the user's history
@@ -58,3 +67,4 @@ angular.module('MainCtrl',
 	// 	var gallery = [1,2,3,4,5,6,7,8,9];
 	// 	$scope.gallery = gallery;
 	// })
+module.exports = 'MainCtrl';

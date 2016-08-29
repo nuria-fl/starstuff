@@ -19,3 +19,4 @@ angular.module('searchByDateController', [])
 			
 		};
 	});
+module.exports = 'searchByDateController';

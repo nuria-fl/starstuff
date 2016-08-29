@@ -58,3 +58,4 @@ angular.module('singleEventController', ['AddedItemsService'])
 				});
 		};
 	});
+module.exports = 'singleEventController';

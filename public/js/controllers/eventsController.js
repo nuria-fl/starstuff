@@ -98,3 +98,5 @@ angular.module('eventsController', ['DatesService'])
 			});
 	};
 });
+
+module.exports = 'eventsController';

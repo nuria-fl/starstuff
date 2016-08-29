@@ -68,3 +68,4 @@ angular.module('profileController', [])
 			$location.path('/login')
 		}
 	})
+module.exports = 'profileController';
