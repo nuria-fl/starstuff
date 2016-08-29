@@ -1,5 +1,5 @@
-angular.module('homeController', [])
-	.controller('homeController', function($scope) {
+angular.module('homeController', ['ImageService'])
+	.controller('homeController', function($scope, Image) {
 			
 		var today = new Date();
 		var currYear = today.getFullYear();
@@ -7,4 +7,9 @@ angular.module('homeController', [])
 		//set the route of the SEE FULL CALENDAR button to the current month
 		$scope.routeToCalendar = '/calendar/'+currYear+'/'+currMonth;
 
+		Image.get()
+			.then(function(data){
+				console.log(data)
+				$scope.images = data.data
+			})
 	});
