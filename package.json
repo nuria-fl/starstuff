@@ -4,7 +4,9 @@
   "description": "StarStuff helps you keep up to date with all things space related.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:client": "browserify public/js/app.js > public/js/bundle.js",
+    "build:client:watch": "watchify public/js/app.js -d -o public/js/bundle.js -v"
   },
   "repository": {
     "type": "git",
@@ -38,10 +40,16 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb": "^10.0.1",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.2.0",
+    "eslint-plugin-react": "^6.2.0",
     "grunt": "~0.4.5",
     "grunt-contrib-sass": "^0.8.1",
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-postcss": "^0.8.0"
+    "grunt-postcss": "^0.8.0",
+    "watchify": "^3.7.0"
   }
 }
