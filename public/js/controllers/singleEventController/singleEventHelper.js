@@ -2,14 +2,14 @@ function singleEventHelper ( $scope, $rootScope, $routeParams, $sce, Event, User
 	
 	//get event by the url parameter
 	var eventId = $routeParams.ID;
+	var scope = this;
+	function getEvent(dataEvent){
+		this.info = dataEvent.data;
+		var today = (new Date()).getTime();
+		this.passed = today > dataEvent.data.date;
+	}
 	Event.getOne( eventId )
-		.then(function(dataEvent){
-			$scope.info = dataEvent.data;
-			var today = (new Date()).getTime();
-			$scope.passed = today > $scope.info.date;
-		});
-
-
+		.then(getEvent.bind(scope));
 
 	// force render html from description to display links
 	this.renderHtml = function(item){
@@ -62,19 +62,17 @@ function singleEventHelper ( $scope, $rootScope, $routeParams, $sce, Event, User
 	};
 
 	this.openLightboxModal = function (index) {
-	    Lightbox.openModal($scope.info.images, index);
+	    Lightbox.openModal(this.info.images, index);
 	    return false
 	};
 	// open/close modal
 	this.showModal = false;
 	this.openModal = function(){
 		this.showModal = true;
-		console.log(this.showModal)
 	}
 	this.closeModal = function(){
 		
 		this.showModal = false
-		console.log(this.showModal)
 	}
 }
 module.exports = singleEventHelper;

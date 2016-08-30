@@ -34,14 +34,14 @@ ImageController.prototype.uploadFile = function(req, res) {
               },
               function (err, data) {
                   if (err) return handleError(err);
-                  res.redirect(req.get('referer'));
+                  
               }
           );
           console.log('The file has been saved!');
-
         });
         
     }));
+
 }
 
 module.exports = new ImageController();
