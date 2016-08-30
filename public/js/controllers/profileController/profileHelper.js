@@ -1,4 +1,4 @@
-function profileHelper ( $scope, $cookies, $location, $route, User, Event, Icons ) {
+function profileHelper ( $scope, $cookies, $location, $route, User, Event, Icons, Image ) {
 	if($cookies.get('userCookie')){
 		// if the user is logged in
 		var user = $cookies.get('userCookie');
@@ -18,6 +18,10 @@ function profileHelper ( $scope, $cookies, $location, $route, User, Event, Icons
 				$scope.added = true; // we set the added parameter (used to hide the add to calendar button) to true because we know that all the events are added
 				$scope.events = events;
 				
+			})
+		Image.getByUser(user)
+			.then(function(dataImages){
+				$scope.images = dataImages.data;
 			})
 		// set default range to show events (from now until the end of time)
 		var normalRange = {

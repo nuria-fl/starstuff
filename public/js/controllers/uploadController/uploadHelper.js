@@ -1,6 +1,5 @@
 function uploadHelper ($scope, $rootScope, Upload, $route) {
-
-	$scope.uploadPic = function(file, title, eventId) {
+	$scope.uploadPic = function(file, title, event) {
 		file.upload = Upload.upload({
 			url: 'api/user/uploads',
 			method: 'POST',
@@ -8,16 +7,17 @@ function uploadHelper ($scope, $rootScope, Upload, $route) {
 				title: title,
 				file: file,
 				username: $rootScope.user, 
-				eventId: eventId
+				event: event
 			}
 		});
 
 		file.upload.then(function (response) {
 			file.result = response.data;
-		}, function (response) {
+			console.log(response)
 			if (response.status === 200){
 				$route.reload();
 			}
+		}, function (response) {
 			if (response.status > 0)
 				$scope.errorMsg = response.status + ': ' + response.data;
 

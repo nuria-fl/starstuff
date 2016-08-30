@@ -11,6 +11,7 @@ var loadAngular = require('./helpers/loadAngular');
 var getImages = require('./helpers/getImages');
 var getImageById = require('./helpers/getImageById');
 var getUserImages = require('./helpers/getUserImages');
+var getEventImages = require('./helpers/getEventImages');
 
 // Requires multiparty 
 multiparty = require('connect-multiparty'),
@@ -31,6 +32,7 @@ module.exports = function(app) {
 	app.post('/api/user/uploads', multipartyMiddleware, UserController.uploadFile);
 	app.get('/api/user/:username/images', getUserImages);
 	app.get('/api/images', getImages);
+	app.get('/api/images/event/:eventId', getEventImages);
 	app.get('/api/image/:id', getImageById);
 
 	// Log users
