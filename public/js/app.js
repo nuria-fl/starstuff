@@ -6,6 +6,8 @@ var ngFileUpload = require('ng-file-upload');
 var bootstrapLightbox = require('angular-bootstrap-lightbox');
 var uiBootstrap = require('angular-ui-bootstrap');
 
+var konami = require('konami-js');
+
 var routes = require('./appRoutes');
 var controllers = require('./controllers/');
 
