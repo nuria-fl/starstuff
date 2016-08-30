@@ -5,27 +5,27 @@
 	</div>
 	<article class="c-event">
 		<div class="c-event__summary">
-			<time class="c-event__time" datetime="{{event.date | date:'YYYY-MM-dd'}}">
-				{{ event.date | date:'MMM' }}
-				<strong class="c-event__day">{{ event.date | date:'dd' }}</strong>
+			<time class="c-event__time" datetime="{{info.date | date:'YYYY-MM-dd'}}">
+				{{ info.date | date:'MMM' }}
+				<strong class="c-event__day">{{ info.date | date:'dd' }}</strong>
 			</time>
 
-			<h3 class="c-event__title">{{event.name}}</h3>
+			<h3 class="c-event__title">{{info.name}}</h3>
 			
 			<div class="c-event__desc">
 				<p>
 					<span class="o-icon">
 						<svg>
-						    <use xlink:href="" ng-attr-xlink:href="{{ activePage + iconVisibilityName(event) }}" />
+						    <use xlink:href="" ng-attr-xlink:href="{{ activePage + event.iconVisibilityName(info) }}" />
 						</svg>
 					</span>
-					{{event.visibility}}<br>
+					{{info.visibility}}<br>
 					<span class="o-icon">
 						<svg>
-						    <use xlink:href="" ng-attr-xlink:href="{{ activePage + iconCategoryName(event) }}" />
+						    <use xlink:href="" ng-attr-xlink:href="{{ activePage + event.iconCategoryName(info) }}" />
 						</svg>
 					</span>
-					Category: <span ng-repeat="category in event.category">
+					Category: <span ng-repeat="category in info.category">
 						{{category}}
 						{{$last ? '' : ', '}}
 					</span>
@@ -36,9 +36,9 @@
 		<div class="c-event__bd">
 			<div class="row">
 				<div class="col-sm-10 col-md-8 col-sm-offset-1">
-					<p ng-repeat="p in event.description" ng-bind-html="renderHtml(p)">
+					<p ng-repeat="p in info.description" ng-bind-html="event.renderHtml(p)">
 					</p>
-					<p><small>Credit: Dominic Ford (<a href="{{event.link}}" target="_blank">source</a>)</small> </p>
+					<p><small>Credit: Dominic Ford (<a href="{{info.link}}" target="_blank">source</a>)</small> </p>
 					
 						<button type="button" class="o-btn o-btn--primary o-btn--sm c-event__add" ng-if="user" ng-hide="added()" ng-click="addToCalendar()">
 							<i class="fa fa-calendar-plus-o"></i> Add to my calendar
@@ -55,13 +55,14 @@
 		
 	</article>	
 </div>	
+
 <div ng-if="passed">
 	<section>
 		<h2 class="o-title">Pictures of this event</h2>
 		<div class="c-gallery">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-4" ng-repeat="image in event.images">
+					<div class="col-sm-4" ng-repeat="image in info.images">
 						<section class="c-card">
 							<a href="#" ng-click="openLightboxModal($index)">
 								<img src="img/uploaded/{{image.route}}" alt="{{image.name}}">
@@ -75,18 +76,18 @@
 						
 					</div>
 				</div>
-				<div ng-if="!event.images.length" class="u-txt--center">
+				<div ng-if="!info.images.length" class="u-txt--center">
 					No pictures yet!
 				</div>
 				<footer class="c-gallery__ft">
-					<button ng-click="openModal()" class="o-btn o-btn--primary">UPLOAD YOUR PHOTO</button>
+					<button ng-click="event.openModal()" class="o-btn o-btn--primary">UPLOAD YOUR PHOTO</button>
 				</footer>
 			</div>
 		</div>
 	</section>
-	<section ng-if="user" ng-show="showModal"  class="c-modal">
+	<section ng-if="event.user" ng-show="event.showModal"  class="c-modal">
 		<div class="c-modal__bd">
-			<button class="c-modal__close" ng-click="closeModal()"><i class="fa fa-remove"></i></button>
+			<button class="c-modal__close" ng-click="event.closeModal()"><i class="fa fa-remove"></i></button>
 			<div ng-controller="uploadController">
 				<h4>Upload a picture:</h4>
 				<form name="uploadForm" class="o-form">

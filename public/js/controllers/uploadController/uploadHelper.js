@@ -1,4 +1,5 @@
 function uploadHelper ($scope, $rootScope, Upload, $route) {
+	console.log($scope.$parent.info._id)
 	$scope.uploadPic = function(file, title) {
 		file.upload = Upload.upload({
 			url: 'api/user/uploads',
@@ -7,7 +8,7 @@ function uploadHelper ($scope, $rootScope, Upload, $route) {
 				title: title,
 				file: file,
 				username: $rootScope.user, 
-				eventId: $scope.$parent.event._id					
+				eventId: $scope.$parent.info._id					
 			}
 		});
 

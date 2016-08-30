@@ -31,7 +31,8 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         
         .when('/event/:ID', {
             templateUrl: 'views/event-single.html',
-            controller: 'singleEventController'
+            controller: 'singleEventController',
+            controllerAs: 'event'
         })
 
         .when('/login', {
