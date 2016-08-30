@@ -1,4 +1,3 @@
-
 <section class="c-intro">
 	<header class="c-intro__logo">
 		<img src="img/logo.png" alt="StarStuff">
@@ -39,13 +38,13 @@
 	<div class="c-gallery">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-4" ng-repeat="image in images">
+				<div class="col-sm-4" ng-repeat="image in home.images | orderBy: 'dateUploaded':true">
 					<section class="c-card">
 						<a href="/#">
-							<img src="" ng-src="data:image/JPEG;base64,{{image.img}}">
+							<img src="img/uploaded/{{image.route}}" alt="{{image.name}}">
 						</a>
 						<div class="c-card__bd">
-							<h3 class="c-card__title"><a href="/#/">Perseid meteor shower</a></h3>
+							<h3 class="c-card__title"><a href="/#/">{{image.title}}</a></h3>
 							<span class="c-card__author"><a href="/#/">{{image.user}}</a></span>
 						</div>
 												
