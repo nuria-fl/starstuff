@@ -16,7 +16,7 @@ ImageController.prototype.uploadFile = function(req, res) {
     img.title = req.body.title;
     img.dateUploaded = timestamp;
     img.route = timestamp+file.originalFilename;
-    img.user = req.body.username;
+    img.username = req.body.username;
     img.event = req.body.event;
     img.contentType = file.type;
     

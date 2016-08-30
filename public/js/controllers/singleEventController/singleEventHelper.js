@@ -60,5 +60,17 @@ function singleEventHelper ( $scope, $rootScope, $routeParams, $sce, Event, User
 				addedItems.push(eventId); // and store it in the saved events array
 			});
 	};
+
+	// open/close modal
+	$scope.showModal = false;
+	$scope.openModal = function(){
+		$scope.showModal = true;
+		console.log($scope.showModal)
+	}
+	$scope.closeModal = function(){
+		
+		$scope.showModal = false
+		console.log($scope.showModal)
+	}
 }
 module.exports = singleEventHelper;
