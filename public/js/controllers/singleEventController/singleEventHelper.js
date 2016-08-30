@@ -3,11 +3,13 @@ function singleEventHelper ( $scope, $rootScope, $routeParams, $sce, Event, User
 	//get event by the url parameter
 	var eventId = $routeParams.ID;
 	var scope = this;
+	
 	function getEvent(dataEvent){
-		this.info = dataEvent.data;
 		var today = (new Date()).getTime();
+		this.info = dataEvent.data;
 		this.passed = today > dataEvent.data.date;
 	}
+
 	Event.getOne( eventId )
 		.then(getEvent.bind(scope));
 
@@ -39,9 +41,10 @@ function singleEventHelper ( $scope, $rootScope, $routeParams, $sce, Event, User
 	// if we have a user logged in we retrieve their events and store them into the array
 	if(user){
 		User.get(user)
-			.then(function(dataUser){
+			.then((dataUser) => {
 				var dataUser = dataUser.data[0];
 				addedItems = dataUser.events;
+
 			});
 	}
 	// check if the event has been saved by the user to show or hide the Add to calendar button
@@ -60,9 +63,17 @@ function singleEventHelper ( $scope, $rootScope, $routeParams, $sce, Event, User
 				addedItems.push(eventId); // and store it in the saved events array
 			});
 	};
+	var imagesArr = [];
+	this.info.images.forEach(function(elem, i){
+		var imgObj = {};
+		imgObj.url = 'img/uploaded/'+elem.route;
+		console.log(imgObj.url)
+		imagesArr.push(imgObj)
+	})
 
 	this.openLightboxModal = function (index) {
-	    Lightbox.openModal(this.info.images, index);
+		console.log(imagesArr)
+	    Lightbox.openModal(imagesArr, index);
 	    return false
 	};
 	// open/close modal
@@ -71,7 +82,6 @@ function singleEventHelper ( $scope, $rootScope, $routeParams, $sce, Event, User
 		this.showModal = true;
 	}
 	this.closeModal = function(){
-		
 		this.showModal = false
 	}
 }

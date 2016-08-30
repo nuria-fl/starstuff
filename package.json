@@ -5,8 +5,13 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:client": "browserify public/js/app.js > public/js/bundle.js",
-    "build:client:watch": "watchify public/js/app.js -d -o public/js/bundle.js -v"
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "build:client": "browserify public/js/app.js > public/js/bundle.js -t [ babelify --presets [ es2015 react ] ]",
+    "build:client:watch": "watchify public/js/app.js -d -o public/js/bundle.js -v  -t [ babelify --presets [ es2015 react ] ]"
+  },
+  "engines": {
+    "node": "4.4.5"
   },
   "repository": {
     "type": "git",

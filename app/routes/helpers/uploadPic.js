@@ -37,6 +37,7 @@ ImageController.prototype.uploadFile = function(req, res) {
                   
               }
           );
+          res.status(200).send('The file has been saved!')
           console.log('The file has been saved!');
         });
         

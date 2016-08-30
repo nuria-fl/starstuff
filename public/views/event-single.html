@@ -40,14 +40,12 @@
 					</p>
 					<p><small>Credit: Dominic Ford (<a href="{{event.info.link}}" target="_blank">source</a>)</small> </p>
 					
-						<button type="button" class="o-btn o-btn--primary o-btn--sm c-event__add" ng-if="user" ng-hide="added()" ng-click="addToCalendar()">
-							<i class="fa fa-calendar-plus-o"></i> Add to my calendar
-						</button>
-						<span class="o-btn o-btn--primary o-btn--sm c-event__add" ng-if="user" ng-show="added()">
-							<i class="fa fa-check"></i> Added
-						</span>	
-					
-					
+					<button type="button" class="o-btn o-btn--primary o-btn--sm c-event__add" ng-if="user" ng-hide="event.added()" ng-click="event.addToCalendar()">
+						<i class="fa fa-calendar-plus-o"></i> Add to my calendar
+					</button>
+					<span class="o-btn o-btn--primary o-btn--sm c-event__add" ng-if="event.user" ng-show="event.added()">
+						<i class="fa fa-check"></i> Added
+					</span>	
 				</div>
 			</div>
 		</div>
@@ -64,7 +62,7 @@
 				<div class="row">
 					<div class="col-sm-4" ng-repeat="image in event.info.images">
 						<section class="c-card">
-							<a href="#" ng-click="openLightboxModal($index)">
+							<a href="#" ng-click="event.openLightboxModal($index)">
 								<img src="img/uploaded/{{image.route}}" alt="{{image.name}}">
 							</a>
 							<div class="c-card__bd">
@@ -80,7 +78,7 @@
 					No pictures yet!
 				</div>
 				<footer class="c-gallery__ft">
-					<button ng-click="event.openModal()" class="o-btn o-btn--primary">UPLOAD YOUR PHOTO</button>
+					<button ng-if="event.user" ng-click="event.openModal()" class="o-btn o-btn--primary">UPLOAD YOUR PHOTO</button>
 				</footer>
 			</div>
 		</div>
