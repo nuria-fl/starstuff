@@ -1,4 +1,4 @@
-function singleEventHelper ( $scope, $rootScope, $routeParams, $sce, Event, User, Icons ) {
+function singleEventHelper ( $scope, $rootScope, $routeParams, $sce, Event, User, Icons, Lightbox ) {
 	
 	//get event by the url parameter
 	var eventId = $routeParams.ID;
@@ -61,6 +61,10 @@ function singleEventHelper ( $scope, $rootScope, $routeParams, $sce, Event, User
 			});
 	};
 
+	$scope.openLightboxModal = function (index) {
+	    Lightbox.openModal($scope.event.images, index);
+	    return false
+	};
 	// open/close modal
 	$scope.showModal = false;
 	$scope.openModal = function(){

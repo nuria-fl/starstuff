@@ -63,7 +63,7 @@
 				<div class="row">
 					<div class="col-sm-4" ng-repeat="image in event.images">
 						<section class="c-card">
-							<a href="/#">
+							<a href="#" ng-click="openLightboxModal($index)">
 								<img src="img/uploaded/{{image.route}}" alt="{{image.name}}">
 							</a>
 							<div class="c-card__bd">

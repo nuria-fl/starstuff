@@ -10,6 +10,7 @@ var loginUser = require('./helpers/loginUser');
 var loadAngular = require('./helpers/loadAngular');
 var getImages = require('./helpers/getImages');
 var getImageById = require('./helpers/getImageById');
+var getUserImages = require('./helpers/getUserImages');
 
 // Requires multiparty 
 multiparty = require('connect-multiparty'),
@@ -28,6 +29,7 @@ module.exports = function(app) {
 	app.post('/api/user/:username/add-event/:eventId', addEvent);
 	app.post('/api/user/:username/remove-event/:eventId', removeEvent);
 	app.post('/api/user/uploads', multipartyMiddleware, UserController.uploadFile);
+	app.get('/api/user/:username/images', getUserImages);
 	app.get('/api/images', getImages);
 	app.get('/api/image/:id', getImageById);
 

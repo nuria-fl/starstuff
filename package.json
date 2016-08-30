@@ -21,9 +21,11 @@
   "homepage": "https://github.com/nuria-fl/starstuff#readme",
   "dependencies": {
     "angular": "^1.5.8",
+    "angular-bootstrap-lightbox": "^0.12.0",
     "angular-cookies": "^1.5.8",
     "angular-datepicker": "^1.0.5",
     "angular-route": "^1.5.8",
+    "angular-ui-bootstrap": "^2.1.3",
     "bl": "^1.1.2",
     "body-parser": "~1.4.2",
     "cheerio": "latest",
