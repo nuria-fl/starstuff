@@ -6,17 +6,15 @@ angular.module('EventService', []).factory('Event', ['$http', function($http) {
         get : function() {
             return $http.get('/api/events');
         },
-
-        getRange : function(from, to, limit) {
+        getRange: function(from, to, limit) {
             var url = '/api/events/range/'+from+'/'+to;
             if (limit){
                 url+='?limit='+limit;
             }
             return $http.get(url);
         },
-
         // get single event by ID
-        getOne : function( id ) {
+        getOne: function( id ) {
             return $http.get('/api/event/'+id);
         },
 
@@ -30,6 +28,6 @@ angular.module('EventService', []).factory('Event', ['$http', function($http) {
         // delete : function(id) {
         //     return $http.delete('/api/events/' + id);
         // }
-    }       
-
+    };
 }]);
+module.exports = 'EventService';

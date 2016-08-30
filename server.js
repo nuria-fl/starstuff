@@ -8,9 +8,14 @@ var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 
 // configuration ===========================================
-    
+
 // config files
-var db = require('./config/db');
+if(process.env.NODE_ENV === 'development'){
+	var db = require('./config/db');	
+} else {
+	var db = require('./config/db-prod');
+}
+
 
 // set our port
 var port = process.env.PORT || 8080; 

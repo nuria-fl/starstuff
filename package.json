@@ -4,7 +4,14 @@
   "description": "StarStuff helps you keep up to date with all things space related.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development nodemon server.js",
+    "start": "node server.js",
+    "build:client": "browserify public/js/app.js > public/js/bundle.js -t [ babelify --presets [ es2015 ] ]",
+    "build:client:watch": "watchify public/js/app.js -d -o public/js/bundle.js -v  -t [ babelify --presets [ es2015 ] ]"
+  },
+  "engines": {
+    "node": "4.4.5"
   },
   "repository": {
     "type": "git",
@@ -18,12 +25,22 @@
   },
   "homepage": "https://github.com/nuria-fl/starstuff#readme",
   "dependencies": {
+    "angular": "^1.5.8",
+    "angular-bootstrap-lightbox": "^0.12.0",
+    "angular-cookies": "^1.5.8",
+    "angular-datepicker": "^1.0.5",
+    "angular-route": "^1.5.8",
+    "angular-ui-bootstrap": "^2.1.3",
+    "bl": "^1.1.2",
     "body-parser": "~1.4.2",
     "cheerio": "latest",
+    "connect-multiparty": "^2.0.0",
     "cookie-parser": "^1.4.3",
     "express": "~4.5.1",
+    "konami-js": "0.0.2",
     "method-override": "~2.0.2",
     "mongoose": "~3.8.0",
+    "ng-file-upload": "^12.2.5",
     "promise": "^7.1.1",
     "request": "latest",
     "request-promise": "^4.1.0",
@@ -31,10 +48,17 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
+    "babel-preset-es2015": "^6.14.0",
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb": "^10.0.1",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.2.0",
+    "eslint-plugin-react": "^6.2.0",
     "grunt": "~0.4.5",
     "grunt-contrib-sass": "^0.8.1",
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-postcss": "^0.8.0"
+    "grunt-postcss": "^0.8.0",
+    "watchify": "^3.7.0"
   }
 }

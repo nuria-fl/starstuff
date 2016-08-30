@@ -6,7 +6,8 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         // home page
         .when('/', {
             templateUrl: 'views/home.html',
-            controller: 'homeController'
+            controller: 'homeController',
+            controllerAs: 'home'
         })
 
         .when('/calendar', {
@@ -30,7 +31,8 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         
         .when('/event/:ID', {
             templateUrl: 'views/event-single.html',
-            controller: 'singleEventController'
+            controller: 'singleEventController',
+            controllerAs: 'event'
         })
 
         .when('/login', {
@@ -55,3 +57,5 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
     $locationProvider.html5Mode(true);
 
 }]);
+
+module.exports = 'appRoutes';

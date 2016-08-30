@@ -18,7 +18,7 @@ angular.module('IconsService', []).factory('Icons', ['$http', function($http, $l
 				var iconName = '#icon';
 				var categories = event.category;
 
-				for (i=0; i<categories.length; i++){
+				for (let i=0; i<categories.length; i++){
 					if ('Moon'.indexOf(categories[i]) != -1) {
 					    return iconName+'Moon';
 					} else if ('Earth'.indexOf(categories[i]) != -1){
@@ -41,3 +41,4 @@ angular.module('IconsService', []).factory('Icons', ['$http', function($http, $l
 	    }       
 
 	}]);
+module.exports = 'IconsService';
