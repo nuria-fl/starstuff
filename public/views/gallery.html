@@ -3,19 +3,12 @@
 	<div class="c-gallery">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-4" ng-repeat="pic in gallery">
-					<section class="c-card">
-						<a href="/#">
-							<img src="http://placehold.it/400x250" alt="a">		
-						</a>
-						<div class="c-card__bd">
-							<h3 class="c-card__title"><a href="/#/">Perseid meteor shower</a></h3>
-							<span class="c-card__author"><a href="/#/">Author name</a></span>
-						</div>
-												
-					</section>
-					
+				<div class="col-sm-4" ng-repeat="image in gallery.images | orderBy: 'dateUploaded':true">
+					<photo image="image" open-lightbox-modal="gallery.openLightboxModal($index)" ></photo>
 				</div>
+			</div>
+			<div ng-if="!gallery.images.length" class="u-txt--center">
+				No pictures yet!
 			</div>
 		</div>
 	</div>

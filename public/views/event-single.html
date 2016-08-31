@@ -55,24 +55,24 @@
 </div>	
 
 <div ng-if="event.passed">
-	<section ng-controller="imagesController as images">
+	<section ng-controller="imagesController as gallery">
 		<h2 class="o-title">Pictures of this event</h2>
 		<div class="c-gallery">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-4" ng-repeat="image in images.images | orderBy: 'dateUploaded':true">
-						<photo image="image" open-lightbox-modal="images.openLightboxModal($index)" ></photo>
+					<div class="col-sm-4" ng-repeat="image in gallery.images | orderBy: 'dateUploaded':true">
+						<photo image="image" open-lightbox-modal="gallery.openLightboxModal($index)" ></photo>
 					</div>
 				</div>
-				<div ng-if="!images.images.length" class="u-txt--center">
+				<div ng-if="!gallery.images.length" class="u-txt--center">
 					No pictures yet!
 				</div>
 				<footer class="c-gallery__ft">
-					<button ng-if="event.user" ng-click="images.openModal()" class="o-btn o-btn--primary">UPLOAD YOUR PHOTO</button>
+					<button ng-if="event.user" ng-click="gallery.openModal()" class="o-btn o-btn--primary">UPLOAD YOUR PHOTO</button>
 				</footer>
-				<section ng-if="event.user" ng-show="images.showModal"  class="c-modal">
+				<section ng-if="event.user" ng-show="gallery.showModal"  class="c-modal">
 					<div class="c-modal__bd">
-						<button class="c-modal__close" ng-click="images.closeModal()"><i class="fa fa-remove"></i></button>
+						<button class="c-modal__close" ng-click="gallery.closeModal()"><i class="fa fa-remove"></i></button>
 						<div ng-controller="uploadController">
 							<h4>Upload a picture:</h4>
 							<form name="uploadForm" class="o-form">					

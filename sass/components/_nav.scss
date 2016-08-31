@@ -7,12 +7,13 @@
 	}
 	&__item {
 		display: inline-block;
-		padding: 2.8rem 2.5rem;
+		padding: 2.8rem 2.2rem;
 		position: relative;
 		font-size: 1.6rem;
 		font-weight: 300;
 		@media screen and (max-width: 767px){
-			padding: 0 2.5rem 2rem;
+			padding: 0 1rem 2rem;
+			font-size: 1.4rem;
 		}
 		a {
 			color: $primary-c;
@@ -58,6 +59,9 @@
 		}
 		.fa-power-off {
 			font-size: 80%;
+		}
+		@media screen and (max-width: 767px){
+			display: none;
 		}
 	}
 	&__submenu {

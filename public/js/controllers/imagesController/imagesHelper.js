@@ -34,16 +34,14 @@ function imagesHelper(Image, Lightbox, $routeParams, $location) {
 	};
 
 	if($routeParams.ID){
-		console.log('event')
 		let eventId = $routeParams.ID;
 		Image.getByEvent( eventId )
 			.then(getImages.bind(scope));
 	} else if($routeParams.USER){
-		console.log('user page')
 		let user = $routeParams.USER;
 		Image.getByUser( user )
 			.then(getImages.bind(scope));
-	} else if($location === '/gallery'){
+	} else if($location.path() === '/gallery'){
 		Image.get()
 			.then(getImages.bind(scope));
 	} else {

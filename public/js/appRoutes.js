@@ -28,6 +28,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
             templateUrl: 'views/calendar.html',
             controller: 'eventsController'
         })
+
+        .when('/gallery',{
+            templateUrl: 'views/gallery.html',
+            controller: 'imagesController',
+            controllerAs: 'gallery'
+        })
         
         .when('/event/:ID', {
             templateUrl: 'views/event-single.html',

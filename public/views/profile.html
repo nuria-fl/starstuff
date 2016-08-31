@@ -16,7 +16,6 @@
 	</header>	
 	<div class="row o-grid--half">	
 		<div class="col-sm-6" ng-repeat="event in events | orderBy: 'date' : reverse | dateFilter:range.dateFrom:range.dateTo">
-		
 			<event-preview info="event" iconvisibility="iconVisibilityName(event)" iconcategory="iconCategoryName(event)" active-page="activePage" added="added" removecal="removeFromCalendar(event._id)"></event-preview>
 		</div>	
 	</div>
@@ -26,16 +25,16 @@
 	</p>
 </section>
 
-<section ng-controller="imagesController as images">
+<section ng-controller="imagesController as gallery">
 	<h2 class="o-title">{{user.username}}'s Gallery</h2>
 	<div class="c-gallery">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-4" ng-repeat="image in images.images | orderBy: 'dateUploaded':true">
-					<photo image="image" open-lightbox-modal="images.openLightboxModal($index)" ></photo>
+				<div class="col-sm-4" ng-repeat="image in gallery.images | orderBy: 'dateUploaded':true">
+					<photo image="image" open-lightbox-modal="gallery.openLightboxModal($index)" ></photo>
 				</div>
 			</div>
-			<div ng-if="!images.images.length" class="u-txt--center">
+			<div ng-if="!gallery.images.length" class="u-txt--center">
 				You haven't uploaded any picture yet! Grab your camera and take some photos tonight.
 			</div>
 		</div>

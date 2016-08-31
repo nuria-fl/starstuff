@@ -33,21 +33,21 @@
 	</div>
 </section>
 
-<section ng-controller="imagesController as images">
+<section ng-controller="imagesController as gallery">
 	<h2 class="o-title">Latest Pictures</h2>
 	<div class="c-gallery">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-4" ng-repeat="image in images.images | orderBy: 'dateUploaded':true">
-					<photo image="image" open-lightbox-modal="images.openLightboxModal($index)" ></photo>
+				<div class="col-sm-4" ng-repeat="image in gallery.images | orderBy: 'dateUploaded':true">
+					<photo image="image" open-lightbox-modal="gallery.openLightboxModal($index)" ></photo>
 				</div>
 			</div>
-			<div ng-if="!images.images.length" class="u-txt--center">
+			<div ng-if="!gallery.images.length" class="u-txt--center">
 				No pictures yet!
 			</div>
-			<!-- <footer class="c-gallery__ft">
-				<a href="/#/gallery" class="o-btn o-btn--primary">SEE MORE PICTURES</a>
-			</footer> -->
+			<footer class="c-gallery__ft">
+				<a href="/gallery" class="o-btn o-btn--primary">SEE MORE PICTURES</a>
+			</footer>
 		</div>
 	</div>
 </section>
