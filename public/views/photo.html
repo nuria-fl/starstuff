@@ -1,6 +1,6 @@
 <section class="c-card">
-	<a href="#" ng-click="openLightboxModal($index)">
-		<img src="img/uploaded/{{image.route}}" alt="{{image.name}}">
+	<a href="#" ng-click="openLightboxModal($index)" style="background-image:url('img/uploaded/{{image.route}}')" class="c-card__img">
+		{{image.name}}
 	</a>
 	<div class="c-card__bd">
 		<h3 class="c-card__title">{{image.title}}</h3>

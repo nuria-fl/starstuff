@@ -11,7 +11,7 @@ function imagesHelper(Image, Lightbox, $scope, $routeParams, $location) {
 			imagesArr.push(imgObj);
 		})
 
-		return imagesArr;		
+		return imagesArr.reverse();
 	}
 
 	function getImages(dataImages){
@@ -39,7 +39,7 @@ function imagesHelper(Image, Lightbox, $scope, $routeParams, $location) {
 
 		    $scope.images = $scope.imagesTotal.slice(begin, end);
 
-		    let images = loadImages($scope.images);
+		    let images = loadImages($scope.images).reverse();
 
 		    $scope.openLightboxModal = function (index) {
 		        Lightbox.openModal(images, index);

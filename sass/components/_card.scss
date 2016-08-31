@@ -3,6 +3,9 @@
 	position: relative;
 	&__img {
 		display: block;
+		height: 25rem;
+		@include bgcover;
+		text-indent: -9999px;
 	}
 	&__bd {
 		width: 100%;
