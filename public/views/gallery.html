@@ -7,7 +7,7 @@
 					<photo image="image" open-lightbox-modal="openLightboxModal($index)" ></photo>
 				</div>
 			</div>
-			<div ng-if="images.length > numPerPage">
+			<div ng-show="imagesTotal.length >= numPerPage">
 				<ul uib-pagination 
 					items-per-page="numPerPage"
 					ng-model="currentPage"
