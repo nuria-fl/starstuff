@@ -16,10 +16,11 @@ function eventsHelper ( $scope, $rootScope, $routeParams, $location, Event, User
 	};
 
 	if($location.path() === '/'){
-		// if is home we show 10 elements starting from today
-		var today = new Date();
+		// if is home we show 10 elements starting from yesterday (to ensure events happening during today get in the range)
+		var yesterday = (new Date()).getTime()  - (24 * 60 * 60 * 1000);
 
-		dateFrom = today;
+		dateFrom = new Date(yesterday);
+		console.log(dateFrom)
 		dateTo = new Date('2016-12-31');
 		limit = 10;
 
