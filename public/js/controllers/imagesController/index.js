@@ -1,6 +1,6 @@
 var imagesHelper = require('./imagesHelper');
 
-angular.module('imagesController', [])
+angular.module('imagesController',  [ 'ui.bootstrap' ])
 	.controller('imagesController', imagesHelper);
 
 module.exports = 'imagesController';

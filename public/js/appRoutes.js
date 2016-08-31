@@ -32,7 +32,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         .when('/gallery',{
             templateUrl: 'views/gallery.html',
             controller: 'imagesController',
-            controllerAs: 'gallery'
+            // controllerAs: 'gallery'
         })
         
         .when('/event/:ID', {

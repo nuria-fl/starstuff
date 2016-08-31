@@ -1,4 +1,4 @@
-function imagesHelper(Image, Lightbox, $routeParams, $location) {		
+function imagesHelper(Image, Lightbox, $scope, $routeParams, $location) {		
 	
 	const scope = this;
 
@@ -23,6 +23,31 @@ function imagesHelper(Image, Lightbox, $routeParams, $location) {
 		};
 	}
 
+	function getImagesGallery(dataImages){
+		var orderedImages = dataImages.data.sort((a,b)=> a.dateUploaded < b.dateUploaded);
+
+		$scope.images = [];
+		$scope.imagesTotal = orderedImages;
+		$scope.currentPage = 1;
+		$scope.numPerPage = 9;
+		$scope.maxSize = 5;
+
+		$scope.$watch('currentPage + numPerPage', function() {
+		    
+		    let begin = (($scope.currentPage - 1) * $scope.numPerPage), 
+		    	end = begin + $scope.numPerPage;
+
+		    $scope.images = $scope.imagesTotal.slice(begin, end);
+
+		    let images = loadImages($scope.images);
+
+		    $scope.openLightboxModal = function (index) {
+		        Lightbox.openModal(images, index);
+		        return false;
+		    };
+		  });
+	}
+
 	// open/close upload modal
 	this.showModal = false;
 
@@ -32,6 +57,8 @@ function imagesHelper(Image, Lightbox, $routeParams, $location) {
 	this.closeModal = function(){
 		this.showModal = false;
 	};
+
+
 
 	if($routeParams.ID){
 		let eventId = $routeParams.ID;
@@ -43,7 +70,7 @@ function imagesHelper(Image, Lightbox, $routeParams, $location) {
 			.then(getImages.bind(scope));
 	} else if($location.path() === '/gallery'){
 		Image.get()
-			.then(getImages.bind(scope));
+			.then(getImagesGallery.bind(scope));
 	} else {
 		Image.get()
 			.then(getImages.bind(scope));

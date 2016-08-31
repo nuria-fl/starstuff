@@ -3,11 +3,21 @@
 	<div class="c-gallery">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-4" ng-repeat="image in gallery.images | orderBy: 'dateUploaded':true">
-					<photo image="image" open-lightbox-modal="gallery.openLightboxModal($index)" ></photo>
+				<div class="col-sm-4" ng-repeat="image in images">
+					<photo image="image" open-lightbox-modal="openLightboxModal($index)" ></photo>
 				</div>
 			</div>
-			<div ng-if="!gallery.images.length" class="u-txt--center">
+			<div ng-if="images.length > numPerPage">
+				<ul uib-pagination 
+					items-per-page="numPerPage"
+					ng-model="currentPage"
+					total-items="imagesTotal.length"
+					max-size="maxSize"  
+					boundary-links="true">
+				</ul>
+			</div>
+			
+			<div ng-if="!images.length" class="u-txt--center">
 				No pictures yet!
 			</div>
 		</div>
