@@ -55,26 +55,16 @@
 </div>	
 
 <div ng-if="event.passed">
-	<section>
+	<section ng-controller="imagesController as images">
 		<h2 class="o-title">Pictures of this event</h2>
 		<div class="c-gallery">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-4" ng-repeat="image in event.images">
-						<section class="c-card">
-							<a href="#" ng-click="event.openLightboxModal($index)">
-								<img src="img/uploaded/{{image.route}}" alt="{{image.name}}">
-							</a>
-							<div class="c-card__bd">
-								<h3 class="c-card__title">{{image.title}}</h3>
-								<span class="c-card__author"><a href="/user/{{image.username}}">{{image.username}}</a></span>
-							</div>
-													
-						</section>
-						
+					<div class="col-sm-4" ng-repeat="image in images.images">
+						<photo image="image" open-lightbox-modal="images.openLightboxModal($index)" ></photo>
 					</div>
 				</div>
-				<div ng-if="!event.images.length" class="u-txt--center">
+				<div ng-if="!images.images.length" class="u-txt--center">
 					No pictures yet!
 				</div>
 				<footer class="c-gallery__ft">

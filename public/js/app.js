@@ -15,10 +15,12 @@ var EventService = require('./services/EventService');
 var UserService = require('./services/UserService');
 var IconsService = require('./services/IconsService');
 
+var photoDirective = require('./directives/photoDirective');
+
 // require('konami-js');
 
 // public/js/app.js
-angular.module('starstuff', ['ngRoute', 'ngCookies', 'ui.bootstrap', 'bootstrapLightbox', 'datePicker', routes, controllers, EventService, UserService, IconsService, 'Filters', 'eventDirective', 'scrollDirective' ])
+angular.module('starstuff', ['ngRoute', 'ngCookies', 'ui.bootstrap', 'bootstrapLightbox', 'datePicker', routes, controllers, EventService, UserService, IconsService, 'Filters', 'eventDirective', 'scrollDirective', photoDirective ])
 // .config(function (LightboxProvider) {
 //   LightboxProvider.fullScreenMode = true;
 // });

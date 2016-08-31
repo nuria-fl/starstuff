@@ -1,12 +1,13 @@
-var runApp = require('./run'); 
-var homeCtrl = require('./homeController'); 
-var eventsCtrl = require('./eventsController'); 
-var searchByDateCtrl = require('./searchByDateController'); 
-var filterCtrl = require('./filterController'); 
-var singleEventCtrl = require('./singleEventController'); 
-var loginCtrl = require('./loginController'); 
-var profileCtrl = require('./profileController'); 
-var uploadCtrl = require('./uploadController'); 
+const runApp = require('./run'); 
+const homeCtrl = require('./homeController'); 
+const eventsCtrl = require('./eventsController'); 
+const searchByDateCtrl = require('./searchByDateController'); 
+const filterCtrl = require('./filterController'); 
+const singleEventCtrl = require('./singleEventController'); 
+const loginCtrl = require('./loginController'); 
+const profileCtrl = require('./profileController'); 
+const uploadCtrl = require('./uploadController'); 
+const imagesCtrl = require('./imagesController'); 
 
 angular.module('MainCtrl', 
 	[
@@ -17,7 +18,8 @@ angular.module('MainCtrl',
 		singleEventCtrl,
 		loginCtrl,
 		profileCtrl,
-		uploadCtrl
+		uploadCtrl,
+		imagesCtrl
 	])
 	.run(runApp)
 

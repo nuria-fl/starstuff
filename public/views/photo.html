@@ -1,0 +1,11 @@
+<section class="c-card">
+	<a href="#" ng-click="openLightboxModal($index)">
+		<img src="img/uploaded/{{image.route}}" alt="{{image.name}}">
+	</a>
+	<div class="c-card__bd">
+		<h3 class="c-card__title">{{image.title}}</h3>
+		<span class="c-card__author">
+			<a href="/user/{{image.username}}">by {{image.username}}</a>
+		</span>
+	</div>
+</section>
