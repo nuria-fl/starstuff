@@ -31,10 +31,10 @@ What this app will do:
 ###Stage 3
 - Register users
 - Add Mission Updates category (look for a better name?)
-- Users can upload pictures related to events
-- Search pictures by event/category of the event
-- User profile shows pictures
-- Past event page shows pictures users added
+- Users can upload pictures related to events ✔
+- Search pictures by event/category of the event ✔
+- User profile shows pictures ✔
+- Past event page shows pictures users added ✔
 - Show event date and time in user's timezone plus the "default" one.
 
 ###Stage 4 (very distant future)
