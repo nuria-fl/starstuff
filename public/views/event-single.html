@@ -68,42 +68,43 @@
 					No pictures yet!
 				</div>
 				<footer class="c-gallery__ft">
-					<button ng-if="event.user" ng-click="event.openModal()" class="o-btn o-btn--primary">UPLOAD YOUR PHOTO</button>
+					<button ng-if="event.user" ng-click="images.openModal()" class="o-btn o-btn--primary">UPLOAD YOUR PHOTO</button>
 				</footer>
-			</div>
-		</div>
-	</section>
-	<section ng-if="event.user" ng-show="event.showModal"  class="c-modal">
-		<div class="c-modal__bd">
-			<button class="c-modal__close" ng-click="event.closeModal()"><i class="fa fa-remove"></i></button>
-			<div ng-controller="uploadController">
-				<h4>Upload a picture:</h4>
-				<form name="uploadForm" class="o-form">					
-				    <div class="o-form__group">
-				    	<label for="title">Title:</label>
-				    	<input type="text" class="o-form__input" name="title" ng-model="picName" required>
-				    </div>
-				    <div class="o-form__group">
-				    	<input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
-				    </div>
-				    
-					<i ng-show="uploadForm.file.$error.maxSize">File too large 
-					  {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
-					<div class="o-form__group">
-						<img ng-show="uploadForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> 
-						<button ng-click="picFile = null" ng-show="picFile" class="o-btn o-btn--danger o-btn--sm"><i class="fa fa-trash"></i> Remove</button>
-					</div>
+				<section ng-if="event.user" ng-show="images.showModal"  class="c-modal">
+					<div class="c-modal__bd">
+						<button class="c-modal__close" ng-click="images.closeModal()"><i class="fa fa-remove"></i></button>
+						<div ng-controller="uploadController">
+							<h4>Upload a picture:</h4>
+							<form name="uploadForm" class="o-form">					
+							    <div class="o-form__group">
+							    	<label for="title">Title:</label>
+							    	<input type="text" class="o-form__input" name="title" ng-model="picName" required>
+							    </div>
+							    <div class="o-form__group">
+							    	<input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+							    </div>
+							    
+								<i ng-show="uploadForm.file.$error.maxSize">File too large 
+								  {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+								<div class="o-form__group">
+									<img ng-show="uploadForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> 
+									<button ng-click="picFile = null" ng-show="picFile" class="o-btn o-btn--danger o-btn--sm"><i class="fa fa-trash"></i> Remove</button>
+								</div>
 
-					<button ng-disabled="!uploadForm.$valid" 
-					      ng-click="uploadPic(picFile, picName, event.info)" class="o-btn o-btn--primary o-btn--block o-btn--sm">Submit</button>
-					<span class="progress" ng-show="picFile.progress >= 0">
-					<div style="width:{{picFile.progress}}%" 
-					    ng-bind="picFile.progress + '%'"></div>
-					</span>
-					<span ng-show="picFile.result">Upload Successful</span>
-					<span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-				</form>
+								<button ng-disabled="!uploadForm.$valid" 
+								      ng-click="uploadPic(picFile, picName, event.info)" class="o-btn o-btn--primary o-btn--block o-btn--sm">Submit</button>
+								<span class="progress" ng-show="picFile.progress >= 0">
+								<div style="width:{{picFile.progress}}%" 
+								    ng-bind="picFile.progress + '%'"></div>
+								</span>
+								<span ng-show="picFile.result">Upload Successful</span>
+								<span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+							</form>
+						</div>
+					</div>
+				</section>
 			</div>
 		</div>
 	</section>
+	
 </div>

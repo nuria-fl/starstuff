@@ -26,6 +26,16 @@ function imagesHelper(Image, Lightbox, $routeParams) {
 
 	Image.getByEvent( eventId )
 		.then(getEventImages.bind(scope));
+
+	// open/close upload modal
+	this.showModal = false;
+
+	this.openModal = function(){
+		this.showModal = true;
+	};
+	this.closeModal = function(){
+		this.showModal = false;
+	};
 }
 
 module.exports = imagesHelper;

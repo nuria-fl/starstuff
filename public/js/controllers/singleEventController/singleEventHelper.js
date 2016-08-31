@@ -1,4 +1,4 @@
-function singleEventHelper ( $scope, $rootScope, $routeParams, $sce, Event, Image, User, Icons, Lightbox ) {
+function singleEventHelper ( $scope, $rootScope, $routeParams, $sce, Event, User, Icons ) {
 	
 	//get event by the url parameter
 	var eventId = $routeParams.ID;
@@ -10,34 +10,8 @@ function singleEventHelper ( $scope, $rootScope, $routeParams, $sce, Event, Imag
 		this.passed = today > dataEvent.data.date;
 	}
 
-	// function loadImages(images){
-	// 	// images
-	// 	var imagesArr = [];
-		
-	// 	images.forEach(function(elem, i){
-	// 		var imgObj = {};
-	// 		imgObj.url = 'img/uploaded/'+elem.route;
-	// 		console.log(imgObj.url)
-	// 		imagesArr.push(imgObj)
-	// 	})
-
-	// 	return imagesArr;		
-	// }
-
-	// function getEventImages(dataImages){
-	// 	this.images = dataImages.data;
-	// 	var images = loadImages(this.images);
-	// 	this.openLightboxModal = function (index) {
-	// 		console.log('click '+images)
-	// 	    Lightbox.openModal(images, index);
-	// 	    return false
-	// 	};
-	// }
-
 	Event.getOne( eventId )
 		.then(getEvent.bind(scope));
-	// Image.getByEvent( eventId )
-	// 	.then(getEventImages.bind(scope));
 
 	// force render html from description to display links
 	this.renderHtml = function(item){
@@ -89,14 +63,5 @@ function singleEventHelper ( $scope, $rootScope, $routeParams, $sce, Event, Imag
 				addedItems.push(eventId); // and store it in the saved events array
 			});
 	};
-
-	// open/close upload modal
-	this.showModal = false;
-	this.openModal = function(){
-		this.showModal = true;
-	}
-	this.closeModal = function(){
-		this.showModal = false
-	}
 }
 module.exports = singleEventHelper;
