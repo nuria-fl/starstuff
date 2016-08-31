@@ -18,4 +18,7 @@ var IconsService = require('./services/IconsService');
 // require('konami-js');
 
 // public/js/app.js
-angular.module('starstuff', ['ngRoute', 'ngCookies', 'ui.bootstrap', 'bootstrapLightbox', 'datePicker', routes, controllers, EventService, UserService, IconsService, 'Filters', 'eventDirective', 'scrollDirective' ]);
+angular.module('starstuff', ['ngRoute', 'ngCookies', 'ui.bootstrap', 'bootstrapLightbox', 'datePicker', routes, controllers, EventService, UserService, IconsService, 'Filters', 'eventDirective', 'scrollDirective' ])
+// .config(function (LightboxProvider) {
+//   LightboxProvider.fullScreenMode = true;
+// });

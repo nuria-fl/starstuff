@@ -1,0 +1,23 @@
+.lightbox-image-container {
+	text-align: center;
+}
+.lightbox-nav {
+	margin-bottom: 1rem;
+	text-align: center;
+	white-space: nowrap;
+	.btn.btn-xs.btn-default{
+		@extend .o-btn;
+		@extend .o-btn--sm;
+		@extend .o-btn--default;
+		font-size: 1.4rem;
+		line-height: 1;
+		padding: .5rem 1rem;
+		cursor: pointer;
+		@media screen and (max-width: 400px){
+			&:nth-child(2){
+				display: none;
+			}	
+		}
+	}
+
+}

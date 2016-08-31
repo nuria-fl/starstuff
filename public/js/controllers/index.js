@@ -19,6 +19,6 @@ angular.module('MainCtrl',
 		profileCtrl,
 		uploadCtrl
 	])
-	.run(runApp);
+	.run(runApp)
 
 module.exports = 'MainCtrl';
