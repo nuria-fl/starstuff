@@ -46,3 +46,4 @@ angular.module('Filters', [])
             
         };
     })
+module.exports = 'Filters';

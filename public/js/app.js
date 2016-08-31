@@ -6,8 +6,6 @@ var ngFileUpload = require('ng-file-upload');
 var bootstrapLightbox = require('angular-bootstrap-lightbox');
 var uiBootstrap = require('angular-ui-bootstrap');
 
-
-
 var routes = require('./appRoutes');
 var controllers = require('./controllers/');
 
@@ -15,12 +13,10 @@ var EventService = require('./services/EventService');
 var UserService = require('./services/UserService');
 var IconsService = require('./services/IconsService');
 
+var eventDirective = require('./directives/eventDirective');
+var scrollDirective = require('./directives/scrollDirective');
 var photoDirective = require('./directives/photoDirective');
 
-// require('konami-js');
+var filters = require('./filters/filters');
 
-// public/js/app.js
-angular.module('starstuff', ['ngRoute', 'ngCookies', 'ui.bootstrap', 'bootstrapLightbox', 'datePicker', routes, controllers, EventService, UserService, IconsService, 'Filters', 'eventDirective', 'scrollDirective', photoDirective ])
-// .config(function (LightboxProvider) {
-//   LightboxProvider.fullScreenMode = true;
-// });
+angular.module('starstuff', ['ngRoute', 'ngCookies', 'ui.bootstrap', 'bootstrapLightbox', 'datePicker', routes, controllers, EventService, UserService, IconsService, filters, eventDirective, scrollDirective, photoDirective ])

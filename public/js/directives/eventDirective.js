@@ -15,3 +15,4 @@ angular.module('eventDirective', [])
 			templateUrl: 'views/event-preview.html'
 		};
 	});
+module.exports = 'eventDirective';
