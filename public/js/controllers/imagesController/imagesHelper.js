@@ -1,6 +1,5 @@
 function imagesHelper(Image, Lightbox, $routeParams) {		
 	
-	const eventId = $routeParams.ID;
 	const scope = this;
 
 	function loadImages(images){
@@ -15,7 +14,7 @@ function imagesHelper(Image, Lightbox, $routeParams) {
 		return imagesArr;		
 	}
 
-	function getEventImages(dataImages){
+	function getImages(dataImages){
 		this.images = dataImages.data;
 		let images = loadImages(this.images);
 		this.openLightboxModal = function (index) {
@@ -23,9 +22,6 @@ function imagesHelper(Image, Lightbox, $routeParams) {
 		    return false;
 		};
 	}
-
-	Image.getByEvent( eventId )
-		.then(getEventImages.bind(scope));
 
 	// open/close upload modal
 	this.showModal = false;
@@ -36,6 +32,23 @@ function imagesHelper(Image, Lightbox, $routeParams) {
 	this.closeModal = function(){
 		this.showModal = false;
 	};
+
+	if($routeParams.ID){
+		console.log('event')
+		let eventId = $routeParams.ID;
+		Image.getByEvent( eventId )
+			.then(getImages.bind(scope));
+	} else if($routeParams.USER){
+		console.log('user page')
+		let user = $routeParams.USER;
+		Image.getByUser( user )
+			.then(getImages.bind(scope));
+	} else {
+		console.log('home')
+		Image.get()
+			.then(getImages.bind(scope));
+	}
+	
 }
 
 module.exports = imagesHelper;

@@ -25,26 +25,17 @@
 		<a href="/calendar">Go and add some!</a>
 	</p>
 </section>
-<section>
+
+<section ng-controller="imagesController as images">
 	<h2 class="o-title">{{user.username}}'s Gallery</h2>
 	<div class="c-gallery">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-4" ng-repeat="image in images">
-					<section class="c-card">
-						<a href="#">
-							<img src="img/uploaded/{{image.route}}" alt="{{image.name}}">
-						</a>
-						<div class="c-card__bd">
-							<h3 class="c-card__title">{{image.title}}</h3>
-							<span class="c-card__author"><a href="/user/{{image.username}}">{{image.username}}</a></span>
-						</div>
-												
-					</section>
-					
+				<div class="col-sm-4" ng-repeat="image in images.images | orderBy: 'dateUploaded':true">
+					<photo image="image" open-lightbox-modal="images.openLightboxModal($index)" ></photo>
 				</div>
 			</div>
-			<div ng-if="!images.length" class="u-txt--center">
+			<div ng-if="!images.images.length" class="u-txt--center">
 				You haven't uploaded any picture yet! Grab your camera and take some photos tonight.
 			</div>
 		</div>

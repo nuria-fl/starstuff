@@ -33,24 +33,17 @@
 	</div>
 </section>
 
-<section ng-if="home.images.length">
+<section ng-controller="imagesController as images">
 	<h2 class="o-title">Latest Pictures</h2>
 	<div class="c-gallery">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-4" ng-repeat="image in home.images | orderBy: 'dateUploaded':true">
-					<section class="c-card">
-						<a href="/#">
-							<img src="img/uploaded/{{image.route}}" alt="{{image.name}}">
-						</a>
-						<div class="c-card__bd">
-							<h3 class="c-card__title"><a href="/#/">{{image.title}}</a></h3>
-							<span class="c-card__author"><a href="/#/">{{image.user}}</a></span>
-						</div>
-												
-					</section>
-					
+				<div class="col-sm-4" ng-repeat="image in images.images | orderBy: 'dateUploaded':true">
+					<photo image="image" open-lightbox-modal="images.openLightboxModal($index)" ></photo>
 				</div>
+			</div>
+			<div ng-if="!images.images.length" class="u-txt--center">
+				No pictures yet!
 			</div>
 			<!-- <footer class="c-gallery__ft">
 				<a href="/#/gallery" class="o-btn o-btn--primary">SEE MORE PICTURES</a>
