@@ -40,15 +40,15 @@
 					<photo image="image" open-lightbox-modal="openLightboxModal($index)" ></photo>
 				</div>
 			</div>
-			<div ng-show="imagesTotal.length >= numPerPage">
-				<ul uib-pagination 
+			<nav ng-show="imagesTotal.length >= numPerPage">
+				<ul class="c-pagination" uib-pagination 
 					items-per-page="numPerPage"
 					ng-model="currentPage"
 					total-items="imagesTotal.length"
 					max-size="maxSize"  
-					boundary-links="true">
+					boundary-links="false">
 				</ul>
-			</div>
+			</nav>
 			
 			<div ng-if="!images.length" class="u-txt--center">
 				No pictures yet!

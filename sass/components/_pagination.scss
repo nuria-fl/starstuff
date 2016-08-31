@@ -1,0 +1,32 @@
+.c-pagination {
+	margin: 0;
+	padding: 0;
+	font-size: 0;
+	list-style: none;
+	text-align: center;
+	li {
+		display: inline-block;
+	}
+	a {
+		display: inline-block;
+		@extend .o-btn;
+		@extend .o-btn--default;
+		padding: .2rem 1rem;
+		font-size: 1.4rem;
+	}
+	.active a {
+		background: $primary-c;
+		border-color: $primary-c;
+		color: #fff;
+	}
+	.disabled {
+		display: none;
+	}
+	// .disabled a {
+	// 	opacity: .5;
+	// 	cursor: default;
+	// 	&:hover {
+	// 		color: #fff;
+	// 	}
+	// }
+}
