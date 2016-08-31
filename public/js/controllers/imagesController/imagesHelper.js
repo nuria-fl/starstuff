@@ -31,7 +31,7 @@ function imagesHelper(Image, Lightbox, $scope, $routeParams, $location) {
 		$scope.currentPage = 1;
 		$scope.numPerPage = 9;
 		$scope.maxSize = 5;
-
+		
 		$scope.$watch('currentPage + numPerPage', function() {
 		    
 		    let begin = (($scope.currentPage - 1) * $scope.numPerPage), 
@@ -57,8 +57,6 @@ function imagesHelper(Image, Lightbox, $scope, $routeParams, $location) {
 	this.closeModal = function(){
 		this.showModal = false;
 	};
-
-
 
 	if($routeParams.ID){
 		let eventId = $routeParams.ID;

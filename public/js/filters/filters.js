@@ -46,4 +46,21 @@ angular.module('Filters', [])
             
         };
     })
+    .filter('selectedFiltersImages', function() {
+        return function(images, selection) {
+            console.log(images)
+            if(selection.length ){
+                return images.filter(function(image) {
+                    for (var i in image.event[0].category) {
+                        if (selection.indexOf(image.event[0].category[i]) != -1) {
+                            return true;
+                        }       
+                    }
+                    return false;
+                });
+            } else {
+                return images;
+            }
+        };
+    })
 module.exports = 'Filters';

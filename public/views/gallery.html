@@ -1,9 +1,42 @@
 <section>
 	<h2 class="o-title">Gallery</h2>
+	<section ng-controller="filterController">
+		<div class="container u-txt--right">
+			<button type="button" class="o-btn" ng-class="showFilterCat ? 'o-btn--primary' : 'o-btn--default' " ng-click="toggleFilterCat()">
+				Categories <i class="fa fa-caret-down"></i>
+			</button>
+		</div>
+		<div class="c-filter" ng-show="showFilterCat">
+			<div class="container">
+				<label class="c-filter__item" ng-repeat="category in categories">
+					<input
+					type="checkbox"
+					name="category[]"
+					value="{{category.name}}"
+					ng-model="category.selected"
+					>
+					<span class="o-icon o-icon--lg">
+						<svg>
+						    <use xlink:href="" ng-attr-xlink:href="{{ activePage + '#' + category.iconName}}" />
+						</svg>
+					</span>
+					<span>{{category.name}}</span>
+				</label>
+			</div>
+		</div>
+		
+		<p ng-if="selection.length > 0" class="u-txt--center">
+			Filtering by:
+			<span ng-repeat="item in selection">
+				{{item}}
+				{{$last ? '' : ', '}}
+			</span>
+		</p>
+	</section>
 	<div class="c-gallery">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-4" ng-repeat="image in images">
+				<div class="col-sm-4" ng-repeat="image in images | selectedFiltersImages:selection">
 					<photo image="image" open-lightbox-modal="openLightboxModal($index)" ></photo>
 				</div>
 			</div>
