@@ -1,4 +1,4 @@
-function imagesHelper(Image, Lightbox, $routeParams) {		
+function imagesHelper(Image, Lightbox, $routeParams, $location) {		
 	
 	const scope = this;
 
@@ -43,8 +43,10 @@ function imagesHelper(Image, Lightbox, $routeParams) {
 		let user = $routeParams.USER;
 		Image.getByUser( user )
 			.then(getImages.bind(scope));
+	} else if($location === '/gallery'){
+		Image.get()
+			.then(getImages.bind(scope));
 	} else {
-		console.log('home')
 		Image.get()
 			.then(getImages.bind(scope));
 	}
