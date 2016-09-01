@@ -51,6 +51,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
             controller: 'loginController'
         })
 
+        .when('/myprofile', {
+            templateUrl: 'views/profile.html',
+            controller: 'profileController'
+        })
+
         .when('/user/:USER', {
             templateUrl: 'views/profile.html',
             controller: 'profileController'
@@ -58,7 +63,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
         .when('/credits', {
             templateUrl: 'views/credits.html'
-        })
+        });
 
     $locationProvider.html5Mode(true);
 

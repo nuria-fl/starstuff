@@ -1,4 +1,4 @@
-function runApp($location, $rootScope, $cookies, $route){
+function runApp($location, $rootScope, $route, User){
 	// initialize array to store the user's history
 	var history = [];
 	// change page event
@@ -8,8 +8,8 @@ function runApp($location, $rootScope, $cookies, $route){
 		$rootScope.isHome = $location.path() === '/';
 		$rootScope.activePage = $location.path();
 		// check if we have user globally
-		if($cookies.get('userCookie')){
-			$rootScope.user = $cookies.get('userCookie');
+		if(User.getToken()){
+			$rootScope.user = User.parseJwt(User.getToken()).username;
 		} else {
 			$rootScope.user = false;
 		}
@@ -23,7 +23,7 @@ function runApp($location, $rootScope, $cookies, $route){
     };
     // logout user
     $rootScope.logout = function(){
-		$cookies.remove('userCookie')
+		User.logout();
 		if($location.path('/')){
 			$route.reload();
 		} else {

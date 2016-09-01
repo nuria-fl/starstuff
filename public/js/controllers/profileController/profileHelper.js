@@ -1,11 +1,12 @@
-function profileHelper ( $scope, $cookies, $location, $route, User, Event, Icons, Image ) {
-	if($cookies.get('userCookie')){
+function profileHelper ( $scope, $location, $route, User, Event, Icons, Image ) {
+	if(User.getToken()){
 		// if the user is logged in
-		var user = $cookies.get('userCookie');
+		var user = User.parseJwt(User.getToken()).username;
+
 		//get user info from db
 		User.get(user)
 			.then(function(dataUser){
-				var user = dataUser.data[0]
+				var user = dataUser.data[0];
 				var events = [];
 				//get events that user saved from db
 				user.events.forEach(function(elem){

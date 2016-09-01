@@ -16,25 +16,33 @@ const uploadPic = require('./helpers/uploadPic');
 // Middlewares
 const multiparty = require('connect-multiparty');
 const multipartyMiddleware = multiparty();
-
-module.exports = function(app) {
+const verifyToken = require('./verifyToken')
+module.exports = function(app) {	
 
 	// api calls
 	app.get('/api/events/range/:from/:to', getEventsByDateRange);
 	app.get('/api/event/:id', getEventById);
 	app.get('/api/user/:username', getUser);
-	app.post('/api/user/:username/add-event/:eventId', addEvent);
-	app.post('/api/user/:username/remove-event/:eventId', removeEvent);
-	app.post('/api/user/uploads', multipartyMiddleware, uploadPic.uploadFile);
+	
 	app.get('/api/user/:username/images', getUserImages);
 	app.get('/api/images', getImages);
 	app.get('/api/images/event/:eventId', getEventImages);
 	app.get('/api/image/:id', getImageById);
 
 	// Log users
-	app.post('/login', loginUser);
+	app.post('/login', loginUser.bind( null, app.get('superSecret') ));
 	
 	// frontend routes
 	app.get('*', loadAngular);
+
+	// route middleware to verify a token
+	app.use(verifyToken);
+
+	// routes that require token
+	app.post('/api/user/:username/add-event/:eventId', addEvent);
+	app.post('/api/user/:username/remove-event/:eventId', removeEvent);
+	app.post('/api/user/uploads', multipartyMiddleware, uploadPic.uploadFile);
+
+	
 
 };

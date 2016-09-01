@@ -1,7 +1,17 @@
-function loginHelper ( $scope, $cookies, $location, $routeParams ) {
-	if($cookies.get('userCookie')){
+function loginHelper ( $scope, $cookies, $location, $routeParams, User ) {
+	
+	if(User.getToken()){
 		// if the user is logged in we redirect them to their profile
-		$location.path('/user/'+$cookies.get('userCookie'))
+		$location.path('/myprofile/');
+	}
+
+	$scope.user = {};
+	$scope.login = function(){
+		User.logIn($scope.user)
+			.then(function(dataUser){
+				User.saveToken(dataUser.data.token);
+				$location.path('/myprofile/');
+			})
 	}
 
 	//if the user couldn't be found the server will redirect the user to the login page with an ERROR parameter (need to do this in a better way)
