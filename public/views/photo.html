@@ -4,8 +4,8 @@
 	</a>
 	<div class="c-card__bd">
 		<h3 class="c-card__title">{{image.title}}</h3>
-		<span class="c-card__author">
-			<a href="/user/{{image.username}}">by {{image.username}}</a>
+		<span class="c-card__info">
+			by <a href="/user/{{image.username}}">{{image.username}}</a> · <a href="/event/{{image.event[0]._id}}">{{image.event[0].name}}</a>
 		</span>
 	</div>
 </section>
