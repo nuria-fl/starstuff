@@ -9,8 +9,12 @@ function loginHelper ( $scope, $cookies, $location, $routeParams, User ) {
 	$scope.login = function(){
 		User.logIn($scope.user)
 			.then(function(dataUser){
-				User.saveToken(dataUser.data.token);
-				$location.path('/myprofile/');
+				if(dataUser.data.token){
+					User.saveToken(dataUser.data.token);
+					$location.path('/myprofile/');	
+				} else {
+					$location.path('/login/error')
+				}
 			})
 	}
 
