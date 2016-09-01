@@ -11,8 +11,7 @@ var morgan      	= require('morgan');
 // configuration ===========================================
 
 // config files
-var mongoUrl = process.env.MONGO;
-console.log(mongoUrl)
+var mongoUrl = process.env.MONGO || 'mongodb://localhost:27017/starstuff';
 // set our port
 var port = process.env.PORT || 8080; 
 
