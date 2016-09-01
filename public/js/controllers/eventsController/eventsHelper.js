@@ -20,7 +20,6 @@ function eventsHelper ( $scope, $rootScope, $routeParams, $location, Event, User
 		var yesterday = (new Date()).getTime()  - (24 * 60 * 60 * 1000);
 
 		dateFrom = new Date(yesterday);
-		console.log(dateFrom)
 		dateTo = new Date('2016-12-31');
 		limit = 10;
 

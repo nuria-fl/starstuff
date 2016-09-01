@@ -1,7 +1,7 @@
 function searchByDateHelper($scope, $location){
-	$scope.searchByDate = function(){
-		var maxDate = $scope.dates.maxDate._d;
-		var minDate = $scope.dates.minDate._d;
+	this.searchByDate = function(){
+		var maxDate = $scope.dates.maxDate;
+		var minDate = $scope.dates.minDate;
 
 		var minYear = minDate.getFullYear();
 		var minMonth = minDate.getMonth()+1;
