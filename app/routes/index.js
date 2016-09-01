@@ -35,13 +35,16 @@ module.exports = function(app) {
 	// frontend routes
 	app.get('*', loadAngular);
 
+	// since we use two middlewares we put this before the verify token usage
+	app.post('/api/user/uploads', multipartyMiddleware, verifyToken.bind(null, app), uploadPic.uploadFile);
+
 	// route middleware to verify a token
-	app.use(verifyToken);
+	app.use(verifyToken.bind(null, app));
 
 	// routes that require token
 	app.post('/api/user/:username/add-event/:eventId', addEvent);
 	app.post('/api/user/:username/remove-event/:eventId', removeEvent);
-	app.post('/api/user/uploads', multipartyMiddleware, uploadPic.uploadFile);
+	
 
 	
 

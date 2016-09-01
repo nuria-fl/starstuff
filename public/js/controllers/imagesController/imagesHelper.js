@@ -1,4 +1,4 @@
-function imagesHelper(Image, Lightbox, $scope, $routeParams, $location) {		
+function imagesHelper(Image, Lightbox, $scope, $rootScope, $routeParams, $location) {		
 	
 	const scope = this;
 
@@ -62,11 +62,15 @@ function imagesHelper(Image, Lightbox, $scope, $routeParams, $location) {
 		let eventId = $routeParams.ID;
 		Image.getByEvent( eventId )
 			.then(getImages.bind(scope));
+	} else if($location.path() === '/myprofile'){
+		let user = $rootScope.user;
+		Image.getByUser( user )
+			.then(getImages.bind(scope));
 	} else if($routeParams.USER){
 		let user = $routeParams.USER;
 		Image.getByUser( user )
 			.then(getImages.bind(scope));
-	} else if($location.path() === '/gallery'){
+	}  else if($location.path() === '/gallery'){
 		Image.get()
 			.then(getImagesGallery.bind(scope));
 	} else {

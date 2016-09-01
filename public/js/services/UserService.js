@@ -6,10 +6,22 @@ angular.module('UserService', []).factory('User', ['$http', '$window', function(
             return $http.get('/api/user/'+username);
         },
         addEvent : function(username,eventId) {
-            return $http.post('/api/user/' + username +'/add-event/'+eventId);
+            var token = $window.localStorage['jwtToken'];
+            var url = '/api/user/' + username +'/add-event/'+eventId;
+            return $http({
+                method  : 'POST',
+                url     : url,
+                data    : {token:token}
+            });
         },
         removeEvent : function(username,eventId) {
-            return $http.post('/api/user/' + username +'/remove-event/'+eventId);
+            var token = $window.localStorage['jwtToken'];
+            var url = '/api/user/' + username +'/remove-event/'+eventId;
+            return $http({
+                method  : 'POST',
+                url     : url,
+                data    : {token:token}
+            });
         },
         parseJwt : function(token) {
             var base64Url = token.split('.')[1];

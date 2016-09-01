@@ -1,8 +1,10 @@
-function verifyToken(req, res, next) {
+var jwt  = require('jsonwebtoken');
+
+function verifyToken(app, req, res, next) {
 
 	// check header or url parameters or post parameters for token
 	var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
+	console.log(req.body)
 	// decode token
 	if (token) {
 		console.log(app.get('superSecret'))

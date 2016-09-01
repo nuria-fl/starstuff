@@ -19,11 +19,7 @@ function profileHelper ( $scope, $location, $route, User, Event, Icons, Image ) 
 				$scope.added = true; // we set the added parameter (used to hide the add to calendar button) to true because we know that all the events are added
 				$scope.events = events;
 				
-			})
-		Image.getByUser(user)
-			.then(function(dataImages){
-				$scope.images = dataImages.data;
-			})
+			});
 		// set default range to show events (from now until the end of time)
 		var normalRange = {
 			dateFrom: new Date(),

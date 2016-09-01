@@ -1,5 +1,8 @@
-function uploadHelper ($scope, $rootScope, Upload, $route) {
+function uploadHelper ($scope, $rootScope, Upload, $route, $window) {
+	var token = $window.localStorage['jwtToken'];
+	console.log(token)
 	$scope.uploadPic = function(file, title, event) {
+		
 		file.upload = Upload.upload({
 			url: 'api/user/uploads',
 			method: 'POST',
@@ -7,7 +10,8 @@ function uploadHelper ($scope, $rootScope, Upload, $route) {
 				title: title,
 				file: file,
 				username: $rootScope.user, 
-				event: event
+				event: event,
+				token: token
 			}
 		});
 
