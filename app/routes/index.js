@@ -1,25 +1,21 @@
-// app/routes.js
-var Event = require('../models/event');
-var User = require('../models/user');
-var getEventsByDateRange = require('./helpers/getEventsByDateRange');
-var getEventById = require('./helpers/getEventById');
-var getUser = require('./helpers/getUser');
-var addEvent = require('./helpers/addEvent');
-var removeEvent = require('./helpers/removeEvent');
-var loginUser = require('./helpers/loginUser');
-var loadAngular = require('./helpers/loadAngular');
-var getImages = require('./helpers/getImages');
-var getImageById = require('./helpers/getImageById');
-var getUserImages = require('./helpers/getUserImages');
-var getEventImages = require('./helpers/getEventImages');
-
-// Requires multiparty 
-multiparty = require('connect-multiparty'),
-multipartyMiddleware = multiparty(),
-
-// Requires controller
-UserController = require('./helpers/uploadPic');
-
+// helpers
+const Event = require('../models/event');
+const User = require('../models/user');
+const getEventsByDateRange = require('./helpers/getEventsByDateRange');
+const getEventById = require('./helpers/getEventById');
+const getUser = require('./helpers/getUser');
+const addEvent = require('./helpers/addEvent');
+const removeEvent = require('./helpers/removeEvent');
+const loginUser = require('./helpers/loginUser');
+const loadAngular = require('./helpers/loadAngular');
+const getImages = require('./helpers/getImages');
+const getImageById = require('./helpers/getImageById');
+const getUserImages = require('./helpers/getUserImages');
+const getEventImages = require('./helpers/getEventImages');
+const uploadPic = require('./helpers/uploadPic');
+// Middlewares
+const multiparty = require('connect-multiparty');
+const multipartyMiddleware = multiparty();
 
 module.exports = function(app) {
 
@@ -29,7 +25,7 @@ module.exports = function(app) {
 	app.get('/api/user/:username', getUser);
 	app.post('/api/user/:username/add-event/:eventId', addEvent);
 	app.post('/api/user/:username/remove-event/:eventId', removeEvent);
-	app.post('/api/user/uploads', multipartyMiddleware, UserController.uploadFile);
+	app.post('/api/user/uploads', multipartyMiddleware, uploadPic.uploadFile);
 	app.get('/api/user/:username/images', getUserImages);
 	app.get('/api/images', getImages);
 	app.get('/api/images/event/:eventId', getEventImages);

@@ -10,19 +10,13 @@ var mongoose = require('mongoose');
 // configuration ===========================================
 
 // config files
-if(process.env.NODE_ENV === 'development'){
-	var db = require('./config/db');	
-} else {
-	var db = require('./config/db-prod');
-}
-
+var mongoUrl = process.env.MONGO;
 
 // set our port
 var port = process.env.PORT || 8080; 
 
 // connect to our mongoDB database 
-// (uncomment after you enter in your own credentials in config/db.js)
-mongoose.connect(db.url); 
+mongoose.connect(mongoUrl); 
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json 
