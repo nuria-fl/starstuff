@@ -24,10 +24,8 @@ function imagesHelper(Image, Lightbox, $scope, $rootScope, $routeParams, $locati
 	}
 
 	function getImagesGallery(dataImages){
-		var orderedImages = dataImages.data.sort((a,b)=> a.dateUploaded < b.dateUploaded);
-
 		$scope.images = [];
-		$scope.imagesTotal = orderedImages;
+		$scope.imagesTotal = dataImages.data;
 		$scope.currentPage = 1;
 		$scope.numPerPage = 9;
 		$scope.maxSize = 5;
