@@ -1,11 +1,11 @@
 <section class="container">
-	<h2 class="o-title">My profile</h2>
-	<h3>
+	<h2 class="o-title">{{title}}</h2>
+	<h3 ng-show="myprofile">
 		Hello, {{user.username}} <a href="#" ng-click="logout()" class="small">(<i class="fa fa-power-off"></i> Logout)</a>
 	</h3>	
 	<header class="row">
 		<div class="col-xs-6">
-			<h4>My saved events</h4>
+			<h4>Saved events</h4>
 		</div>
 		<div class="col-xs-6 u-txt--right" ng-if="events.length">
 			<button type="button" class="o-btn o-btn--default o-btn--sm" ng-click="viewPast()" ng-hide="reverse">View past events</button>
