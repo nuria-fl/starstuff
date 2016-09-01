@@ -12,7 +12,7 @@ var morgan      	= require('morgan');
 
 // config files
 var mongoUrl = process.env.MONGO;
-
+console.log(mongoUrl)
 // set our port
 var port = process.env.PORT || 8080; 
 
