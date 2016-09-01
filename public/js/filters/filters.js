@@ -48,7 +48,6 @@ angular.module('Filters', [])
     })
     .filter('selectedFiltersImages', function() {
         return function(images, selection) {
-            console.log(images)
             if(selection.length ){
                 return images.filter(function(image) {
                     for (var i in image.event[0].category) {

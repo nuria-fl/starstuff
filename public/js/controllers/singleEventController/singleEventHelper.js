@@ -1,14 +1,14 @@
+function getEvent(dataEvent){
+	var today = (new Date()).getTime();
+	this.info = dataEvent.data;
+	this.passed = today > dataEvent.data.date;
+}
+
 function singleEventHelper ( $scope, $rootScope, $routeParams, $sce, Event, User, Icons ) {
 	
 	//get event by the url parameter
 	var eventId = $routeParams.ID;
 	var scope = this;
-	
-	function getEvent(dataEvent){
-		var today = (new Date()).getTime();
-		this.info = dataEvent.data;
-		this.passed = today > dataEvent.data.date;
-	}
 
 	Event.getOne( eventId )
 		.then(getEvent.bind(scope));
