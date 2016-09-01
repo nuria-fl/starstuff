@@ -46,6 +46,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
             controller: 'loginController'
         })
 
+        // .when('/register', {
+        //     templateUrl: 'views/register.html',
+        //     controller: 'loginController'
+        // })
+
         .when('/login/:ERROR', {
             templateUrl: 'views/login.html',
             controller: 'loginController'

@@ -5,6 +5,7 @@ var angularCookies = require('angular-cookies');
 var ngFileUpload = require('ng-file-upload');
 var bootstrapLightbox = require('angular-bootstrap-lightbox');
 var uiBootstrap = require('angular-ui-bootstrap');
+var vcRecaptcha = require('angular-recaptcha');
 
 var routes = require('./appRoutes');
 var controllers = require('./controllers/');
@@ -19,4 +20,4 @@ var photoDirective = require('./directives/photoDirective');
 
 var filters = require('./filters/filters');
 
-angular.module('starstuff', ['ngRoute', 'ngCookies', 'ui.bootstrap', 'bootstrapLightbox', 'datePicker', routes, controllers, EventService, UserService, IconsService, filters, eventDirective, scrollDirective, photoDirective ])
+angular.module('starstuff', ['ngRoute', 'ngCookies', 'ui.bootstrap', 'bootstrapLightbox', 'datePicker', 'vcRecaptcha', routes, controllers, EventService, UserService, IconsService, filters, eventDirective, scrollDirective, photoDirective ])
