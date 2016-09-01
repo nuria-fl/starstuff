@@ -70,7 +70,7 @@ function imagesHelper(Image, Lightbox, $scope, $routeParams, $location) {
 		Image.get()
 			.then(getImagesGallery.bind(scope));
 	} else {
-		Image.get()
+		Image.get(9)
 			.then(getImages.bind(scope));
 	}
 	

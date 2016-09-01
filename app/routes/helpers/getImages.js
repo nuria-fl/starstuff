@@ -1,7 +1,8 @@
 var Image = require('../../models/image');
 
 function getImages (req, res) {
-	Image.find().exec(function (err, images) {
+	var lim = req.query.limit || 0;
+	Image.find().limit(lim).exec(function (err, images) {
 			if (err) return next(err);
 			
 			res.json(images);

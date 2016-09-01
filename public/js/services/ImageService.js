@@ -2,8 +2,9 @@
 angular.module('ImageService', []).factory('Image', ['$http', function($http) {
 
     return {
-        get : function() {
-            return $http.get('/api/images/');
+        get : function(limit) {
+            var lim = limit ? limit : '0';
+            return $http.get('/api/images/?limit='+limit);
         },
         getById : function(imageId) {
             return $http.get('/api/image/' + imageId);
