@@ -29,11 +29,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
             controller: 'eventsController'
         })
 
-        .when('/gallery',{
-            templateUrl: 'views/gallery.html',
-            controller: 'imagesController',
-            // controllerAs: 'gallery'
-        })
+        // .when('/gallery',{
+        //     templateUrl: 'views/gallery.html',
+        //     controller: 'imagesController',
+        //     // controllerAs: 'gallery'
+        // })
         
         .when('/event/:ID', {
             templateUrl: 'views/event-single.html',

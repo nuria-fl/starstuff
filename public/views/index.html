@@ -38,7 +38,7 @@
 							<li class="c-nav__item" ng-class="activePage.indexOf('/calendar') !== -1 ? 'is-active' : ''">
 								<a href="/calendar">CALENDAR</a>
 							</li>
-							<li class="c-nav__item" ng-class="activePage === '/gallery' ? 'is-active' : ''">
+							<li class="c-nav__item" ng-class="activePage === '/gallery' ? 'is-active' : ''" ng-hide="true">
 								<a href="/gallery">GALLERY</a>
 							</li>
 							<li class="c-nav__item" ng-class="activePage.indexOf('/user') !== -1 || activePage === '/login' ? 'is-active' : ''">
